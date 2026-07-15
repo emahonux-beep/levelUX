@@ -19,14 +19,14 @@
   .site-logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0;}
   .site-logo img{height:36px;width:auto;display:block;}
   .nav-links{display:flex;gap:var(--space-1);}
-  .nav-link{font-family:var(--font-body);font-weight:var(--fw-medium);font-size:var(--text-sm);color:var(--raw-neutral-300);text-decoration:none;padding:var(--space-2) var(--space-3);border-radius:var(--radius-full);transition:background .15s,color .15s;white-space:nowrap;}
+  .nav-link{font-family:var(--font-body);font-weight:var(--fw-medium);font-size:var(--text-sm);color:var(--color-text-muted-on-dark);text-decoration:none;padding:var(--space-2) var(--space-3);border-radius:var(--radius-full);transition:background .15s,color .15s;white-space:nowrap;}
   .nav-link:hover{background:rgba(255,255,255,.10);color:#fff;}
   .nav-link.active{background:var(--raw-coral-glow);color:var(--raw-shadow-grey);font-weight:var(--fw-bold);}
   .site-stripe{height:5px;background:linear-gradient(90deg,var(--raw-coral-glow),var(--raw-steel-blue),var(--raw-plum));}
 
   /* Back */
   .back-wrap{max-width:1120px;margin:0 auto;padding:var(--space-4) var(--space-6) 0;}
-  .back-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-muted);text-decoration:none;transition:color .14s;}
+  .back-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-secondary-text);text-decoration:none;transition:color .14s;}
   .back-link:hover{color:var(--color-text);}
 
   /* Article header — reading width */
@@ -42,36 +42,32 @@
   .author-name{font-family:var(--font-heading);font-weight:var(--fw-bold);font-size:var(--text-sm);color:var(--color-text);display:block;}
   .author-meta{font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-muted);display:block;margin-top:2px;}
 
-  /* Article body — reading column */
+  /* Article body — single reading column, Substack-style: text and images
+     share the same measure so nothing breaks out to a wider grid. */
   .article-body{max-width:720px;margin:0 auto;padding:var(--space-8) var(--space-6) var(--space-4);}
   .article-body p{font-size:var(--text-lg);line-height:1.78;color:var(--color-text);margin:0 0 var(--space-6);}
   .article-body h2{font-family:var(--font-heading);font-weight:var(--fw-bold);font-size:var(--text-2xl);color:var(--color-text);margin:var(--space-10) 0 var(--space-4);line-height:var(--leading-tight);}
   .article-body ul{margin:0 0 var(--space-6);padding-left:var(--space-6);}
   .article-body ul li{font-size:var(--text-lg);line-height:1.78;color:var(--color-text);margin-bottom:var(--space-3);}
   .article-body ul li strong{font-weight:var(--fw-bold);}
+  .article-body img{width:100%;border-radius:var(--radius-lg);display:block;margin:0 0 var(--space-6);}
   .article-body .sign-off{margin-top:var(--space-10);padding-top:var(--space-6);border-top:1px solid var(--color-border);font-family:var(--font-mono);font-size:var(--text-sm);color:var(--color-text-muted);}
   .section-rule{border:none;border-top:1px solid var(--color-border);margin:var(--space-10) 0;}
 
-  /* Pull quote — breaks out wider */
-  .pull-quote-wrap{max-width:900px;margin:var(--space-8) auto;padding:0 var(--space-6);}
-  .pull-quote{border-left:4px solid var(--raw-coral-glow);padding:var(--space-4) var(--space-6);background:var(--color-bg);border-radius:0 var(--radius-md) var(--radius-md) 0;}
+  /* Pull quote — stays inside the reading column, doesn't break out */
+  .pull-quote{border-left:4px solid var(--raw-coral-glow);padding:var(--space-4) var(--space-6);background:var(--color-bg-subtle);border-radius:0 var(--radius-md) var(--radius-md) 0;margin:0 0 var(--space-8);}
   .pull-quote p{font-family:var(--font-heading);font-weight:var(--fw-bold);font-size:var(--text-xl);line-height:1.35;color:var(--color-text);margin:0;font-style:italic;}
 
-  /* Inline para + image — breaks out to full 1120px */
-  .para-row{max-width:1120px;margin:0 auto var(--space-8);padding:0 var(--space-6);display:grid;grid-template-columns:8fr 4fr;gap:var(--space-8);align-items:center;}
-  .para-row p{font-size:var(--text-lg);line-height:1.78;color:var(--color-text);margin:0;}
-  .para-row img{width:100%;border-radius:var(--radius-lg);display:block;}
-
   /* Footer */
-  .site-footer{background:#272727;color:var(--raw-neutral-300);padding:var(--space-16) var(--space-6);margin-top:var(--space-16);}
+  .site-footer{background:#272727;color:var(--color-text-muted-on-dark);padding:var(--space-16) var(--space-6);margin-top:var(--space-16);}
   .footer-top{max-width:1120px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-8);}
   .footer-left{display:flex;align-items:center;gap:var(--space-8);flex-wrap:wrap;}
   .footer-logo img{height:80px;width:auto;display:block;}
   .footer-nav{display:flex;flex-wrap:wrap;gap:var(--space-1);}
-  .footer-nav a{font-family:var(--font-body);font-weight:var(--fw-medium);font-size:var(--text-sm);color:var(--raw-neutral-300);text-decoration:none;padding:var(--space-1) var(--space-2);transition:color .15s;}
+  .footer-nav a{font-family:var(--font-body);font-weight:var(--fw-medium);font-size:var(--text-sm);color:var(--color-text-muted-on-dark);text-decoration:none;padding:var(--space-1) var(--space-2);transition:color .15s;}
   .footer-nav a:hover{color:#fff;}
   .footer-right{text-align:right;flex-shrink:0;}
-  .footer-right-label{font-family:var(--font-mono);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.1em;color:var(--raw-neutral-300);margin:0 0 var(--space-2);}
+  .footer-right-label{font-family:var(--font-mono);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.1em;color:var(--color-text-muted-on-dark);margin:0 0 var(--space-2);}
   .footer-contact-link{display:block;font-family:var(--font-mono);font-size:var(--text-sm);color:var(--raw-coral-glow);text-decoration:none;line-height:1.8;}
   .footer-contact-link:hover{text-decoration:underline;}
   .footer-legal{max-width:1120px;margin:var(--space-8) auto 0;font-family:var(--font-mono);font-size:var(--text-xs);color:var(--raw-neutral-400);border-top:1px solid var(--raw-neutral-700);padding-top:var(--space-6);}
@@ -80,8 +76,7 @@
   @media(max-width:860px){
     .top-bar-inner{height:60px;padding:0 16px;}
     .nav-link{font-size:13px;padding:6px 8px;}
-    .back-wrap,.article-header,.article-body,.pull-quote-wrap{padding-left:var(--space-4);padding-right:var(--space-4);}
-    .para-row{grid-template-columns:1fr;padding:0 var(--space-4);}
+    .back-wrap,.article-header,.article-body{padding-left:var(--space-4);padding-right:var(--space-4);}
     .footer-top{flex-direction:column;gap:var(--space-6);}
     .footer-right{text-align:left;}
   }
@@ -89,7 +84,7 @@
     .top-bar-inner{flex-wrap:wrap;height:auto;padding:12px 16px;gap:8px;justify-content:center;}
     .site-logo{width:100%;justify-content:center;}
     .nav-links{justify-content:center;flex-wrap:wrap;}
-    .article-body p,.article-body ul li,.para-row p{font-size:var(--text-base);}
+    .article-body p,.article-body ul li{font-size:var(--text-base);}
   }
 </style>
 </head>
@@ -112,7 +107,7 @@
 <div class="back-wrap">
   <a class="back-link" href="../../brain-dumps.html">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-    Brain Dumps
+    Back
   </a>
 </div>
 
@@ -131,34 +126,21 @@
 
 <div class="article-body">
   <p>When I was a kid, I remember walking into my parents' room around seven or eight at night after practice and seeing my mom turn on American Idol the second it started. Every week, calling in on a landline to vote for Clay Aiken, David Cook, Kelly Clarkson. All the way back to the beginning. That engagement, that ritual of coming back night after night, wasn't an accident.</p>
-</div>
 
-<div class="para-row">
   <p>Now, watching a little too much Love Island in my own life, I see it happening again. But it's different this time because of everything happening around it. TikTok, Instagram, Facebook, Twitter. It's not just TMZ covering a reality show anymore. It's real people building platforms just by talking about it. The discourse is the show now, almost as much as the show is.</p>
   <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWdjeDV3ZGluOWh0cDUwZWF5Mmg1YXc5dmZobTNocW9tOGJkYjNmbSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/4Pi145hye1ItCpp9GT/giphy.gif" alt="Love Island reaction">
-</div>
 
-<div class="article-body">
   <h2>The feeling of choice</h2>
-</div>
-
-<div class="para-row">
   <p>Here's what's changed since American Idol, though: it's not just voting for a winner anymore. On Love Island, the audience votes on what happens next. What clips get shown at movie night. Usually the ones that can unravel a couple. Which pairing you want to see when a new bombshell walks into the villa. Sometimes you even get a say in who makes it into the villa.</p>
   <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExa294YWhpNWVkcXZubmhtcDd0bDdtMXhtMTczbzB0eHY1ZWo2NzBwbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PkBoSOMjD8uiBg1NIn/giphy.gif" alt="Love Island villa">
-</div>
 
-<div class="para-row">
   <p>It's not one vote at the end of a season. It's dozens of small moments where the audience gets to steer the story.</p>
   <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXM5ZmxqZ2F5MGVoNzVodzBsZ2xjaDBmNmR2MnlveGsxcGxpbmg5ZiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/g6eB7DOy9LaVTWfrND/giphy.gif" alt="Hot girl summer">
-</div>
 
-<div class="pull-quote-wrap">
   <div class="pull-quote">
     <p>"The app itself might be one of the worst on the planet — buggy, clunky, whatever. Doesn't matter. People still open it."</p>
   </div>
-</div>
 
-<div class="article-body">
   <p>And here's the thing, the app itself might be one of the worst on the planet, buggy, clunky, whatever. Doesn't matter. People still open it. Because it gets the job done: they feel like they have a choice, like there's room for them, like their vote actually means something. Like it's a way in, not just a way to watch.</p>
   <p>That's not a TV trick. That's a pattern.</p>
   <hr class="section-rule">
