@@ -15,22 +15,21 @@
   .site-logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0;}
   .site-logo img{height:36px;width:auto;display:block;}
   .nav-links{display:flex;gap:var(--space-1);}
-  .nav-link{font-family:var(--font-body);font-weight:var(--fw-medium);font-size:var(--text-sm);color:var(--raw-neutral-300);text-decoration:none;padding:var(--space-2) var(--space-3);border-radius:var(--radius-full);transition:background .15s,color .15s;white-space:nowrap;}
+  .nav-link{font-family:var(--font-body);font-weight:var(--fw-medium);font-size:var(--text-sm);color:var(--color-text-muted-on-dark);text-decoration:none;padding:var(--space-2) var(--space-3);border-radius:var(--radius-full);transition:background .15s,color .15s;white-space:nowrap;}
   .nav-link:hover{background:rgba(255,255,255,.10);color:#fff;}
   .nav-link.active{background:var(--raw-coral-glow);color:var(--raw-shadow-grey);font-weight:var(--fw-bold);}
   .site-stripe{height:5px;background:linear-gradient(90deg,var(--raw-coral-glow),var(--raw-steel-blue),var(--raw-plum));}
-  .back-wrap{padding:var(--space-4) var(--space-6) 0;}
-  .back-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-muted);text-decoration:none;transition:color .14s;}
-  .back-link:hover{color:var(--color-text);}
-  .site-footer{background:#272727;color:var(--raw-neutral-300);padding:var(--space-16) var(--space-6);}
+  .back-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-secondary-on-dark);text-decoration:none;transition:color .14s;margin-bottom:var(--space-4);}
+  .back-link:hover{color:var(--color-text-inverse);}
+  .site-footer{background:#272727;color:var(--color-text-muted-on-dark);padding:var(--space-16) var(--space-6);}
   .footer-top{max-width:1120px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-8);}
   .footer-left{display:flex;align-items:center;gap:var(--space-8);flex-wrap:wrap;}
   .footer-logo img{height:80px;width:auto;display:block;}
   .footer-nav{display:flex;flex-wrap:wrap;gap:var(--space-1);}
-  .footer-nav a{font-family:var(--font-body);font-weight:var(--fw-medium);font-size:var(--text-sm);color:var(--raw-neutral-300);text-decoration:none;padding:var(--space-1) var(--space-2);transition:color .15s;}
+  .footer-nav a{font-family:var(--font-body);font-weight:var(--fw-medium);font-size:var(--text-sm);color:var(--color-text-muted-on-dark);text-decoration:none;padding:var(--space-1) var(--space-2);transition:color .15s;}
   .footer-nav a:hover{color:#fff;}
   .footer-right{text-align:right;flex-shrink:0;}
-  .footer-right-label{font-family:var(--font-mono);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.1em;color:var(--raw-neutral-300);margin:0 0 var(--space-2);}
+  .footer-right-label{font-family:var(--font-mono);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.1em;color:var(--color-text-muted-on-dark);margin:0 0 var(--space-2);}
   .footer-contact-link{display:block;font-family:var(--font-mono);font-size:var(--text-sm);color:var(--raw-coral-glow);text-decoration:none;line-height:1.8;}
   .footer-contact-link:hover{text-decoration:underline;}
   .footer-legal{max-width:1120px;margin:var(--space-8) auto 0;font-family:var(--font-mono);font-size:var(--text-xs);color:var(--raw-neutral-400);border-top:1px solid var(--raw-neutral-700);padding-top:var(--space-6);}
@@ -40,7 +39,7 @@
   .page-hero-inner{max-width:1120px;margin:0 auto;padding:0 var(--space-6);}
   .page-eyebrow{font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--raw-coral-glow);margin:0 0 var(--space-3);display:block;}
   .page-hero h1{font-family:var(--font-heading);font-weight:var(--fw-bold);font-size:var(--text-3xl);color:var(--color-text-inverse);margin:0 0 var(--space-3);line-height:var(--leading-tight);}
-  .page-hero p{font-size:var(--text-base);color:var(--raw-neutral-300);margin:0;}
+  .page-hero p{font-size:var(--text-base);color:var(--color-text-muted-on-dark);margin:0;}
   .section{max-width:1120px;margin:0 auto;padding:var(--space-12) var(--space-6);}
   .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--space-4);}
   .card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:box-shadow .2s,transform .2s;}
@@ -75,12 +74,11 @@
   .post-excerpt{font-size:var(--text-sm);color:var(--color-text-muted);line-height:var(--leading-loose);margin:0;}
   .post-cta{display:inline-flex;align-items:center;gap:var(--space-2);font-family:var(--font-body);font-weight:var(--fw-bold);font-size:var(--text-sm);color:var(--color-accent-text);margin-top:var(--space-2);}
   .post-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:var(--space-6);}
-  @media(max-width:860px){.page-hero{padding:var(--space-8) 0 var(--space-6);}.section{padding:var(--space-8) var(--space-4);}.section-divider{margin:0 var(--space-4);}.back-wrap{padding:var(--space-4) var(--space-4) 0;}}
+  @media(max-width:860px){.page-hero{padding:var(--space-8) 0 var(--space-6);}.section{padding:var(--space-8) var(--space-4);}.section-divider{margin:0 var(--space-4);}}
   @media(max-width:600px){.card-grid{grid-template-columns:1fr;}.post-grid{grid-template-columns:1fr;}}</style>
 </head>
 <body><nav class="top-bar"><div class="top-bar-inner"><a href="index.html" class="site-logo"><img src="images/LevelUX-horizontal-dark.svg" alt="LevelUX"></a><div class="nav-links"><a href="index.html" class="nav-link">Home</a><a href="learning-friday.html" class="nav-link">Learning Friday</a><a href="courses.html" class="nav-link active">Courses</a><a href="brain-dumps.html" class="nav-link">Brain Dumps</a><a href="about.html" class="nav-link">About</a></div></div></nav><div class="site-stripe"></div>
-<div class="back-wrap"><a class="back-link" href="index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg> Home</a></div>
-<div class="page-hero"><div class="page-hero-inner"><span class="page-eyebrow">Self-paced learning</span><h1>Courses</h1><p>For the topics that need more than a quick scroll. I've turned all the things I wish I had when I got started into modules. No deadlines, no cohort, just work through them whenever.</p></div></div>
+<div class="page-hero"><div class="page-hero-inner"><a class="back-link" href="index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg> Back</a><span class="page-eyebrow">Self-paced learning</span><h1>Courses</h1><p>For the topics that need more than a quick scroll. I've turned all the things I wish I had when I got started into modules. No deadlines, no cohort, just work through them whenever.</p></div></div>
 <section class="section"><div class="card-grid">
   <a class="card" href="courses/ux-jump-start-orientation/index.html"><div class="card-bar co-bar"></div><div class="card-body"><div class="card-title">Orientation</div><p class="card-desc">The people and mode of work you're in. The who's who, and discovery vs. delivery of it all.</p><div class="card-cta co-cta">Start course <span class="material-symbols-outlined">arrow_forward</span></div></div></a>
 </div></section>
