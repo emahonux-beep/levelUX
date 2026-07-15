@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Introduction — UX Jump Start — LevelUX</title>
+<title>Delivery vs. Discovery — UX Jump Start — LevelUX</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Karla:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
@@ -49,7 +49,7 @@
     </div>
 
     <nav class="sidebar-lessons">
-      <a href="index.html" class="sidebar-lesson active" data-lesson="0">
+      <a href="index.html" class="sidebar-lesson" data-lesson="0">
         <span class="lesson-num">01</span>
         <span class="lesson-check" id="check-0"></span>
         <span class="lesson-name">Introduction</span>
@@ -59,7 +59,7 @@
         <span class="lesson-check" id="check-1"></span>
         <span class="lesson-name">Who's Who</span>
       </a>
-      <a href="delivery-vs-discovery.html" class="sidebar-lesson" data-lesson="2">
+      <a href="delivery-vs-discovery.html" class="sidebar-lesson active" data-lesson="2">
         <span class="lesson-num">03</span>
         <span class="lesson-check" id="check-2"></span>
         <span class="lesson-name">Delivery vs. Discovery</span>
@@ -76,39 +76,51 @@
   <!-- Main content -->
   <main class="course-content">
 
-    <span class="module-label">Module 1 · Lesson 1 of 3</span>
-    <h1 class="lesson-title">The people and the mode of work you're in.</h1>
+    <span class="module-label">Module 1 · Lesson 3 of 3</span>
+    <h1 class="lesson-title">Delivery vs. Discovery</h1>
     <div class="lesson-meta">
       <div class="read-time">
         <span class="material-symbols-outlined" style="font-size:15px;color:var(--raw-coral-glow);">schedule</span>
-        2 min read
+        4 min read
       </div>
-      <label class="mark-complete" id="complete-0-label">
-        <input type="checkbox" id="complete-0" onchange="markComplete(0)">
+      <label class="mark-complete" id="complete-2-label">
+        <input type="checkbox" id="complete-2" onchange="markComplete(2)">
         Mark as complete
       </label>
     </div>
     <div class="lesson-body">
-      <p>This module covers the two things that trip people up most in their first few weeks: not knowing who to go to for what, and not knowing what kind of work they're supposed to be doing. Both are fixable with a little context.</p>
-      <p>Work through the lessons in order if you're brand new, or jump straight to whatever you need. You can check off each lesson as you go — your progress saves automatically.</p>
+      <p>One of the most useful distinctions to internalize early is what <em>mode of work</em> you're actually in — because it changes everything: your deliverables, your timeline, and what "done" looks like.</p>
+
+      <div class="compare-grid">
+        <div class="compare-card discovery">
+          <div class="compare-title">🔍 Discovery / Strategic Design</div>
+          <p>The goal is to reduce uncertainty about a problem before committing to a solution. Common activities: research synthesis, problem framing, journey mapping, early concepting, competitive analysis. Deliverables are often rough, exploratory, and disposable — the point is learning, not polish.</p>
+        </div>
+        <div class="compare-card delivery">
+          <div class="compare-title">🚀 Delivery</div>
+          <p>The goal is to ship a well-defined solution. Common activities: high-fidelity design, prototyping, accessibility and dev handoff annotation, QA. Deliverables need to be precise and production-ready.</p>
+        </div>
+      </div>
+
       <div class="callout">
         <div class="callout-header">
-          <span class="material-symbols-outlined" style="font-size:14px;">info</span>
-          How this module is organized
+          <span class="material-symbols-outlined" style="font-size:14px;">lightbulb</span>
+          Why this matters
         </div>
-        <p>We start with the people (who's who and how to approach them), then move into the mode of work (discovery vs. delivery) — because knowing which one you're in changes everything about how you show up.</p>
+        <p>If you bring delivery-level polish to a discovery conversation, you'll get feedback on pixels instead of the idea — and stakeholders may assume the decision is already made. If you bring discovery-level looseness to a delivery review, you'll create confusion about what's actually being built.</p>
+        <p style="margin-top:var(--space-3);">Naming which mode you're in at the start of a meeting ("this is early exploration" vs. "this is ready for sign-off") sets expectations and saves everyone time.</p>
       </div>
     </div>
 
     <!-- Lesson nav -->
     <div class="lesson-nav">
-      <a class="nav-btn prev" href="../../courses.html">
+      <a class="nav-btn prev" href="whos-who.html">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-        Back to Courses
-      </a>
-      <span class="lesson-position">Lesson 1 of 3</span>
-      <a class="nav-btn next" href="whos-who.html">
         Who's Who
+      </a>
+      <span class="lesson-position">Lesson 3 of 3</span>
+      <a class="nav-btn next" href="../../courses.html">
+        Finish module
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </a>
     </div>
@@ -135,7 +147,7 @@
   <div class="footer-legal">&copy; 2025 Erin Mahon. All rights reserved. LevelUX and all original content on this site are the intellectual property of Erin Mahon and may not be reproduced without explicit written permission.</div>
 </footer>
 
-<script src="lesson.js" data-lesson-index="0"></script>
+<script src="lesson.js" data-lesson-index="2"></script>
 
 </body>
 </html>
