@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style Guide — Design Tokens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Karla:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+
+  .wrap { max-width: 1040px; margin: 0 auto; padding: var(--space-8) var(--space-6) var(--space-16); }
+
+  /* ---- Hero ---- */
+  .hero {
+    background: var(--raw-shadow-grey);
+    color: var(--raw-bright-snow);
+    padding: var(--space-16) var(--space-6) var(--space-12);
+  }
+  .hero-inner { max-width: 1040px; margin: 0 auto; }
+  .hero .eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--raw-plum);
+    margin: 0 0 var(--space-4);
+  }
+  .hero h1 {
+    color: var(--raw-bright-snow);
+    font-size: var(--text-4xl);
+    margin: 0 0 var(--space-4);
+    max-width: 14ch;
+  }
+  .hero p {
+    font-size: var(--text-lg);
+    color: var(--raw-neutral-300);
+    max-width: 46ch;
+    margin: 0;
+  }
+  .hero-swatches { display: flex; gap: var(--space-3); margin-top: var(--space-8); flex-wrap: wrap; }
+  .hero-swatch { width: 56px; height: 56px; border-radius: var(--radius-md); }
+
+  /* ---- Section headers ---- */
+  section { margin-top: var(--space-16); }
+  .section-head { display: flex; align-items: baseline; gap: var(--space-4); margin-bottom: var(--space-6); border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-4); }
+  .section-num { font-family: var(--font-mono); color: var(--color-primary-text); font-size: var(--text-sm); }
+  h2 { font-size: var(--text-2xl); margin: 0; }
+  h3 { font-size: var(--text-lg); margin: 0 0 var(--space-2); }
+  .lede { color: var(--color-text-muted); font-size: var(--text-base); max-width: 62ch; margin: 0 0 var(--space-6); }
+
+  /* ---- Palette cards ---- */
+  .palette-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); }
+  .swatch-card { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--color-border); }
+  .swatch-fill { height: 100px; }
+  .swatch-info { padding: var(--space-4); background: var(--color-surface); }
+  .swatch-name { font-weight: var(--fw-bold); font-size: var(--text-base); margin: 0 0 var(--space-1); }
+  .swatch-hex { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-muted); margin: 0 0 var(--space-3); }
+  .ratio-row { display: flex; justify-content: space-between; font-size: var(--text-xs); padding: var(--space-1) 0; border-top: 1px dashed var(--color-border); }
+  .pass { color: var(--color-success-text); font-weight: var(--fw-medium); }
+  .fail { color: var(--color-danger-text); font-weight: var(--fw-medium); }
+
+  /* ---- Type specimen ---- */
+  .type-row { display: flex; align-items: baseline; gap: var(--space-6); padding: var(--space-4) 0; border-top: 1px solid var(--color-border); }
+  .type-row:first-of-type { border-top: none; }
+  .type-label { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-muted); width: 110px; flex-shrink: 0; }
+  .type-sample.heading { font-family: var(--font-heading); font-weight: var(--fw-heading); }
+  .type-sample.body { font-family: var(--font-body); }
+  .body-copy { font-size: var(--text-base); line-height: var(--leading-loose); max-width: 62ch; color: var(--color-text); }
+
+  /* ---- Components ---- */
+  .component-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-8); }
+  .btn { font-family: var(--font-body); font-weight: var(--fw-bold); font-size: var(--text-sm); border: none; padding: var(--space-3) var(--space-6); border-radius: var(--radius-full); cursor: pointer; display: inline-block; }
+  .btn-primary { background: var(--color-primary); color: var(--color-text-on-brand); }
+  .btn-secondary { background: var(--color-secondary); color: var(--color-text-on-brand); }
+  .btn-accent { background: var(--color-accent); color: var(--color-text-on-brand); }
+  .btn-outline { background: transparent; color: var(--color-text); border: 1.5px solid var(--color-border); }
+  .btn-row { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-4); }
+
+  .tag { display: inline-flex; align-items: center; font-family: var(--font-mono); font-size: var(--text-xs); padding: var(--space-1) var(--space-3); border-radius: var(--radius-full); margin-right: var(--space-2); }
+  .tag-primary { background: var(--color-primary-tint); color: var(--color-primary-text); }
+  .tag-secondary { background: var(--color-secondary-tint); color: var(--color-secondary-text); }
+  .tag-accent { background: var(--color-accent-tint); color: var(--color-accent-text); }
+
+  .card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); }
+  .card h3 { font-family: var(--font-heading); }
+  .card p { color: var(--color-text-muted); font-size: var(--text-sm); margin: var(--space-2) 0 0; }
+
+  .dark-panel { background: var(--raw-shadow-grey); color: var(--raw-bright-snow); border-radius: var(--radius-lg); padding: var(--space-8); }
+  .dark-panel h3 { color: var(--raw-bright-snow); font-family: var(--font-heading); }
+  .dark-panel a { color: var(--raw-plum); }
+  .dark-panel .btn-row { margin-top: var(--space-4); }
+
+  /* ---- Code block ---- */
+  pre { background: var(--raw-shadow-grey); color: var(--raw-neutral-200); font-family: var(--font-mono); font-size: var(--text-xs); padding: var(--space-6); border-radius: var(--radius-lg); overflow-x: auto; line-height: var(--leading-loose); }
+  pre .tok-key { color: var(--raw-plum); }
+  pre .tok-val { color: var(--raw-coral-glow); }
+  pre .tok-comment { color: var(--raw-neutral-500); }
+
+  footer { margin-top: var(--space-16); padding-top: var(--space-6); border-top: 1px solid var(--color-border); color: var(--color-text-muted); font-size: var(--text-xs); }
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Design Tokens · v1.0</p>
+      <h1>A palette built to pass, not just to match.</h1>
+      <p>Every color pairing on this page has been checked against WCAG 2.1 contrast requirements. Space Grotesk carries the headings, Karla carries the body.</p>
+      <div class="hero-swatches">
+        <div class="hero-swatch" style="background:#272727"></div>
+        <div class="hero-swatch" style="background:#EF8354"></div>
+        <div class="hero-swatch" style="background:#FCFAF9"></div>
+        <div class="hero-swatch" style="background:#6D9DC5"></div>
+        <div class="hero-swatch" style="background:#F092DD"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <!-- COLOR -->
+    <section>
+      <div class="section-head"><span class="section-num">01</span><h2>Color</h2></div>
+      <p class="lede">Your five originals, each tested against Bright Snow (light bg) and Shadow Grey (dark bg). AA requires 4.5:1 for body text, 3:1 for large text/UI elements.</p>
+
+      <div class="palette-grid">
+        <div class="swatch-card">
+          <div class="swatch-fill" style="background:#272727"></div>
+          <div class="swatch-info">
+            <p class="swatch-name">Shadow Grey</p>
+            <p class="swatch-hex">#272727 · text / bg-inverse</p>
+            <div class="ratio-row"><span>on Bright Snow</span><span class="pass">14.36:1 AAA</span></div>
+          </div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-fill" style="background:#EF8354"></div>
+          <div class="swatch-info">
+            <p class="swatch-name">Coral Glow</p>
+            <p class="swatch-hex">#EF8354 · primary</p>
+            <div class="ratio-row"><span>text on white</span><span class="fail">2.51:1 fail</span></div>
+            <div class="ratio-row"><span>text on Shadow Grey</span><span class="pass">5.72:1 AA</span></div>
+          </div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-fill" style="background:#FCFAF9; border-bottom:1px solid #eee"></div>
+          <div class="swatch-info">
+            <p class="swatch-name">Bright Snow</p>
+            <p class="swatch-hex">#FCFAF9 · bg / text-inverse</p>
+            <div class="ratio-row"><span>on Shadow Grey</span><span class="pass">14.36:1 AAA</span></div>
+          </div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-fill" style="background:#6D9DC5"></div>
+          <div class="swatch-info">
+            <p class="swatch-name">Steel Blue</p>
+            <p class="swatch-hex">#6D9DC5 · secondary</p>
+            <div class="ratio-row"><span>text on white</span><span class="fail">2.77:1 fail</span></div>
+            <div class="ratio-row"><span>text on Shadow Grey</span><span class="pass">5.18:1 AA</span></div>
+          </div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-fill" style="background:#F092DD"></div>
+          <div class="swatch-info">
+            <p class="swatch-name">Plum</p>
+            <p class="swatch-hex">#F092DD · accent</p>
+            <div class="ratio-row"><span>text on white</span><span class="fail">2.05:1 fail</span></div>
+            <div class="ratio-row"><span>text on Shadow Grey</span><span class="pass">7.01:1 AAA</span></div>
+          </div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-fill" style="background:#A76244"></div>
+          <div class="swatch-info">
+            <p class="swatch-name">Coral · text-safe</p>
+            <p class="swatch-hex">#A76244 · primary-text</p>
+            <div class="ratio-row"><span>on Bright Snow</span><span class="pass">4.52:1 AA</span></div>
+          </div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-fill" style="background:#577792"></div>
+          <div class="swatch-info">
+            <p class="swatch-name">Steel Blue · text-safe</p>
+            <p class="swatch-hex">#577792 · secondary-text</p>
+            <div class="ratio-row"><span>on Bright Snow</span><span class="pass">4.52:1 AA</span></div>
+          </div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-fill" style="background:#946189"></div>
+          <div class="swatch-info">
+            <p class="swatch-name">Plum · text-safe</p>
+            <p class="swatch-hex">#946189 · accent-text</p>
+            <div class="ratio-row"><span>on Bright Snow</span><span class="pass">4.68:1 AA</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section>
+      <div class="section-head"><span class="section-num">02</span><h2>Typography</h2></div>
+      <p class="lede"><strong>Space Grotesk</strong> (bold) for headings — geometric with a slightly quirky lowercase g and a, distinctive without being loud. <strong>Karla</strong> for body — warm, humanist, highly legible at small sizes, and deliberately not Inter.</p>
+
+      <div class="type-row">
+        <span class="type-label">Display / H1</span>
+        <span class="type-sample heading" style="font-size:var(--text-4xl)">Bold headings</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">H2</span>
+        <span class="type-sample heading" style="font-size:var(--text-2xl)">Section titles</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">H3</span>
+        <span class="type-sample heading" style="font-size:var(--text-lg)">Card &amp; component headers</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">Body</span>
+        <span class="type-sample body" style="font-size:var(--text-base)">Karla reads comfortably at body sizes and holds up in long paragraphs.</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">Small / Caption</span>
+        <span class="type-sample body" style="font-size:var(--text-sm); color:var(--color-text-muted)">Muted captions and metadata use the text-muted token.</span>
+      </div>
+
+      <p class="body-copy" style="margin-top:var(--space-6)">This is a full paragraph set in Karla at the base size, so you can judge how it reads in real sentences rather than isolated words. It should feel calm and easy on the eyes, leaving Space Grotesk free to do the heavy lifting up in the headings.</p>
+    </section>
+
+    <!-- COMPONENTS -->
+    <section>
+      <div class="section-head"><span class="section-num">03</span><h2>Components</h2></div>
+      <p class="lede">Built entirely from the semantic tokens — no hard-coded hex values.</p>
+
+      <div class="component-grid">
+        <div>
+          <h3>Buttons</h3>
+          <div class="btn-row">
+            <button class="btn btn-primary">Primary action</button>
+            <button class="btn btn-secondary">Secondary</button>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-accent">Accent</button>
+            <button class="btn btn-outline">Outline</button>
+          </div>
+        </div>
+        <div>
+          <h3>Tags</h3>
+          <div class="btn-row">
+            <span class="tag tag-primary">New</span>
+            <span class="tag tag-secondary">In progress</span>
+            <span class="tag tag-accent">Featured</span>
+          </div>
+          <h3 style="margin-top:var(--space-6)">Link</h3>
+          <p class="body-copy">Read more in <a href="#">our documentation</a>, styled with the primary-text token.</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:var(--space-6)">
+        <h3>Card title</h3>
+        <p>Card body copy sits in text-muted, staying legible without competing with the heading.</p>
+      </div>
+
+      <div class="dark-panel" style="margin-top:var(--space-6)">
+        <h3>Dark surface</h3>
+        <p style="color:var(--raw-neutral-300)">All three accents were chosen because they already pass AA directly on Shadow Grey — no adjustment needed for dark sections. <a href="#">This is a link.</a></p>
+        <div class="btn-row">
+          <button class="btn btn-primary">Primary</button>
+          <button class="btn btn-outline" style="color:var(--raw-bright-snow); border-color:var(--raw-neutral-600)">Outline</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- USAGE -->
+    <section>
+      <div class="section-head"><span class="section-num">04</span><h2>How to use these tokens</h2></div>
+      <p class="lede">1. Link <code>tokens.css</code> in your HTML. 2. Reference tokens by name in your own CSS — never hex codes directly.</p>
+      <pre><span class="tok-comment">/* in your stylesheet, after tokens.css is linked */</span>
+.card {
+  <span class="tok-key">background</span>: <span class="tok-val">var(--color-surface)</span>;
+  <span class="tok-key">color</span>: <span class="tok-val">var(--color-text)</span>;
+  <span class="tok-key">border</span>: 1px solid <span class="tok-val">var(--color-border)</span>;
+  <span class="tok-key">border-radius</span>: <span class="tok-val">var(--radius-lg)</span>;
+}
+
+.cta-button {
+  <span class="tok-key">background</span>: <span class="tok-val">var(--color-primary)</span>;
+  <span class="tok-key">color</span>: <span class="tok-val">var(--color-text-on-brand)</span>;
+  <span class="tok-key">font-family</span>: <span class="tok-val">var(--font-body)</span>;
+}</pre>
+    </section>
+
+    <footer>Design tokens generated from your uploaded palette · WCAG 2.1 AA checked</footer>
+  </div>
+
+</body>
+</html>

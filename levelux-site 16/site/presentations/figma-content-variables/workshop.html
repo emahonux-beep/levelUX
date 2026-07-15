@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0;background:#EFE9DF;}
+  *{box-sizing:border-box;}
+  [data-qnote]{outline:none;}
+  [data-qnote]:empty:before{content:attr(data-ph);color:rgba(36,28,24,0.32);}
+  @keyframes floaty{0%,100%{transform:translateY(0) rotate(var(--rot,0deg));}50%{transform:translateY(-10px) rotate(var(--rot,0deg));}}
+  input[type=range].cv-slider{-webkit-appearance:none;appearance:none;height:10px;border-radius:999px;background:linear-gradient(90deg,#FF7A59,#FFC23D,#2FBFA8);outline:none;}
+  input[type=range].cv-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:34px;height:34px;border-radius:50%;background:#241C18;border:4px solid #fff;cursor:pointer;box-shadow:0 4px 10px rgba(36,28,24,.3);}
+  input[type=range].cv-slider::-moz-range-thumb{width:30px;height:30px;border-radius:50%;background:#241C18;border:4px solid #fff;cursor:pointer;}
+  @media print{.home-btn,.deck-pdf-btn{display:none!important;}}
+</style>
+</helmet>
+<a href="index.html" class="home-btn" style="position:fixed;top:20px;left:20px;z-index:2147483000;display:inline-flex;align-items:center;gap:8px;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:16px;color:#241C18;background:rgba(255,255,255,.94);border:1px solid rgba(36,28,24,.16);padding:9px 15px 9px 13px;border-radius:999px;text-decoration:none;box-shadow:0 4px 16px rgba(36,28,24,.2);" title="Back to start"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>Start</a>
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+
+<section data-label="Cover" data-screen-label="01" data-speaker-notes="Welcome everyone to Learning Friday. Today is a hands-on working session on Figma content variables — feel free to follow along in Figma as we go." style="position:relative;width:100%;height:100%;padding:76px 92px;background-color:#F7F3EC;background-image:radial-gradient(rgba(36,28,24,0.06) 1.4px,transparent 1.4px);background-size:30px 30px;font-family:'Hanken Grotesk',sans-serif;color:#241C18;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;">
+  <div style="position:absolute;top:120px;left:120px;width:150px;height:150px;border-radius:16px;background:#FFC23D;transform:rotate(-8deg);box-shadow:0 14px 30px rgba(36,28,24,.14);display:flex;align-items:center;justify-content:center;font-size:62px;">🗂️</div>
+  <div style="position:absolute;bottom:150px;left:230px;width:120px;height:120px;border-radius:14px;background:#2FBFA8;transform:rotate(7deg);box-shadow:0 14px 30px rgba(36,28,24,.14);display:flex;align-items:center;justify-content:center;font-size:50px;">💊</div>
+  <div style="position:absolute;top:170px;right:150px;width:130px;height:130px;border-radius:14px;background:#FF93C0;transform:rotate(9deg);box-shadow:0 14px 30px rgba(36,28,24,.14);display:flex;align-items:center;justify-content:center;font-size:54px;">✏️</div>
+  <div style="position:absolute;bottom:130px;right:210px;width:140px;height:140px;border-radius:16px;background:#FF7A59;transform:rotate(-6deg);box-shadow:0 14px 30px rgba(36,28,24,.14);display:flex;align-items:center;justify-content:center;font-size:58px;">🔁</div>
+  <div style="position:absolute;top:90px;right:40px;width:90px;height:90px;background-image:radial-gradient(#FF7A59 4px,transparent 4px);background-size:22px 22px;opacity:.5;"></div>
+  <div style="position:absolute;bottom:60px;left:50px;width:90px;height:90px;background-image:radial-gradient(#2FBFA8 4px,transparent 4px);background-size:22px 22px;opacity:.5;"></div>
+
+  <div style="display:inline-flex;align-items:center;gap:14px;font-family:'Space Mono',monospace;font-size:24px;text-transform:uppercase;letter-spacing:3px;color:#C2410C;background:#fff;border:2px solid rgba(36,28,24,.1);padding:12px 24px;border-radius:999px;font-weight:700;box-shadow:0 6px 18px rgba(36,28,24,.08);margin-bottom:48px;">🗓️ Learning Friday &nbsp;·&nbsp; Hosted by Erin Mahon &nbsp;·&nbsp; June 19</div>
+
+  <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:118px;line-height:1.16;letter-spacing:-3px;margin:0;">Figma <span style="color:#FF7A59;">Content</span><br><span style="color:#FF7A59;">Variables</span></h1>
+
+  <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:42px;margin-top:40px;color:#241C18;">Learning Friday Workshop</div>
+  <p style="font-size:30px;line-height:1.45;color:#6B5F57;max-width:760px;margin:18px 0 0;">A hands-on working session for understanding, creating, and applying content variables in Figma.</p>
+
+  <div style="display:flex;gap:12px;margin-top:46px;">
+    <div style="width:56px;height:12px;border-radius:999px;background:#FF7A59;"></div>
+    <div style="width:18px;height:12px;border-radius:999px;background:#FFC23D;"></div>
+    <div style="width:18px;height:12px;border-radius:999px;background:#2FBFA8;"></div>
+  </div>
+</section>
+
+<section data-label="Agenda" data-screen-label="02" data-speaker-notes="Here is our run of show for the next hour. We'll move from the what and why into live demos, then practical how-tos, QA, and your questions." style="position:relative;width:100%;height:100%;padding:72px 92px;background-color:#F7F3EC;background-image:radial-gradient(rgba(36,28,24,0.06) 1.4px,transparent 1.4px);background-size:30px 30px;font-family:'Hanken Grotesk',sans-serif;color:#241C18;display:flex;flex-direction:column;overflow:hidden;">
+  <div style="display:inline-flex;align-self:flex-start;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:24px;text-transform:uppercase;letter-spacing:2.5px;color:#0F766E;background:rgba(47,191,168,.18);padding:8px 16px;border-radius:999px;font-weight:700;">Overview</div>
+  <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:72px;line-height:1;letter-spacing:-2px;margin:18px 0 36px;">Today's Agenda</h2>
+
+  <div style="flex:1;display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;gap:24px;">
+    <div style="background:#BBA2FF;border-radius:14px;padding:26px 28px;box-shadow:0 12px 26px rgba(36,28,24,.12);transform:rotate(-1deg);display:flex;align-items:center;gap:18px;"><span style="flex:none;width:46px;height:46px;border-radius:50%;background:rgba(36,28,24,.16);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:24px;">1</span><span style="font-size:29px;font-weight:600;">Welcome &amp; Intro</span></div>
+    <div style="background:#9DB4FF;border-radius:14px;padding:26px 28px;box-shadow:0 12px 26px rgba(36,28,24,.12);transform:rotate(0.6deg);display:flex;align-items:center;gap:18px;"><span style="flex:none;width:46px;height:46px;border-radius:50%;background:rgba(36,28,24,.16);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:24px;">2</span><span style="font-size:29px;font-weight:600;">What are content variables?</span></div>
+    <div style="background:#7FE0A6;border-radius:14px;padding:26px 28px;box-shadow:0 12px 26px rgba(36,28,24,.12);transform:rotate(-0.8deg);display:flex;align-items:center;gap:18px;"><span style="flex:none;width:46px;height:46px;border-radius:50%;background:rgba(36,28,24,.16);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:24px;">3</span><span style="font-size:29px;font-weight:600;">Live demo: one source of truth</span></div>
+    <div style="background:#FFC23D;border-radius:14px;padding:26px 28px;box-shadow:0 12px 26px rgba(36,28,24,.12);transform:rotate(0.8deg);display:flex;align-items:center;gap:18px;"><span style="flex:none;width:46px;height:46px;border-radius:50%;background:rgba(36,28,24,.16);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:24px;">4</span><span style="font-size:29px;font-weight:600;">Our pharmacy use case</span></div>
+    <div style="background:#FF9E7A;border-radius:14px;padding:26px 28px;box-shadow:0 12px 26px rgba(36,28,24,.12);transform:rotate(-0.6deg);display:flex;align-items:center;gap:18px;"><span style="flex:none;width:46px;height:46px;border-radius:50%;background:rgba(36,28,24,.16);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:24px;">5</span><span style="font-size:29px;font-weight:600;">Creating variables manually</span></div>
+    <div style="background:#5EE0CF;border-radius:14px;padding:26px 28px;box-shadow:0 12px 26px rgba(36,28,24,.12);transform:rotate(1deg);display:flex;align-items:center;gap:18px;"><span style="flex:none;width:46px;height:46px;border-radius:50%;background:rgba(36,28,24,.16);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:24px;">6</span><span style="font-size:29px;font-weight:600;">Importing via spreadsheet</span></div>
+    <div style="background:#FF93C0;border-radius:14px;padding:26px 28px;box-shadow:0 12px 26px rgba(36,28,24,.12);transform:rotate(-0.7deg);display:flex;align-items:center;gap:18px;"><span style="flex:none;width:46px;height:46px;border-radius:50%;background:rgba(36,28,24,.16);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:24px;">7</span><span style="font-size:29px;font-weight:600;">Applying variables in a file</span></div>
+    <div style="background:#FFC23D;border-radius:14px;padding:26px 28px;box-shadow:0 12px 26px rgba(36,28,24,.12);transform:rotate(0.5deg);display:flex;align-items:center;gap:18px;"><span style="flex:none;width:46px;height:46px;border-radius:50%;background:rgba(36,28,24,.16);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:24px;">8</span><span style="font-size:29px;font-weight:600;">QA checklist</span></div>
+    <div style="background:#BBA2FF;border-radius:14px;padding:26px 28px;box-shadow:0 12px 26px rgba(36,28,24,.12);transform:rotate(-1deg);display:flex;align-items:center;gap:18px;"><span style="flex:none;width:46px;height:46px;border-radius:50%;background:rgba(36,28,24,.16);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:24px;">9</span><span style="font-size:29px;font-weight:600;">Q&amp;A + resources</span></div>
+  </div>
+
+  <div style="margin-top:26px;background:#fff;border:2px solid rgba(36,28,24,.1);border-radius:14px;padding:20px 28px;font-size:26px;color:#241C18;box-shadow:0 8px 20px rgba(36,28,24,.06);"><strong>🎯 By the end</strong> &nbsp;you'll be able to create, import, apply, and QA content variables confidently.</div>
+</section>
+<section data-label="What Are Variables?" data-screen-label="03" data-speaker-notes="A content variable is a reusable text value. Define copy once, reference it everywhere. The examples on the right are all real strings from our product." style="position:relative;width:100%;height:100%;padding:72px 92px;background-color:#F7F3EC;background-image:radial-gradient(rgba(36,28,24,0.06) 1.4px,transparent 1.4px);background-size:30px 30px;font-family:'Hanken Grotesk',sans-serif;color:#241C18;display:flex;flex-direction:column;overflow:hidden;">
+  <div style="display:inline-flex;align-self:flex-start;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:24px;text-transform:uppercase;letter-spacing:2.5px;color:#7C3AED;background:rgba(187,162,255,.28);padding:8px 16px;border-radius:999px;font-weight:700;">Concept</div>
+  <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:66px;line-height:1;letter-spacing:-2px;margin:18px 0 34px;">What Are Content Variables?</h2>
+
+  <div style="flex:1;display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:start;">
+    <div style="display:flex;flex-direction:column;gap:24px;">
+      <div style="background:#fff;border:2px solid rgba(36,28,24,.1);border-radius:16px;padding:34px 36px;box-shadow:0 12px 28px rgba(36,28,24,.08);">
+        <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#C2410C;font-weight:700;margin-bottom:18px;">Definition</div>
+        <p style="font-size:31px;line-height:1.42;margin:0 0 16px;">Content variables are <strong style="background:#FFE08A;padding:0 6px;border-radius:4px;">reusable text values</strong> stored in Figma that can be applied across your files and components.</p>
+        <p style="font-size:25px;line-height:1.45;margin:0;color:#6B5F57;">Instead of typing the same copy into every layer, you define it once — and reference it everywhere.</p>
+      </div>
+      <div style="background:#FF7A59;border-radius:16px;padding:28px 32px;box-shadow:0 12px 26px rgba(36,28,24,.14);transform:rotate(-0.6deg);">
+        <div style="font-size:28px;font-weight:700;color:#241C18;">💡 A single source of truth for your copy</div>
+        <div style="font-size:24px;color:#3a2a22;margin-top:8px;">Change it in one place → it updates everywhere it's used.</div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:18px;">
+      <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#0F766E;font-weight:700;">💬 Real examples</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div style="background:#FFC23D;border-radius:12px;padding:18px 20px;box-shadow:0 8px 18px rgba(36,28,24,.12);transform:rotate(-1deg);"><div style="font-size:24px;font-weight:700;">Button labels</div><div style="font-family:'Space Mono',monospace;font-size:24px;color:#5a4326;margin-top:6px;">"Add to Basket"</div></div>
+        <div style="background:#7FE0A6;border-radius:12px;padding:18px 20px;box-shadow:0 8px 18px rgba(36,28,24,.12);transform:rotate(1deg);"><div style="font-size:24px;font-weight:700;">Product names</div><div style="font-family:'Space Mono',monospace;font-size:24px;color:#1f4d35;margin-top:6px;">"Paracetamol 500mg"</div></div>
+        <div style="background:#FF93C0;border-radius:12px;padding:18px 20px;box-shadow:0 8px 18px rgba(36,28,24,.12);transform:rotate(0.8deg);"><div style="font-size:24px;font-weight:700;">Disclaimers</div><div style="font-family:'Space Mono',monospace;font-size:24px;color:#5e2440;margin-top:6px;">"Always read the label"</div></div>
+        <div style="background:#9DB4FF;border-radius:12px;padding:18px 20px;box-shadow:0 8px 18px rgba(36,28,24,.12);transform:rotate(-0.8deg);"><div style="font-size:24px;font-weight:700;">Form labels</div><div style="font-family:'Space Mono',monospace;font-size:24px;color:#2a3a66;margin-top:6px;">"Enter your date of birth"</div></div>
+        <div style="background:#FF9E7A;border-radius:12px;padding:18px 20px;box-shadow:0 8px 18px rgba(36,28,24,.12);transform:rotate(0.9deg);"><div style="font-size:24px;font-weight:700;">Error messages</div><div style="font-family:'Space Mono',monospace;font-size:24px;color:#5a3322;margin-top:6px;">"This field is required"</div></div>
+        <div style="background:#5EE0CF;border-radius:12px;padding:18px 20px;box-shadow:0 8px 18px rgba(36,28,24,.12);transform:rotate(-0.7deg);"><div style="font-size:24px;font-weight:700;">Nav labels</div><div style="font-family:'Space Mono',monospace;font-size:24px;color:#1f4d46;margin-top:6px;">"My Account"</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-label="Why Use Them?" data-screen-label="04" data-speaker-notes="Four reasons this matters: consistency, efficiency, scalability, and speed. The underlying theme is one shared source of truth across design, content, and dev." style="position:relative;width:100%;height:100%;padding:72px 92px;background-color:#F7F3EC;background-image:radial-gradient(rgba(36,28,24,0.06) 1.4px,transparent 1.4px);background-size:30px 30px;font-family:'Hanken Grotesk',sans-serif;color:#241C18;display:flex;flex-direction:column;overflow:hidden;">
+  <div style="display:inline-flex;align-self:flex-start;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:24px;text-transform:uppercase;letter-spacing:2.5px;color:#C2410C;background:rgba(255,122,89,.2);padding:8px 16px;border-radius:999px;font-weight:700;">Benefits</div>
+  <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:66px;line-height:1;letter-spacing:-2px;margin:18px 0 34px;">Why Use Content Variables?</h2>
+
+  <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:24px;">
+    <div style="background:#FFC23D;border-radius:18px;padding:34px 38px;box-shadow:0 12px 26px rgba(36,28,24,.12);display:flex;flex-direction:column;gap:12px;">
+      <div style="font-size:46px;">🔁</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:34px;">Consistency</div>
+      <div style="font-size:25px;line-height:1.4;color:#4a3a1f;">Every component uses the exact same copy. No more "Add to cart" on one screen and "Add to basket" on another.</div>
+    </div>
+    <div style="background:#7FE0A6;border-radius:18px;padding:34px 38px;box-shadow:0 12px 26px rgba(36,28,24,.12);display:flex;flex-direction:column;gap:12px;">
+      <div style="font-size:46px;">⚡</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:34px;">Efficiency</div>
+      <div style="font-size:25px;line-height:1.4;color:#1f4d35;">Update copy once and it flows through every file and component instantly. No manual find-and-replace.</div>
+    </div>
+    <div style="background:#FF93C0;border-radius:18px;padding:34px 38px;box-shadow:0 12px 26px rgba(36,28,24,.12);display:flex;flex-direction:column;gap:12px;">
+      <div style="font-size:46px;">📈</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:34px;">Scalability</div>
+      <div style="font-size:25px;line-height:1.4;color:#5e2440;">Whether you have 10 strings or 10,000, the workflow is the same. Perfect as your design system grows.</div>
+    </div>
+    <div style="background:#9DB4FF;border-radius:18px;padding:34px 38px;box-shadow:0 12px 26px rgba(36,28,24,.12);display:flex;flex-direction:column;gap:12px;">
+      <div style="font-size:46px;">🚀</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:34px;">Speed</div>
+      <div style="font-size:25px;line-height:1.4;color:#2a3a66;">Content updates no longer need a designer to open and edit files. Great for working alongside content teams.</div>
+    </div>
+  </div>
+
+  <div style="margin-top:24px;background:#241C18;border-radius:14px;padding:20px 30px;font-size:26px;color:#F7F3EC;display:flex;align-items:center;gap:14px;"><span style="font-size:30px;">🤝</span><span><strong>Single source of truth</strong> — designers, developers, and content teams all working from the same values.</span></div>
+</section>
+<section data-label="Live Demo" data-screen-label="05" data-speaker-notes="This is the fun part — type a new button label, or tap a preset, and watch all three pharmacy screens update at once. That is the single-source-of-truth idea in action. Encourage the room to shout out a label to try." style="position:relative;width:100%;height:100%;padding:72px 92px;background-color:#F7F3EC;background-image:radial-gradient(rgba(36,28,24,0.06) 1.4px,transparent 1.4px);background-size:30px 30px;font-family:'Hanken Grotesk',sans-serif;color:#241C18;display:flex;flex-direction:column;overflow:hidden;">
+  <div style="display:flex;align-items:center;gap:16px;">
+    <div style="display:inline-flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:24px;text-transform:uppercase;letter-spacing:2.5px;color:#0F766E;background:rgba(47,191,168,.18);padding:8px 16px;border-radius:999px;font-weight:700;">⚡ Live Demo</div>
+    <div style="font-family:'Space Mono',monospace;font-size:19px;color:#6B5F57;">Try it — type below 👇</div>
+  </div>
+  <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:66px;line-height:1;letter-spacing:-2px;margin:16px 0 30px;">One Value, Every Screen</h2>
+
+  <div style="flex:1;display:grid;grid-template-columns:0.82fr 1.18fr;gap:40px;align-items:center;">
+    <div style="background:#fff;border:2px solid rgba(36,28,24,.12);border-radius:20px;padding:30px 32px;box-shadow:0 16px 36px rgba(36,28,24,.1);">
+      <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#7C3AED;font-weight:700;margin-bottom:18px;">⬡ The Variables</div>
+
+      <div style="margin-bottom:13px;">
+        <div style="font-family:'Space Mono',monospace;font-size:24px;color:#C2410C;font-weight:700;margin-bottom:5px;">med/name</div>
+        <input type="text" value="{{ medName }}" onInput="{{ onMedName }}" style="display:block;width:100%;font-family:'Hanken Grotesk',sans-serif;font-size:25px;font-weight:700;color:#241C18;padding:11px 16px;border:2px solid #FF7A59;border-radius:10px;outline:none;background:#FFF8F4;box-sizing:border-box;" />
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:13px;">
+        <div>
+          <div style="font-family:'Space Mono',monospace;font-size:24px;color:#0F766E;font-weight:700;margin-bottom:5px;">med/strength</div>
+          <input type="text" value="{{ medStrength }}" onInput="{{ onMedStrength }}" style="display:block;width:100%;font-family:'Hanken Grotesk',sans-serif;font-size:25px;font-weight:700;color:#241C18;padding:11px 16px;border:2px solid #2FBFA8;border-radius:10px;outline:none;background:#F2FBF9;box-sizing:border-box;" />
+        </div>
+        <div>
+          <div style="font-family:'Space Mono',monospace;font-size:24px;color:#92400e;font-weight:700;margin-bottom:5px;">med/form</div>
+          <input type="text" value="{{ medForm }}" onInput="{{ onMedForm }}" style="display:block;width:100%;font-family:'Hanken Grotesk',sans-serif;font-size:25px;font-weight:700;color:#241C18;padding:11px 16px;border:2px solid #FFC23D;border-radius:10px;outline:none;background:#FFFBEF;box-sizing:border-box;" />
+        </div>
+      </div>
+      <div style="margin-bottom:18px;">
+        <div style="font-family:'Space Mono',monospace;font-size:24px;color:#7C3AED;font-weight:700;margin-bottom:5px;">pharmacy/dispenser</div>
+        <input type="text" value="{{ pharmacy }}" onInput="{{ onPharmacy }}" style="display:block;width:100%;font-family:'Hanken Grotesk',sans-serif;font-size:25px;font-weight:700;color:#241C18;padding:11px 16px;border:2px solid #BBA2FF;border-radius:10px;outline:none;background:#F8F5FF;box-sizing:border-box;" />
+      </div>
+
+      <div style="font-size:24px;color:#6B5F57;margin-bottom:11px;">Or swap the whole medication:</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        <sc-for list="{{ medPresets }}" as="p" hint-placeholder-count="3">
+          <button onClick="{{ p.onClick }}" style="font-family:'Hanken Grotesk',sans-serif;font-size:24px;font-weight:700;padding:10px 18px;border-radius:999px;border:2px solid #241C18;cursor:pointer;background:#fff;color:#241C18;">{{ p.label }}</button>
+        </sc-for>
+      </div>
+      <div style="margin-top:22px;font-size:24px;color:#6B5F57;line-height:1.4;">Edit any field once → every card updates at once. <strong style="color:#241C18;">One variable, one source of truth.</strong></div>
+    </div>
+
+    <div style="display:flex;gap:24px;justify-content:center;align-items:stretch;">
+      <div style="flex:1;background:#fff;border:2px solid rgba(36,28,24,.1);border-radius:22px;overflow:hidden;box-shadow:0 18px 38px rgba(36,28,24,.12);display:flex;flex-direction:column;transform:rotate(-2deg);">
+        <div style="background:#2FBFA8;padding:14px 22px;color:#fff;font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1px;text-transform:uppercase;font-weight:700;">In your basket</div>
+        <div style="padding:26px 24px;display:flex;flex-direction:column;gap:16px;flex:1;">
+          <div style="width:66px;height:66px;border-radius:16px;background:#E6FAF5;display:flex;align-items:center;justify-content:center;font-size:36px;">💊</div>
+          <div>
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:32px;line-height:1.08;color:#241C18;">{{ medName }}</div>
+            <div style="font-family:'Space Mono',monospace;font-size:24px;color:#0F766E;margin-top:8px;">{{ medStrength }} · {{ medForm }}</div>
+          </div>
+          <div style="margin-top:auto;border-top:1px solid rgba(36,28,24,.1);padding-top:14px;font-size:24px;color:#6B5F57;line-height:1.35;">{{ pharmacy }}</div>
+        </div>
+      </div>
+
+      <div style="flex:1;background:#fff;border:2px solid rgba(36,28,24,.1);border-radius:22px;overflow:hidden;box-shadow:0 22px 44px rgba(36,28,24,.16);display:flex;flex-direction:column;z-index:2;">
+        <div style="background:#7C3AED;padding:14px 22px;color:#fff;font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1px;text-transform:uppercase;font-weight:700;">Repeat prescription</div>
+        <div style="padding:26px 24px;display:flex;flex-direction:column;gap:16px;flex:1;">
+          <div style="width:66px;height:66px;border-radius:16px;background:#F5F0FF;display:flex;align-items:center;justify-content:center;font-size:36px;">💊</div>
+          <div>
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:32px;line-height:1.08;color:#241C18;">{{ medName }}</div>
+            <div style="font-family:'Space Mono',monospace;font-size:24px;color:#7C3AED;margin-top:8px;">{{ medStrength }} · {{ medForm }}</div>
+          </div>
+          <div style="margin-top:auto;border-top:1px solid rgba(36,28,24,.1);padding-top:14px;font-size:24px;color:#6B5F57;line-height:1.35;">{{ pharmacy }}</div>
+        </div>
+      </div>
+
+      <div style="flex:1;background:#fff;border:2px solid rgba(36,28,24,.1);border-radius:22px;overflow:hidden;box-shadow:0 18px 38px rgba(36,28,24,.12);display:flex;flex-direction:column;transform:rotate(2deg);">
+        <div style="background:#FFC23D;padding:14px 22px;color:#241C18;font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1px;text-transform:uppercase;font-weight:700;">Search result</div>
+        <div style="padding:26px 24px;display:flex;flex-direction:column;gap:16px;flex:1;">
+          <div style="width:66px;height:66px;border-radius:16px;background:#FFF3D6;display:flex;align-items:center;justify-content:center;font-size:36px;">💊</div>
+          <div>
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:32px;line-height:1.08;color:#241C18;">{{ medName }}</div>
+            <div style="font-family:'Space Mono',monospace;font-size:24px;color:#92400e;margin-top:8px;">{{ medStrength }} · {{ medForm }}</div>
+          </div>
+          <div style="margin-top:auto;border-top:1px solid rgba(36,28,24,.1);padding-top:14px;font-size:24px;color:#6B5F57;line-height:1.35;">{{ pharmacy }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section data-label="Pharmacy Use Case" data-screen-label="06" data-speaker-notes="Here's how we actually use this. We published a content variable library for the pharmacy experience. Walk through what's in it and why it was worth doing." style="position:relative;width:100%;height:100%;padding:72px 92px;background-color:#F7F3EC;background-image:radial-gradient(rgba(36,28,24,0.06) 1.4px,transparent 1.4px);background-size:30px 30px;font-family:'Hanken Grotesk',sans-serif;color:#241C18;display:flex;flex-direction:column;overflow:hidden;">
+  <div style="display:inline-flex;align-self:flex-start;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:24px;text-transform:uppercase;letter-spacing:2.5px;color:#0F766E;background:rgba(47,191,168,.18);padding:8px 16px;border-radius:999px;font-weight:700;">Case Study</div>
+  <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:66px;line-height:1;letter-spacing:-2px;margin:18px 0 30px;">Our Pharmacy Use Case</h2>
+
+  <div style="flex:1;display:grid;grid-template-columns:1.22fr 1fr;gap:40px;">
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#0F766E;font-weight:700;">What we built</div>
+      <p style="font-size:24px;color:#6B5F57;margin:0 0 4px;line-height:1.4;">A full content variable library for the pharmacy experience:</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="background:#7FE0A6;border-radius:10px;padding:14px 18px;font-size:24px;font-weight:600;box-shadow:0 6px 14px rgba(36,28,24,.1);">Brand medications</div>
+        <div style="background:#5EE0CF;border-radius:10px;padding:14px 18px;font-size:24px;font-weight:600;box-shadow:0 6px 14px rgba(36,28,24,.1);">Generic medications</div>
+        <div style="background:#7FE0A6;border-radius:10px;padding:14px 18px;font-size:24px;font-weight:600;box-shadow:0 6px 14px rgba(36,28,24,.1);">Specialty medications</div>
+        <div style="background:#5EE0CF;border-radius:10px;padding:14px 18px;font-size:24px;font-weight:600;box-shadow:0 6px 14px rgba(36,28,24,.1);">Pricing by day supply</div>
+        <div style="background:#9DB4FF;border-radius:10px;padding:14px 18px;font-size:24px;font-weight:600;box-shadow:0 6px 14px rgba(36,28,24,.1);">Patient information</div>
+        <div style="background:#BBA2FF;border-radius:10px;padding:14px 18px;font-size:24px;font-weight:600;box-shadow:0 6px 14px rgba(36,28,24,.1);">Provider information</div>
+        <div style="background:#9DB4FF;border-radius:10px;padding:14px 18px;font-size:24px;font-weight:600;box-shadow:0 6px 14px rgba(36,28,24,.1);">Pharmacy information</div>
+        <div style="background:#BBA2FF;border-radius:10px;padding:14px 18px;font-size:24px;font-weight:600;box-shadow:0 6px 14px rgba(36,28,24,.1);">Benefit information</div>
+        <div style="background:#FFC23D;border-radius:10px;padding:14px 18px;font-size:24px;font-weight:600;box-shadow:0 6px 14px rgba(36,28,24,.1);">Benefit program details</div>
+        <div style="background:#FFD98A;border-radius:10px;padding:14px 18px;font-size:24px;font-weight:600;box-shadow:0 6px 14px rgba(36,28,24,.1);">Vendor card</div>
+        <div style="background:#FF93C0;border-radius:10px;padding:14px 18px;font-size:24px;font-weight:600;box-shadow:0 6px 14px rgba(36,28,24,.1);">Field labels</div>
+        <div style="background:#FF9E7A;border-radius:10px;padding:14px 18px;font-size:24px;font-weight:600;box-shadow:0 6px 14px rgba(36,28,24,.1);">… and more</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:18px;">
+      <div style="background:#241C18;border-radius:16px;padding:26px 30px;box-shadow:0 12px 26px rgba(36,28,24,.16);flex:1;">
+        <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#FFC23D;font-weight:700;">Build the component once</div>
+        <p style="font-size:24px;color:#F7F3EC;margin:14px 0 0;line-height:1.45;">Create a component a single time, then turn different content <strong style="color:#7FE0A6;">on and off</strong> with variables — no rebuilding. Brand vs. generic, 30- vs. 90-day pricing, different benefit programs: <strong style="color:#FFC23D;">same component, different variables.</strong></p>
+      </div>
+      <div style="background:#9DB4FF;border-radius:16px;padding:24px 30px;box-shadow:0 12px 26px rgba(36,28,24,.12);">
+        <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#1e3a8a;font-weight:700;">Built for two jobs</div>
+        <div style="display:flex;gap:12px;margin-top:14px;">
+          <div style="flex:1;background:#fff;border-radius:12px;padding:16px 18px;text-align:center;"><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px;color:#241C18;">User testing</div><div style="font-size:24px;color:#6B5F57;margin-top:4px;line-height:1.25;">Swap real content fast</div></div>
+          <div style="flex:1;background:#fff;border-radius:12px;padding:16px 18px;text-align:center;"><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px;color:#241C18;">Dev handoff</div><div style="font-size:24px;color:#6B5F57;margin-top:4px;line-height:1.25;">Clear, sourced values</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:22px;background:#241C18;border-radius:14px;padding:20px 30px;font-size:25px;color:#F7F3EC;"><strong style="color:#FFC23D;">The result →</strong> one component per pattern, content toggled with variables — faster user testing and a cleaner, fully-sourced handoff to dev.</div>
+</section>
+
+<section data-label="Creating Manually" data-screen-label="07" data-speaker-notes="The manual route. Open the Variables panel, create a collection, add string variables, name them with a group/name convention, and publish. Great for small sets and getting started." style="position:relative;width:100%;height:100%;padding:72px 92px;background-color:#F7F3EC;background-image:radial-gradient(rgba(36,28,24,0.06) 1.4px,transparent 1.4px);background-size:30px 30px;font-family:'Hanken Grotesk',sans-serif;color:#241C18;display:flex;flex-direction:column;overflow:hidden;">
+  <div style="display:inline-flex;align-self:flex-start;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:24px;text-transform:uppercase;letter-spacing:2.5px;color:#C2410C;background:rgba(255,122,89,.2);padding:8px 16px;border-radius:999px;font-weight:700;">How To</div>
+  <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:66px;line-height:1;letter-spacing:-2px;margin:18px 0 30px;">Creating Variables Manually</h2>
+
+  <div style="flex:1;display:grid;grid-template-columns:1.15fr 0.85fr;gap:40px;">
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;align-items:center;gap:18px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:14px 20px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:42px;height:42px;border-radius:50%;background:#FFC23D;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:21px;">1</span><span style="font-size:24px;">Open your Figma file</span></div>
+      <div style="display:flex;align-items:center;gap:18px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:14px 20px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:42px;height:42px;border-radius:50%;background:#FFC23D;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:21px;">2</span><span style="font-size:24px;">Open the Variables panel (Assets → Variables)</span></div>
+      <div style="display:flex;align-items:center;gap:18px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:14px 20px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:42px;height:42px;border-radius:50%;background:#FF9E7A;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:21px;">3</span><span style="font-size:24px;">+ New Collection — name it (e.g. "Pharmacy / Labels")</span></div>
+      <div style="display:flex;align-items:center;gap:18px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:14px 20px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:42px;height:42px;border-radius:50%;background:#FF9E7A;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:21px;">4</span><span style="font-size:24px;">+ Add Variable → choose type: <strong>String</strong></span></div>
+      <div style="display:flex;align-items:center;gap:18px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:14px 20px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:42px;height:42px;border-radius:50%;background:#FF93C0;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:21px;">5</span><span style="font-size:24px;">Name it clearly (e.g. btn/confirm-label)</span></div>
+      <div style="display:flex;align-items:center;gap:18px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:14px 20px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:42px;height:42px;border-radius:50%;background:#FF93C0;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:21px;">6</span><span style="font-size:24px;">Enter the value (e.g. "Confirm Order")</span></div>
+      <div style="display:flex;align-items:center;gap:18px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:14px 20px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:42px;height:42px;border-radius:50%;background:#7FE0A6;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:21px;">7</span><span style="font-size:24px;">Repeat for each variable → then <strong>Publish</strong></span></div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:20px;">
+      <div style="background:#241C18;border-radius:16px;padding:26px 28px;box-shadow:0 12px 26px rgba(36,28,24,.16);">
+        <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#FFC23D;font-weight:700;">💡 Naming tip</div>
+        <p style="font-size:23px;color:#F7F3EC;margin:14px 0;line-height:1.4;">Use a <strong style="color:#FFC23D;">group/name</strong> format like <strong>section/variable-name</strong></p>
+        <div style="font-family:'Space Mono',monospace;font-size:20px;color:#7FE0A6;background:rgba(255,255,255,.06);border-radius:8px;padding:14px 16px;line-height:1.7;">pharmacy/btn-confirm<br>pharmacy/error-required</div>
+      </div>
+      <div style="background:#9DB4FF;border-radius:16px;padding:26px 28px;box-shadow:0 12px 26px rgba(36,28,24,.12);">
+        <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#1e3a8a;font-weight:700;">✅ Best for</div>
+        <ul style="margin:14px 0 0;padding-left:24px;font-size:23px;line-height:1.7;color:#1f2a52;"><li>Small sets of variables</li><li>Quick one-offs</li><li>When you're just getting started</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+<section data-label="Spreadsheet Import" data-screen-label="08" data-speaker-notes="For bigger libraries, build a spreadsheet and import with a plugin. Drag the slider live to show the rule of thumb: under 20 go manual, over 20 use a spreadsheet." style="position:relative;width:100%;height:100%;padding:72px 92px;background-color:#F7F3EC;background-image:radial-gradient(rgba(36,28,24,0.06) 1.4px,transparent 1.4px);background-size:30px 30px;font-family:'Hanken Grotesk',sans-serif;color:#241C18;display:flex;flex-direction:column;overflow:hidden;">
+  <div style="display:inline-flex;align-self:flex-start;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:24px;text-transform:uppercase;letter-spacing:2.5px;color:#C2410C;background:rgba(255,122,89,.2);padding:8px 16px;border-radius:999px;font-weight:700;">How To</div>
+  <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:62px;line-height:1;letter-spacing:-2px;margin:18px 0 28px;">Importing via Spreadsheet</h2>
+  <a href="content-variables-template.csv" download style="position:absolute;top:74px;right:92px;display:inline-flex;align-items:center;gap:10px;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:22px;color:#fff;background:#FF7A59;padding:14px 24px;border-radius:999px;text-decoration:none;box-shadow:0 10px 24px rgba(255,122,89,.32);"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>Download CSV template</a>
+
+  <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:40px;">
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div style="font-family:'Space Mono',monospace;font-size:20px;letter-spacing:1.5px;text-transform:uppercase;color:#0F766E;font-weight:700;">📋 Set up your sheet like this</div>
+      <div style="background:#fff;border:2px solid rgba(36,28,24,.12);border-radius:14px;overflow:hidden;box-shadow:0 10px 24px rgba(36,28,24,.1);font-family:'Space Mono',monospace;">
+        <div style="display:grid;grid-template-columns:1.05fr 1fr 1fr 1fr;background:#241C18;color:#F7F3EC;font-size:18px;font-weight:700;">
+          <div style="padding:12px 14px;border-right:1px solid rgba(255,255,255,.14);">Name</div>
+          <div style="padding:12px 14px;border-right:1px solid rgba(255,255,255,.14);">Mode 1</div>
+          <div style="padding:12px 14px;border-right:1px solid rgba(255,255,255,.14);">Mode 2</div>
+          <div style="padding:12px 14px;">Mode 3</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1.05fr 1fr 1fr 1fr;font-size:18px;color:#241C18;border-bottom:1px solid rgba(36,28,24,.08);">
+          <div style="padding:12px 14px;font-weight:700;background:#FFF3D6;border-right:1px solid rgba(36,28,24,.08);">Heading</div>
+          <div style="padding:12px 14px;border-right:1px solid rgba(36,28,24,.08);color:#6B5F57;">Repeat order</div>
+          <div style="padding:12px 14px;border-right:1px solid rgba(36,28,24,.08);color:#6B5F57;">Your basket</div>
+          <div style="padding:12px 14px;color:#6B5F57;">Checkout</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1.05fr 1fr 1fr 1fr;font-size:18px;color:#241C18;border-bottom:1px solid rgba(36,28,24,.08);">
+          <div style="padding:12px 14px;font-weight:700;background:#FFF3D6;border-right:1px solid rgba(36,28,24,.08);">Body</div>
+          <div style="padding:12px 14px;border-right:1px solid rgba(36,28,24,.08);color:#6B5F57;">Due in 3 days</div>
+          <div style="padding:12px 14px;border-right:1px solid rgba(36,28,24,.08);color:#6B5F57;">2 items</div>
+          <div style="padding:12px 14px;color:#6B5F57;">£12.40 total</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1.05fr 1fr 1fr 1fr;font-size:18px;color:#241C18;">
+          <div style="padding:12px 14px;font-weight:700;background:#FFF3D6;border-right:1px solid rgba(36,28,24,.08);">CTA</div>
+          <div style="padding:12px 14px;border-right:1px solid rgba(36,28,24,.08);color:#6B5F57;">Reorder</div>
+          <div style="padding:12px 14px;border-right:1px solid rgba(36,28,24,.08);color:#6B5F57;">View basket</div>
+          <div style="padding:12px 14px;color:#6B5F57;">Pay now</div>
+        </div>
+      </div>
+      <div style="font-size:19px;color:#6B5F57;line-height:1.4;">Each <strong>row</strong> becomes a variable, each <strong>column</strong> becomes a mode, and the <strong>file name</strong> becomes the collection. Use <span style="font-family:'Space Mono',monospace;">/</span> in a name to make groups.</div>
+      <div style="display:flex;align-items:center;gap:16px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:13px 18px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:40px;height:40px;border-radius:50%;background:#FFC23D;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:20px;">1</span><span style="font-size:23px;"><strong>Export</strong> the sheet as a CSV (name it after your collection)</span></div>
+      <div style="display:flex;align-items:center;gap:16px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:13px 18px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:40px;height:40px;border-radius:50%;background:#5EE0CF;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:20px;">2</span><span style="font-size:23px;">Variables panel → <strong>Import</strong> → run <strong>CSV to Variables</strong> → select your file</span></div>
+      <div style="display:flex;align-items:center;gap:16px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:13px 18px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:40px;height:40px;border-radius:50%;background:#FF93C0;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:20px;">3</span><span style="font-size:23px;">Preview the table, import, then <strong>publish</strong></span></div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:18px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div style="background:#FFF3D6;border:2px solid #FFC23D;border-radius:14px;padding:18px 20px;">
+          <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1px;text-transform:uppercase;color:#92400e;font-weight:700;margin-bottom:10px;">✋ Manual</div>
+          <div style="font-size:20px;line-height:1.55;color:#3a2e16;">✅ Quick to set up<br>✅ Good for small sets<br>✅ No plugin needed<br>❌ Slow at volume<br>❌ Typo-prone at scale</div>
+        </div>
+        <div style="background:#D6F5EF;border:2px solid #2FBFA8;border-radius:14px;padding:18px 20px;">
+          <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1px;text-transform:uppercase;color:#0f766e;font-weight:700;margin-bottom:10px;">📊 Spreadsheet</div>
+          <div style="font-size:20px;line-height:1.55;color:#16403a;">✅ Great for big libraries<br>✅ Easy to share<br>✅ Faster bulk updates<br>❌ Requires a plugin<br>❌ Needs tidy formatting</div>
+        </div>
+      </div>
+
+      <div style="background:#241C18;border-radius:16px;padding:24px 28px;box-shadow:0 12px 26px rgba(36,28,24,.16);">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;">
+          <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1px;text-transform:uppercase;color:#FFC23D;font-weight:700;">🤔 Which should I use?</div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:30px;color:#fff;">{{ recCountLabel }}</div>
+        </div>
+        <input type="range" min="1" max="100" value="{{ varCount }}" onInput="{{ onVarCount }}" class="cv-slider" style="width:100%;margin:18px 0 6px;" />
+        <div style="display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:15px;color:#9b9089;"><span>1</span><span>20 ← rule of thumb</span><span>100+</span></div>
+        <div style="margin-top:16px;display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.06);border-radius:12px;padding:16px 18px;border-left:6px solid {{ recColor }};">
+          <span style="font-size:38px;">{{ recEmoji }}</span>
+          <span><span style="display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px;color:#fff;">{{ recTitle }}</span><span style="display:block;font-size:19px;color:#cfc7c0;margin-top:2px;">{{ recBody }}</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section data-label="Applying Variables" data-screen-label="09" data-speaker-notes="Applying a variable to a text layer: select the layer, click the variable icon next to the text field, pick from the picker. Best done at the component level. If the library doesn't show, enable it in Assets → Libraries." style="position:relative;width:100%;height:100%;padding:72px 92px;background-color:#F7F3EC;background-image:radial-gradient(rgba(36,28,24,0.06) 1.4px,transparent 1.4px);background-size:30px 30px;font-family:'Hanken Grotesk',sans-serif;color:#241C18;display:flex;flex-direction:column;overflow:hidden;">
+  <div style="display:inline-flex;align-self:flex-start;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:24px;text-transform:uppercase;letter-spacing:2.5px;color:#7C3AED;background:rgba(187,162,255,.28);padding:8px 16px;border-radius:999px;font-weight:700;">Application</div>
+  <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:66px;line-height:1;letter-spacing:-2px;margin:18px 0 30px;">Applying Variables in Your File</h2>
+
+  <div style="flex:1;display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;">
+    <div style="display:flex;flex-direction:column;gap:13px;">
+      <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#7C3AED;font-weight:700;">Step by step</div>
+      <div style="display:flex;align-items:center;gap:16px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:14px 20px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:42px;height:42px;border-radius:50%;background:#BBA2FF;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:21px;">1</span><span style="font-size:24px;">Select a text layer in your file</span></div>
+      <div style="display:flex;align-items:center;gap:16px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:14px 20px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:42px;height:42px;border-radius:50%;background:#BBA2FF;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:21px;">2</span><span style="font-size:24px;">Open the <strong>Appearance</strong> section in the right-hand panel</span></div>
+      <div style="display:flex;align-items:center;gap:16px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:14px 20px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:42px;height:42px;border-radius:50%;background:#9DB4FF;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:21px;">3</span><span style="font-size:24px;">Click <strong>Appearance</strong> → the variable picker appears</span></div>
+      <div style="display:flex;align-items:center;gap:16px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:14px 20px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:42px;height:42px;border-radius:50%;background:#9DB4FF;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:21px;">4</span><span style="font-size:24px;">Browse or search for your variable</span></div>
+      <div style="display:flex;align-items:center;gap:16px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:14px 20px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:42px;height:42px;border-radius:50%;background:#5EE0CF;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:21px;">5</span><span style="font-size:24px;">Click to apply → the layer now references it</span></div>
+      <div style="display:flex;align-items:center;gap:16px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:14px 20px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:42px;height:42px;border-radius:50%;background:#7FE0A6;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:21px;">6</span><span style="font-size:24px;">It shows the value, not a hardcoded string</span></div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:20px;">
+      <div style="background:#7FE0A6;border-radius:16px;padding:26px 28px;box-shadow:0 12px 26px rgba(36,28,24,.12);">
+        <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#0f5132;font-weight:700;">🧩 Within a component</div>
+        <ul style="margin:14px 0 0;padding-left:24px;font-size:23px;line-height:1.55;color:#16402a;"><li>Apply at the component level for best results</li><li>Instances can still be overridden if needed</li><li>Great for buttons, card text, tags, form fields</li></ul>
+      </div>
+      <div style="background:#241C18;border-radius:16px;padding:26px 28px;box-shadow:0 12px 26px rgba(36,28,24,.16);">
+        <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#FFC23D;font-weight:700;">⚠️ Watch out</div>
+        <p style="font-size:22px;color:#F7F3EC;margin:14px 0;line-height:1.4;">If the library doesn't appear in the picker:</p>
+        <div style="font-family:'Space Mono',monospace;font-size:24px;color:#5EE0CF;background:rgba(255,255,255,.06);border-radius:8px;padding:14px 16px;line-height:1.5;">Assets → Libraries → enable it for this file</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-label="QA Checklist" data-screen-label="10" data-speaker-notes="Tick these off live — the counter tracks your progress. Run the before-publishing list every time, spot-check after publishing, and keep the common-issues fixes handy." style="position:relative;width:100%;height:100%;padding:72px 92px;background-color:#F7F3EC;background-image:radial-gradient(rgba(36,28,24,0.06) 1.4px,transparent 1.4px);background-size:30px 30px;font-family:'Hanken Grotesk',sans-serif;color:#241C18;display:flex;flex-direction:column;overflow:hidden;">
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+    <div style="display:inline-flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:24px;text-transform:uppercase;letter-spacing:2.5px;color:#0F766E;background:rgba(47,191,168,.18);padding:8px 16px;border-radius:999px;font-weight:700;">Quality Assurance</div>
+    <div style="margin-left:auto;font-family:'Space Mono',monospace;font-size:24px;font-weight:700;color:#fff;background:#FF7A59;padding:8px 20px;border-radius:999px;">✓ {{ qaProgress }}</div>
+  </div>
+  <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:60px;line-height:1;letter-spacing:-2px;margin:16px 0 26px;">QA Checklist — tick as you go</h2>
+
+  <div style="flex:1;display:grid;grid-template-columns:1fr 1fr 1.05fr;gap:26px;">
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#0f5132;font-weight:700;">✅ Before publishing</div>
+      <sc-for list="{{ qaBefore }}" as="item" hint-placeholder-count="6">
+        <button onClick="{{ item.onClick }}" style="display:flex;align-items:center;gap:14px;text-align:left;width:100%;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:11px;padding:13px 16px;cursor:pointer;box-shadow:0 5px 12px rgba(36,28,24,.05);font-family:'Hanken Grotesk',sans-serif;">
+          <sc-if value="{{ item.checked }}" hint-placeholder-val="{{ false }}"><span style="flex:none;width:30px;height:30px;border-radius:8px;background:#7FE0A6;border:2px solid #2FBFA8;display:flex;align-items:center;justify-content:center;font-size:18px;color:#0f5132;font-weight:800;">✓</span></sc-if>
+          <sc-if value="{{ item.unchecked }}" hint-placeholder-val="{{ true }}"><span style="flex:none;width:30px;height:30px;border-radius:8px;background:#F1ECE2;border:2px solid rgba(36,28,24,.2);"></span></sc-if>
+          <span style="font-size:21px;line-height:1.3;color:#241C18;">{{ item.text }}</span>
+        </button>
+      </sc-for>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#92400e;font-weight:700;">📤 After publishing</div>
+      <sc-for list="{{ qaAfter }}" as="item" hint-placeholder-count="4">
+        <button onClick="{{ item.onClick }}" style="display:flex;align-items:center;gap:14px;text-align:left;width:100%;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:11px;padding:13px 16px;cursor:pointer;box-shadow:0 5px 12px rgba(36,28,24,.05);font-family:'Hanken Grotesk',sans-serif;">
+          <sc-if value="{{ item.checked }}" hint-placeholder-val="{{ false }}"><span style="flex:none;width:30px;height:30px;border-radius:8px;background:#FFD98A;border:2px solid #FFC23D;display:flex;align-items:center;justify-content:center;font-size:18px;color:#92400e;font-weight:800;">✓</span></sc-if>
+          <sc-if value="{{ item.unchecked }}" hint-placeholder-val="{{ true }}"><span style="flex:none;width:30px;height:30px;border-radius:8px;background:#F1ECE2;border:2px solid rgba(36,28,24,.2);"></span></sc-if>
+          <span style="font-size:21px;line-height:1.3;color:#241C18;">{{ item.text }}</span>
+        </button>
+      </sc-for>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#be123c;font-weight:700;">🔴 Common issues</div>
+      <div style="background:#FFE4E1;border-radius:11px;padding:13px 16px;"><div style="font-size:20px;font-weight:700;color:#9f1239;">Showing the raw name, not the value</div><div style="font-size:18px;color:#7a3a3a;margin-top:3px;">→ Not published yet. Publish the library.</div></div>
+      <div style="background:#FFE4E1;border-radius:11px;padding:13px 16px;"><div style="font-size:20px;font-weight:700;color:#9f1239;">Not appearing in the picker</div><div style="font-size:18px;color:#7a3a3a;margin-top:3px;">→ Enable it: Assets → Libraries.</div></div>
+      <div style="background:#FFE4E1;border-radius:11px;padding:13px 16px;"><div style="font-size:20px;font-weight:700;color:#9f1239;">Wrong value after an update</div><div style="font-size:18px;color:#7a3a3a;margin-top:3px;">→ Re-publish. Changes don't push automatically.</div></div>
+      <div style="background:#FFE4E1;border-radius:11px;padding:13px 16px;"><div style="font-size:20px;font-weight:700;color:#9f1239;">Import errors from spreadsheet</div><div style="font-size:18px;color:#7a3a3a;margin-top:3px;">→ Check special characters &amp; merged cells.</div></div>
+    </div>
+  </div>
+</section>
+<section data-label="Q&amp;A" data-screen-label="11" data-speaker-notes="Open floor — no question is too basic. Use the starter prompts on the left to get discussion going. The blank notes on the right are editable and save as you type, so capture questions live." style="position:relative;width:100%;height:100%;padding:72px 92px;background-color:#F7F3EC;background-image:radial-gradient(rgba(36,28,24,0.06) 1.4px,transparent 1.4px);background-size:30px 30px;font-family:'Hanken Grotesk',sans-serif;color:#241C18;display:flex;flex-direction:column;overflow:hidden;">
+  <div style="display:inline-flex;align-self:flex-start;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:24px;text-transform:uppercase;letter-spacing:2.5px;color:#7C3AED;background:rgba(187,162,255,.28);padding:8px 16px;border-radius:999px;font-weight:700;">Open Floor</div>
+  <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:66px;line-height:1;letter-spacing:-2px;margin:16px 0 4px;">Questions &amp; Answers 🙋</h2>
+  <p style="font-size:26px;color:#6B5F57;margin:0 0 26px;">No question is too basic!</p>
+
+  <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:44px;">
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#0F766E;font-weight:700;">💬 Conversation starters</div>
+      <div style="background:#FFC23D;border-radius:12px;padding:18px 22px;font-size:24px;font-weight:600;box-shadow:0 8px 18px rgba(36,28,24,.1);transform:rotate(-0.6deg);">What types of copy do you repeat most?</div>
+      <div style="background:#FF93C0;border-radius:12px;padding:18px 22px;font-size:24px;font-weight:600;box-shadow:0 8px 18px rgba(36,28,24,.1);transform:rotate(0.6deg);">Had issues with inconsistent copy across screens?</div>
+      <div style="background:#9DB4FF;border-radius:12px;padding:18px 22px;font-size:24px;font-weight:600;box-shadow:0 8px 18px rgba(36,28,24,.1);transform:rotate(-0.5deg);">Manual or spreadsheet for your current project?</div>
+      <div style="background:#7FE0A6;border-radius:12px;padding:18px 22px;font-size:24px;font-weight:600;box-shadow:0 8px 18px rgba(36,28,24,.1);transform:rotate(0.7deg);">Concerns about maintaining a library long-term?</div>
+      <div style="background:#FF9E7A;border-radius:12px;padding:18px 22px;font-size:24px;font-weight:600;box-shadow:0 8px 18px rgba(36,28,24,.1);transform:rotate(-0.6deg);">How could this help your team's workflow?</div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#C2410C;font-weight:700;">📝 Your questions <span style="text-transform:none;letter-spacing:0;color:#6B5F57;font-size:15px;">— click a note &amp; type</span></div>
+      <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div data-qnote="1" data-ph="Type here…" contenteditable="true" style="background:#FFF7E0;border:2px dashed rgba(36,28,24,.25);border-radius:12px;padding:16px 18px;font-size:21px;color:#241C18;line-height:1.35;box-shadow:0 6px 14px rgba(36,28,24,.05);"></div>
+        <div data-qnote="2" data-ph="Type here…" contenteditable="true" style="background:#FFF7E0;border:2px dashed rgba(36,28,24,.25);border-radius:12px;padding:16px 18px;font-size:21px;color:#241C18;line-height:1.35;box-shadow:0 6px 14px rgba(36,28,24,.05);"></div>
+        <div data-qnote="3" data-ph="Type here…" contenteditable="true" style="background:#FFF7E0;border:2px dashed rgba(36,28,24,.25);border-radius:12px;padding:16px 18px;font-size:21px;color:#241C18;line-height:1.35;box-shadow:0 6px 14px rgba(36,28,24,.05);"></div>
+        <div data-qnote="4" data-ph="Type here…" contenteditable="true" style="background:#FFF7E0;border:2px dashed rgba(36,28,24,.25);border-radius:12px;padding:16px 18px;font-size:21px;color:#241C18;line-height:1.35;box-shadow:0 6px 14px rgba(36,28,24,.05);"></div>
+        <div data-qnote="5" data-ph="Type here…" contenteditable="true" style="background:#FFF7E0;border:2px dashed rgba(36,28,24,.25);border-radius:12px;padding:16px 18px;font-size:21px;color:#241C18;line-height:1.35;box-shadow:0 6px 14px rgba(36,28,24,.05);"></div>
+        <div data-qnote="6" data-ph="Type here…" contenteditable="true" style="background:#FFF7E0;border:2px dashed rgba(36,28,24,.25);border-radius:12px;padding:16px 18px;font-size:21px;color:#241C18;line-height:1.35;box-shadow:0 6px 14px rgba(36,28,24,.05);"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-label="Resources" data-screen-label="12" data-speaker-notes="A few places to keep learning. Thanks for joining — reach out anytime after today." style="position:relative;width:100%;height:100%;padding:72px 92px;background-color:#F7F3EC;background-image:radial-gradient(rgba(36,28,24,0.06) 1.4px,transparent 1.4px);background-size:30px 30px;font-family:'Hanken Grotesk',sans-serif;color:#241C18;display:flex;flex-direction:column;overflow:hidden;">
+  <div style="display:inline-flex;align-self:flex-start;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:24px;text-transform:uppercase;letter-spacing:2.5px;color:#C2410C;background:rgba(255,122,89,.2);padding:8px 16px;border-radius:999px;font-weight:700;">Further Reading</div>
+  <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:66px;line-height:1;letter-spacing:-2px;margin:18px 0 30px;">Helpful Resources 📚</h2>
+
+  <div style="flex:1;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:24px;">
+    <div style="background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:16px;padding:26px 28px;box-shadow:0 10px 22px rgba(36,28,24,.07);display:flex;flex-direction:column;gap:8px;"><div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1px;text-transform:uppercase;color:#be123c;font-weight:700;">🎥 Video</div><div style="font-size:25px;font-weight:700;">Figma Official — Variables Intro</div><div style="font-size:20px;color:#6B5F57;line-height:1.4;flex:1;">Search "Figma Variables" on the official Figma channel.</div><div style="font-family:'Space Mono',monospace;font-size:24px;color:#C2410C;background:#FFF1ED;border-radius:8px;padding:8px 12px;align-self:flex-start;">youtube.com/@Figma</div></div>
+    <div style="background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:16px;padding:26px 28px;box-shadow:0 10px 22px rgba(36,28,24,.07);display:flex;flex-direction:column;gap:8px;"><div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1px;text-transform:uppercase;color:#1d4ed8;font-weight:700;">📄 Docs</div><div style="font-size:25px;font-weight:700;">Figma Docs — Variables Overview</div><div style="font-size:20px;color:#6B5F57;line-height:1.4;flex:1;">The official help-centre walkthrough.</div><div style="font-family:'Space Mono',monospace;font-size:24px;color:#1d4ed8;background:#EEF2FF;border-radius:8px;padding:8px 12px;align-self:flex-start;">help.figma.com</div></div>
+    <div style="background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:16px;padding:26px 28px;box-shadow:0 10px 22px rgba(36,28,24,.07);display:flex;flex-direction:column;gap:8px;"><div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1px;text-transform:uppercase;color:#7C3AED;font-weight:700;">🔌 Plugin</div><div style="font-size:25px;font-weight:700;">CSV to Variables <span style="font-size:18px;color:#FF7A59;">★ our pick</span></div><div style="font-size:20px;color:#6B5F57;line-height:1.4;flex:1;">By Elgato — row → variable, column → mode, file → collection.</div><div style="font-family:'Space Mono',monospace;font-size:24px;color:#7C3AED;background:#F5F0FF;border-radius:8px;padding:8px 12px;align-self:flex-start;">Figma Community</div></div>
+    <div style="background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:16px;padding:26px 28px;box-shadow:0 10px 22px rgba(36,28,24,.07);display:flex;flex-direction:column;gap:8px;"><div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1px;text-transform:uppercase;color:#7C3AED;font-weight:700;">🔌 Plugin</div><div style="font-size:25px;font-weight:700;">Tokens Studio</div><div style="font-size:20px;color:#6B5F57;line-height:1.4;flex:1;">Advanced variable &amp; token management.</div><div style="font-family:'Space Mono',monospace;font-size:24px;color:#7C3AED;background:#F5F0FF;border-radius:8px;padding:8px 12px;align-self:flex-start;">Figma Community</div></div>
+    <div style="background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:16px;padding:26px 28px;box-shadow:0 10px 22px rgba(36,28,24,.07);display:flex;flex-direction:column;gap:8px;"><div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1px;text-transform:uppercase;color:#0f766e;font-weight:700;">📺 Talk</div><div style="font-size:25px;font-weight:700;">Config — Variables Deep Dive</div><div style="font-size:20px;color:#6B5F57;line-height:1.4;flex:1;">Annual Figma Config conference talks.</div><div style="font-family:'Space Mono',monospace;font-size:24px;color:#0f766e;background:#E6FAF5;border-radius:8px;padding:8px 12px;align-self:flex-start;">figma.com/config</div></div>
+    <div style="background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:16px;padding:26px 28px;box-shadow:0 10px 22px rgba(36,28,24,.07);display:flex;flex-direction:column;gap:8px;"><div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1px;text-transform:uppercase;color:#92400e;font-weight:700;">💬 Forum</div><div style="font-size:25px;font-weight:700;">Figma Community Forum</div><div style="font-size:20px;color:#6B5F57;line-height:1.4;flex:1;">Ask questions, share what you've built.</div><div style="font-family:'Space Mono',monospace;font-size:24px;color:#92400e;background:#FFF7E0;border-radius:8px;padding:8px 12px;align-self:flex-start;">forum.figma.com</div></div>
+  </div>
+
+  <div style="margin-top:24px;background:#FF7A59;border-radius:14px;padding:20px 30px;font-size:26px;color:#241C18;display:flex;align-items:center;justify-content:space-between;gap:20px;"><span><strong>Thanks for joining! 🎉</strong> &nbsp;Questions after today? Reach out anytime.</span><span style="display:flex;align-items:center;gap:16px;flex:none;"><button class="deck-pdf-btn" onClick="{{ savePdf }}" style="display:inline-flex;align-items:center;gap:8px;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:20px;color:#C2410C;background:#fff;border:none;padding:12px 20px;border-radius:999px;cursor:pointer;box-shadow:0 6px 16px rgba(36,28,24,.2);"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>Save as PDF</button><span style="font-family:'Space Mono',monospace;font-size:20px;font-weight:700;">— Erin Mahon</span></span></div>
+</section>
+</x-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;100%&quot;}}">
+class Component extends DCLogic {
+  state = { medName: 'Paracetamol', medStrength: '500mg', medForm: 'Tablets', pharmacy: 'Dispensed by Boots Pharmacy · Open till 6pm', qa: {}, varCount: 12 };
+
+  componentDidMount() {
+    try {
+      const notes = this._root ? this._root.querySelectorAll('[data-qnote]') : document.querySelectorAll('[data-qnote]');
+      (notes || []).forEach((el) => {
+        const key = 'cv-qa-note-' + el.getAttribute('data-qnote');
+        const saved = localStorage.getItem(key);
+        if (saved != null) el.textContent = saved;
+        el.addEventListener('input', () => {
+          try { localStorage.setItem(key, el.textContent); } catch (e) {}
+        });
+      });
+    } catch (e) {}
+  }
+
+  renderVals() {
+    const s = this.state;
+    const presetMeds = [
+      { label: 'Paracetamol', name: 'Paracetamol', strength: '500mg', form: 'Tablets' },
+      { label: 'Ibuprofen', name: 'Ibuprofen', strength: '200mg', form: 'Capsules' },
+      { label: 'Amoxicillin', name: 'Amoxicillin', strength: '250mg', form: 'Oral suspension' },
+    ];
+    const medPresets = presetMeds.map((m) => ({
+      label: m.label,
+      active: s.medName === m.name,
+      onClick: () => this.setState({ medName: m.name, medStrength: m.strength, medForm: m.form }),
+    }));
+
+    const beforeText = [
+      ['b1', 'Variable names follow your naming convention'],
+      ['b2', 'No duplicate variable names in the collection'],
+      ['b3', 'All values are spell-checked'],
+      ['b4', 'Variables are grouped logically (not all in one list)'],
+      ['b5', 'Tested in at least one component before publishing'],
+      ['b6', 'Collection name is clear and descriptive'],
+    ];
+    const afterText = [
+      ['a1', 'Library is available and enabled in team files'],
+      ['a2', 'Spot-check applied variables in key components'],
+      ['a3', 'No broken references showing'],
+      ['a4', 'Share the library update with your team'],
+    ];
+    const mk = (arr) => arr.map(([id, text]) => ({
+      id, text,
+      checked: !!s.qa[id],
+      unchecked: !s.qa[id],
+      onClick: () => this.setState((st) => ({ qa: { ...st.qa, [id]: !st.qa[id] } })),
+    }));
+    const qaBefore = mk(beforeText);
+    const qaAfter = mk(afterText);
+    const qaTotal = beforeText.length + afterText.length;
+    const qaDone = [...beforeText, ...afterText].filter(([id]) => s.qa[id]).length;
+
+    const isSheet = s.varCount >= 20;
+    return {
+      savePdf: () => window.print(),
+      medName: s.medName || ' ',
+      medStrength: s.medStrength || ' ',
+      medForm: s.medForm || ' ',
+      pharmacy: s.pharmacy || ' ',
+      onMedName: (e) => this.setState({ medName: e.target.value }),
+      onMedStrength: (e) => this.setState({ medStrength: e.target.value }),
+      onMedForm: (e) => this.setState({ medForm: e.target.value }),
+      onPharmacy: (e) => this.setState({ pharmacy: e.target.value }),
+      medPresets,
+      qaBefore, qaAfter, qaDone, qaTotal,
+      qaProgress: qaDone + ' / ' + qaTotal + ' done',
+      varCount: s.varCount,
+      onVarCount: (e) => this.setState({ varCount: parseInt(e.target.value, 10) }),
+      recEmoji: isSheet ? '📊' : '🖱️',
+      recTitle: isSheet ? 'Use a spreadsheet' : 'Go manual',
+      recBody: isSheet
+        ? "That's a lot of strings — set up a sheet and import in bulk with a plugin."
+        : 'A small set like this is quick to create by hand, no plugin needed.',
+      recColor: isSheet ? '#2FBFA8' : '#FF7A59',
+      recCountLabel: s.varCount + (s.varCount === 100 ? '+' : '') + ' variables',
+    };
+  }
+}
+</script>
+</body>
+</html>

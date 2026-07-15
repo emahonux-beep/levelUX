@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Love Island Effect — LevelUX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Karla:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../tokens.css">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--color-surface);}
+  .material-symbols-outlined{font-family:'Material Symbols Outlined';font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;font-size:18px;line-height:1;vertical-align:middle;user-select:none;}
+
+  /* Nav */
+  .top-bar{position:sticky;top:0;z-index:100;background:#272727;}
+  .top-bar-inner{max-width:1120px;margin:0 auto;padding:0 var(--space-6);height:68px;display:flex;align-items:center;justify-content:space-between;}
+  .site-logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0;}
+  .site-logo img{height:36px;width:auto;display:block;}
+  .nav-links{display:flex;gap:var(--space-1);}
+  .nav-link{font-family:var(--font-body);font-weight:var(--fw-medium);font-size:var(--text-sm);color:var(--raw-neutral-300);text-decoration:none;padding:var(--space-2) var(--space-3);border-radius:var(--radius-full);transition:background .15s,color .15s;white-space:nowrap;}
+  .nav-link:hover{background:rgba(255,255,255,.10);color:#fff;}
+  .nav-link.active{background:var(--raw-coral-glow);color:var(--raw-shadow-grey);font-weight:var(--fw-bold);}
+  .site-stripe{height:5px;background:linear-gradient(90deg,var(--raw-coral-glow),var(--raw-steel-blue),var(--raw-plum));}
+
+  /* Back */
+  .back-wrap{max-width:1120px;margin:0 auto;padding:var(--space-4) var(--space-6) 0;}
+  .back-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-muted);text-decoration:none;transition:color .14s;}
+  .back-link:hover{color:var(--color-text);}
+
+  /* Article header — reading width */
+  .article-header{max-width:720px;margin:0 auto;padding:var(--space-8) var(--space-6) var(--space-6);}
+  .article-tag{display:inline-block;font-family:var(--font-mono);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.14em;font-weight:500;color:var(--color-accent-text);margin-bottom:var(--space-4);}
+  .article-title{font-family:var(--font-heading);font-weight:var(--fw-bold);font-size:clamp(1.875rem,4vw,2.75rem);line-height:1.1;letter-spacing:-.02em;color:var(--color-text);margin:0 0 var(--space-4);}
+  .article-dek{font-size:var(--text-xl);color:var(--color-text-muted);line-height:var(--leading-normal);margin:0 0 var(--space-6);}
+
+  /* Author block */
+  .author-block{display:flex;align-items:center;gap:var(--space-3);padding:var(--space-4) 0;border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);}
+  .author-avatar{width:40px;height:40px;border-radius:50%;overflow:hidden;flex-shrink:0;}
+  .author-avatar img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;}
+  .author-name{font-family:var(--font-heading);font-weight:var(--fw-bold);font-size:var(--text-sm);color:var(--color-text);display:block;}
+  .author-meta{font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-muted);display:block;margin-top:2px;}
+
+  /* Article body — reading column */
+  .article-body{max-width:720px;margin:0 auto;padding:var(--space-8) var(--space-6) var(--space-4);}
+  .article-body p{font-size:var(--text-lg);line-height:1.78;color:var(--color-text);margin:0 0 var(--space-6);}
+  .article-body h2{font-family:var(--font-heading);font-weight:var(--fw-bold);font-size:var(--text-2xl);color:var(--color-text);margin:var(--space-10) 0 var(--space-4);line-height:var(--leading-tight);}
+  .article-body ul{margin:0 0 var(--space-6);padding-left:var(--space-6);}
+  .article-body ul li{font-size:var(--text-lg);line-height:1.78;color:var(--color-text);margin-bottom:var(--space-3);}
+  .article-body ul li strong{font-weight:var(--fw-bold);}
+  .article-body .sign-off{margin-top:var(--space-10);padding-top:var(--space-6);border-top:1px solid var(--color-border);font-family:var(--font-mono);font-size:var(--text-sm);color:var(--color-text-muted);}
+  .section-rule{border:none;border-top:1px solid var(--color-border);margin:var(--space-10) 0;}
+
+  /* Pull quote — breaks out wider */
+  .pull-quote-wrap{max-width:900px;margin:var(--space-8) auto;padding:0 var(--space-6);}
+  .pull-quote{border-left:4px solid var(--raw-coral-glow);padding:var(--space-4) var(--space-6);background:var(--color-bg);border-radius:0 var(--radius-md) var(--radius-md) 0;}
+  .pull-quote p{font-family:var(--font-heading);font-weight:var(--fw-bold);font-size:var(--text-xl);line-height:1.35;color:var(--color-text);margin:0;font-style:italic;}
+
+  /* Inline para + image — breaks out to full 1120px */
+  .para-row{max-width:1120px;margin:0 auto var(--space-8);padding:0 var(--space-6);display:grid;grid-template-columns:8fr 4fr;gap:var(--space-8);align-items:center;}
+  .para-row p{font-size:var(--text-lg);line-height:1.78;color:var(--color-text);margin:0;}
+  .para-row img{width:100%;border-radius:var(--radius-lg);display:block;}
+
+  /* Footer */
+  .site-footer{background:#272727;color:var(--raw-neutral-300);padding:var(--space-16) var(--space-6);margin-top:var(--space-16);}
+  .footer-top{max-width:1120px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-8);}
+  .footer-left{display:flex;align-items:center;gap:var(--space-8);flex-wrap:wrap;}
+  .footer-logo img{height:80px;width:auto;display:block;}
+  .footer-nav{display:flex;flex-wrap:wrap;gap:var(--space-1);}
+  .footer-nav a{font-family:var(--font-body);font-weight:var(--fw-medium);font-size:var(--text-sm);color:var(--raw-neutral-300);text-decoration:none;padding:var(--space-1) var(--space-2);transition:color .15s;}
+  .footer-nav a:hover{color:#fff;}
+  .footer-right{text-align:right;flex-shrink:0;}
+  .footer-right-label{font-family:var(--font-mono);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.1em;color:var(--raw-neutral-300);margin:0 0 var(--space-2);}
+  .footer-contact-link{display:block;font-family:var(--font-mono);font-size:var(--text-sm);color:var(--raw-coral-glow);text-decoration:none;line-height:1.8;}
+  .footer-contact-link:hover{text-decoration:underline;}
+  .footer-legal{max-width:1120px;margin:var(--space-8) auto 0;font-family:var(--font-mono);font-size:var(--text-xs);color:var(--raw-neutral-400);border-top:1px solid var(--raw-neutral-700);padding-top:var(--space-6);}
+
+  /* Responsive */
+  @media(max-width:860px){
+    .top-bar-inner{height:60px;padding:0 16px;}
+    .nav-link{font-size:13px;padding:6px 8px;}
+    .back-wrap,.article-header,.article-body,.pull-quote-wrap{padding-left:var(--space-4);padding-right:var(--space-4);}
+    .para-row{grid-template-columns:1fr;padding:0 var(--space-4);}
+    .footer-top{flex-direction:column;gap:var(--space-6);}
+    .footer-right{text-align:left;}
+  }
+  @media(max-width:600px){
+    .top-bar-inner{flex-wrap:wrap;height:auto;padding:12px 16px;gap:8px;justify-content:center;}
+    .site-logo{width:100%;justify-content:center;}
+    .nav-links{justify-content:center;flex-wrap:wrap;}
+    .article-body p,.article-body ul li,.para-row p{font-size:var(--text-base);}
+  }
+</style>
+</head>
+<body>
+
+<nav class="top-bar">
+  <div class="top-bar-inner">
+    <a href="../../index.html" class="site-logo"><img src="../../images/LevelUX-horizontal-dark.svg" alt="LevelUX"></a>
+    <div class="nav-links">
+      <a href="../../index.html" class="nav-link">Home</a>
+      <a href="../../learning-friday.html" class="nav-link">Learning Friday</a>
+      <a href="../../courses.html" class="nav-link">Courses</a>
+      <a href="../../brain-dumps.html" class="nav-link active">Brain Dumps</a>
+      <a href="../../about.html" class="nav-link">About</a>
+    </div>
+  </div>
+</nav>
+<div class="site-stripe"></div>
+
+<div class="back-wrap">
+  <a class="back-link" href="../../brain-dumps.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+    Brain Dumps
+  </a>
+</div>
+
+<header class="article-header">
+  <div class="article-tag">Brain Dump</div>
+  <h1 class="article-title">The Love Island Effect: What Reality TV Knows About Engagement That Most Products Don't</h1>
+  <p class="article-dek">That ritual of coming back night after night wasn't an accident. And it's not just a TV trick — it's a pattern worth stealing.</p>
+  <div class="author-block">
+    <div class="author-avatar"><img src="../../images/erin-profile.png" alt="Erin Mahon"></div>
+    <div>
+      <span class="author-name">Erin Mahon</span>
+      <span class="author-meta">July 2, 2026 &nbsp;·&nbsp; 5 min read</span>
+    </div>
+  </div>
+</header>
+
+<div class="article-body">
+  <p>When I was a kid, I remember walking into my parents' room around seven or eight at night after practice and seeing my mom turn on American Idol the second it started. Every week, calling in on a landline to vote for Clay Aiken, David Cook, Kelly Clarkson. All the way back to the beginning. That engagement, that ritual of coming back night after night, wasn't an accident.</p>
+</div>
+
+<div class="para-row">
+  <p>Now, watching a little too much Love Island in my own life, I see it happening again. But it's different this time because of everything happening around it. TikTok, Instagram, Facebook, Twitter. It's not just TMZ covering a reality show anymore. It's real people building platforms just by talking about it. The discourse is the show now, almost as much as the show is.</p>
+  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWdjeDV3ZGluOWh0cDUwZWF5Mmg1YXc5dmZobTNocW9tOGJkYjNmbSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/4Pi145hye1ItCpp9GT/giphy.gif" alt="Love Island reaction">
+</div>
+
+<div class="article-body">
+  <h2>The feeling of choice</h2>
+</div>
+
+<div class="para-row">
+  <p>Here's what's changed since American Idol, though: it's not just voting for a winner anymore. On Love Island, the audience votes on what happens next. What clips get shown at movie night. Usually the ones that can unravel a couple. Which pairing you want to see when a new bombshell walks into the villa. Sometimes you even get a say in who makes it into the villa.</p>
+  <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExa294YWhpNWVkcXZubmhtcDd0bDdtMXhtMTczbzB0eHY1ZWo2NzBwbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PkBoSOMjD8uiBg1NIn/giphy.gif" alt="Love Island villa">
+</div>
+
+<div class="para-row">
+  <p>It's not one vote at the end of a season. It's dozens of small moments where the audience gets to steer the story.</p>
+  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXM5ZmxqZ2F5MGVoNzVodzBsZ2xjaDBmNmR2MnlveGsxcGxpbmg5ZiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/g6eB7DOy9LaVTWfrND/giphy.gif" alt="Hot girl summer">
+</div>
+
+<div class="pull-quote-wrap">
+  <div class="pull-quote">
+    <p>"The app itself might be one of the worst on the planet — buggy, clunky, whatever. Doesn't matter. People still open it."</p>
+  </div>
+</div>
+
+<div class="article-body">
+  <p>And here's the thing, the app itself might be one of the worst on the planet, buggy, clunky, whatever. Doesn't matter. People still open it. Because it gets the job done: they feel like they have a choice, like there's room for them, like their vote actually means something. Like it's a way in, not just a way to watch.</p>
+  <p>That's not a TV trick. That's a pattern.</p>
+  <hr class="section-rule">
+  <h2>Engagement doesn't look like one thing</h2>
+  <p>We give people community. We give them a say. And we give them an activity, usually something to actually do, not just watch. That's the gamification underneath all of it:</p>
+  <ul>
+    <li><strong>Community:</strong> Everyone watching, texting, posting about the same moment at the same time. My groupchat lights up at 9pm 5 days a week.</li>
+    <li><strong>A say:</strong> Voting on clips, couples, even cast. Small stakes, but real participation.</li>
+    <li><strong>Activity:</strong> A reason to open the app, not just turn on the TV.</li>
+  </ul>
+  <p>Most products lean on one of these and call it a day. Love Island stacks all three, night after night!</p>
+  <hr class="section-rule">
+  <h2>The cadence is the secret weapon</h2>
+  <p>The other thing that's easy to miss: Love Island airs five days a week, with an extra day for Aftersun. It brings back cast members to talk about what just happened and popular creators to host. That's six to eight weeks straight over the summer. Then they run it back a couple more times a year with all-star casts and do the entire thing again.</p>
+  <p>That rhythm is doing as much work as the content. You're not just watching a show. You're keeping an appointment. Multiple times a week, for weeks, on purpose.</p>
+  <hr class="section-rule">
+  <h2>So how do we leverage this?</h2>
+  <p>This is the part I keep circling back to, and I don't fully have the answer yet. But it's the right question for anyone building a product, a feature, a community, a course, whatever:</p>
+  <p>How do we bring that sense of community into the things we're designing? How do we give people that same feeling of choice? Even when we know the whole thing is engineered, produced, planned down to the frame. How do we still have it feel real to those watching?</p>
+  <p>I can't replicate the show I love. I can't just rent a villa and host a recoupling ceremony onto a digital product (or could i?) But the underlying question is still worth asking: what makes people want to come back, night after night, to something, anything you've built?</p>
+  <p>I don't have that answer yet. But I'm going to keep pulling this thread.</p>
+  <div class="sign-off">And like the Stallion would say…have a hot girl (or boy) summer! 🌴</div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-left">
+      <div class="footer-logo"><img src="../../images/LevelUX-stacked-dark.svg" alt="LevelUX"></div>
+      <nav class="footer-nav">
+        <a href="../../index.html">Home</a>
+        <a href="../../learning-friday.html">Learning Friday</a>
+        <a href="../../courses.html">Courses</a>
+        <a href="../../brain-dumps.html">Brain Dumps</a>
+        <a href="../../about.html">About</a>
+      </nav>
+    </div>
+    <div class="footer-right">
+      <p class="footer-right-label">Get in touch</p>
+      <a class="footer-contact-link" href="mailto:emahonux@gmail.com">emahonux@gmail.com</a>
+      <a class="footer-contact-link" href="tel:+12034820166">203.482.0166</a>
+    </div>
+  </div>
+  <div class="footer-legal">
+    &copy; 2025 Erin Mahon. All rights reserved. LevelUX and all original content on this site &mdash; including course materials, presentations, written posts, and design assets &mdash; are the intellectual property of Erin Mahon and may not be reproduced, distributed, or used without explicit written permission.
+  </div>
+</footer>
+
+</body>
+</html>

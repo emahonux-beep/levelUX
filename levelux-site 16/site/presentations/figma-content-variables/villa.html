@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/pecita" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0;background:#EFE9DF;}
+  *{box-sizing:border-box;}
+  [data-qnote]{outline:none;}
+  [data-qnote]:empty:before{content:attr(data-ph);color:rgba(36,28,24,0.32);}
+  @keyframes floaty{0%,100%{transform:translateY(0) rotate(var(--rot,0deg));}50%{transform:translateY(-10px) rotate(var(--rot,0deg));}}
+  input[type=range].cv-slider{-webkit-appearance:none;appearance:none;height:10px;border-radius:999px;background:linear-gradient(90deg,#FF2E74,#FFCE2E,#12C2C9);outline:none;}
+  input[type=range].cv-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:34px;height:34px;border-radius:50%;background:#241C18;border:4px solid #fff;cursor:pointer;box-shadow:0 4px 10px rgba(36,28,24,.3);}
+  input[type=range].cv-slider::-moz-range-thumb{width:30px;height:30px;border-radius:50%;background:#241C18;border:4px solid #fff;cursor:pointer;}
+  @media print{.home-btn,.deck-pdf-btn{display:none!important;}}
+</style>
+</helmet>
+<a href="../../learning-friday.html" class="home-btn" style="position:fixed;top:20px;left:20px;z-index:2147483000;display:inline-flex;align-items:center;gap:8px;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:16px;color:#241C18;background:rgba(255,255,255,.94);border:1px solid rgba(36,28,24,.16);padding:9px 15px 9px 13px;border-radius:999px;text-decoration:none;box-shadow:0 4px 16px rgba(36,28,24,.2);" title="Back to start"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>Learning Friday</a>
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+
+<section data-label="Cover" data-screen-label="01" data-speaker-notes="Welcome everyone to Learning Friday. Today is a hands-on working session on Figma content variables — feel free to follow along in Figma as we go." style="position:relative;width:100%;height:100%;padding:76px 92px;background-color:#FFF3EA;background-image:radial-gradient(rgba(36,28,24,0.06) 1.4px,transparent 1.4px);background-size:30px 30px;font-family:'Hanken Grotesk',sans-serif;color:#241C18;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;">
+  <div style="position:absolute;top:120px;left:120px;width:150px;height:150px;border-radius:16px;background:#FFCE2E;transform:rotate(-8deg);box-shadow:0 14px 30px rgba(36,28,24,.14);display:flex;align-items:center;justify-content:center;font-size:62px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></div>
+  <div style="position:absolute;bottom:150px;left:230px;width:120px;height:120px;border-radius:14px;background:#12C2C9;transform:rotate(7deg);box-shadow:0 14px 30px rgba(36,28,24,.14);display:flex;align-items:center;justify-content:center;font-size:50px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M13 8c0-2.76-2.46-5-5.5-5S2 5.24 2 8h2l1-1 1 1h4"/><path d="M13 7.14A5.82 5.82 0 0 1 16.5 6c3.04 0 5.5 2.24 5.5 5h-3l-1-1-1 1h-3"/><path d="M5.89 9.71c-2.15 2.15-2.3 5.47-.35 7.43l4.24-4.25.7-.7.71-.71 2.12-2.12c-1.95-1.96-5.27-1.8-7.42.35"/><path d="M11 15.5c.5 2.5-.17 4.5-1 6.5h4c2-5.5-.5-12-1-14"/></svg></div>
+  <div style="position:absolute;top:170px;right:150px;width:130px;height:130px;border-radius:14px;background:#FF93C0;transform:rotate(9deg);box-shadow:0 14px 30px rgba(36,28,24,.14);display:flex;align-items:center;justify-content:center;font-size:54px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></div>
+  <div style="position:absolute;bottom:130px;right:210px;width:140px;height:140px;border-radius:16px;background:#FF2E74;transform:rotate(-6deg);box-shadow:0 14px 30px rgba(36,28,24,.14);display:flex;align-items:center;justify-content:center;font-size:58px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
+  <div style="position:absolute;top:90px;right:40px;width:90px;height:90px;background-image:radial-gradient(#FF2E74 4px,transparent 4px);background-size:22px 22px;opacity:.5;"></div>
+  <div style="position:absolute;bottom:60px;left:50px;width:90px;height:90px;background-image:radial-gradient(#12C2C9 4px,transparent 4px);background-size:22px 22px;opacity:.5;"></div>
+
+  <div style="display:inline-flex;align-items:center;gap:14px;font-family:'Space Mono',monospace;font-size:24px;text-transform:uppercase;letter-spacing:3px;color:#C0166B;background:#fff;border:2px solid rgba(36,28,24,.1);padding:12px 24px;border-radius:999px;font-weight:700;box-shadow:0 6px 18px rgba(36,28,24,.08);margin-bottom:48px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M13 8c0-2.76-2.46-5-5.5-5S2 5.24 2 8h2l1-1 1 1h4"/><path d="M13 7.14A5.82 5.82 0 0 1 16.5 6c3.04 0 5.5 2.24 5.5 5h-3l-1-1-1 1h-3"/><path d="M5.89 9.71c-2.15 2.15-2.3 5.47-.35 7.43l4.24-4.25.7-.7.71-.71 2.12-2.12c-1.95-1.96-5.27-1.8-7.42.35"/><path d="M11 15.5c.5 2.5-.17 4.5-1 6.5h4c2-5.5-.5-12-1-14"/></svg> Learning Friday &nbsp;·&nbsp; Hosted by Erin Mahon &nbsp;·&nbsp; June 19</div>
+
+  <h1 style="font-family:'Josefin Sans',sans-serif;font-weight:800;font-size:118px;line-height:1.16;letter-spacing:-1px;margin:0;"><span style="color:#FF2E74;">Content</span><br><span style="color:#FF2E74;">Variables</span></h1>
+
+  <div style="font-family:'Pecita','Segoe Script',cursive;font-weight:400;font-size:58px;margin-top:30px;color:#FF2E74;line-height:1;">Love Island USA Edition <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></div>
+  <p style="font-size:30px;line-height:1.45;color:#6B5F57;max-width:760px;margin:18px 0 0;">Make your perfect bombshell — and your perfect single source of truth.</p>
+
+  <div style="display:flex;gap:12px;margin-top:46px;">
+    <div style="width:56px;height:12px;border-radius:999px;background:#FF2E74;"></div>
+    <div style="width:18px;height:12px;border-radius:999px;background:#FFCE2E;"></div>
+    <div style="width:18px;height:12px;border-radius:999px;background:#12C2C9;"></div>
+  </div>
+</section>
+
+<section data-label="Agenda" data-screen-label="02" data-speaker-notes="Here is our run of show for the next hour. We'll move from the what and why into live demos, then practical how-tos, QA, and your questions." style="position:relative;width:100%;height:100%;padding:72px 92px;background-color:#FFF3EA;background-image:radial-gradient(rgba(36,28,24,0.06) 1.4px,transparent 1.4px);background-size:30px 30px;font-family:'Hanken Grotesk',sans-serif;color:#241C18;display:flex;flex-direction:column;overflow:hidden;">
+  <div style="display:inline-flex;align-self:flex-start;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:24px;text-transform:uppercase;letter-spacing:2.5px;color:#0B7E84;background:rgba(18,194,201,.18);padding:8px 16px;border-radius:999px;font-weight:700;">The Lineup</div>
+  <h2 style="font-family:'Josefin Sans',sans-serif;font-weight:800;font-size:72px;line-height:1;letter-spacing:-2px;margin:18px 0 36px;">Tonight's Lineup</h2>
+
+  <div style="flex:1;display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;gap:24px;">
+    <div style="background:#BBA2FF;border-radius:14px;padding:26px 28px;box-shadow:0 12px 26px rgba(36,28,24,.12);transform:rotate(-1deg);display:flex;align-items:center;gap:18px;"><span style="flex:none;width:46px;height:46px;border-radius:50%;background:rgba(36,28,24,.16);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:24px;">1</span><span style="font-size:29px;font-weight:600;">Welcome &amp; Intro</span></div>
+    <div style="background:#8AD8FF;border-radius:14px;padding:26px 28px;box-shadow:0 12px 26px rgba(36,28,24,.12);transform:rotate(0.6deg);display:flex;align-items:center;gap:18px;"><span style="flex:none;width:46px;height:46px;border-radius:50%;background:rgba(36,28,24,.16);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:24px;">2</span><span style="font-size:29px;font-weight:600;">What are content variables?</span></div>
+    <div style="background:#7FE0A6;border-radius:14px;padding:26px 28px;box-shadow:0 12px 26px rgba(36,28,24,.12);transform:rotate(-0.8deg);display:flex;align-items:center;gap:18px;"><span style="flex:none;width:46px;height:46px;border-radius:50%;background:rgba(36,28,24,.16);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:24px;">3</span><span style="font-size:29px;font-weight:600;">Live demo: make your bombshell</span></div>
+    <div style="background:#FFCE2E;border-radius:14px;padding:26px 28px;box-shadow:0 12px 26px rgba(36,28,24,.12);transform:rotate(0.8deg);display:flex;align-items:center;gap:18px;"><span style="flex:none;width:46px;height:46px;border-radius:50%;background:rgba(36,28,24,.16);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:24px;">4</span><span style="font-size:29px;font-weight:600;">Our pharmacy use case</span></div>
+    <div style="background:#FF7A3D;border-radius:14px;padding:26px 28px;box-shadow:0 12px 26px rgba(36,28,24,.12);transform:rotate(-0.6deg);display:flex;align-items:center;gap:18px;"><span style="flex:none;width:46px;height:46px;border-radius:50%;background:rgba(36,28,24,.16);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:24px;">5</span><span style="font-size:29px;font-weight:600;">Creating variables manually</span></div>
+    <div style="background:#2FE0D0;border-radius:14px;padding:26px 28px;box-shadow:0 12px 26px rgba(36,28,24,.12);transform:rotate(1deg);display:flex;align-items:center;gap:18px;"><span style="flex:none;width:46px;height:46px;border-radius:50%;background:rgba(36,28,24,.16);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:24px;">6</span><span style="font-size:29px;font-weight:600;">Importing via spreadsheet</span></div>
+    <div style="background:#FF93C0;border-radius:14px;padding:26px 28px;box-shadow:0 12px 26px rgba(36,28,24,.12);transform:rotate(-0.7deg);display:flex;align-items:center;gap:18px;"><span style="flex:none;width:46px;height:46px;border-radius:50%;background:rgba(36,28,24,.16);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:24px;">7</span><span style="font-size:29px;font-weight:600;">Applying variables in a file</span></div>
+    <div style="background:#FFCE2E;border-radius:14px;padding:26px 28px;box-shadow:0 12px 26px rgba(36,28,24,.12);transform:rotate(0.5deg);display:flex;align-items:center;gap:18px;"><span style="flex:none;width:46px;height:46px;border-radius:50%;background:rgba(36,28,24,.16);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:24px;">8</span><span style="font-size:29px;font-weight:600;">QA checklist</span></div>
+    <div style="background:#BBA2FF;border-radius:14px;padding:26px 28px;box-shadow:0 12px 26px rgba(36,28,24,.12);transform:rotate(-1deg);display:flex;align-items:center;gap:18px;"><span style="flex:none;width:46px;height:46px;border-radius:50%;background:rgba(36,28,24,.16);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:24px;">9</span><span style="font-size:29px;font-weight:600;">Q&amp;A + resources</span></div>
+  </div>
+
+  <div style="margin-top:26px;background:#fff;border:2px solid rgba(36,28,24,.1);border-radius:14px;padding:20px 28px;font-size:26px;color:#241C18;box-shadow:0 8px 20px rgba(36,28,24,.06);"><strong><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> By the end</strong> &nbsp;you'll be able to create, import, apply, and QA content variables confidently.</div>
+</section>
+<section data-label="What Are Variables?" data-screen-label="03" data-speaker-notes="A content variable is a reusable text value. Define copy once, reference it everywhere. The examples on the right are all real strings from our product." style="position:relative;width:100%;height:100%;padding:72px 92px;background-color:#FFF3EA;background-image:radial-gradient(rgba(36,28,24,0.06) 1.4px,transparent 1.4px);background-size:30px 30px;font-family:'Hanken Grotesk',sans-serif;color:#241C18;display:flex;flex-direction:column;overflow:hidden;">
+  <div style="display:inline-flex;align-self:flex-start;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:24px;text-transform:uppercase;letter-spacing:2.5px;color:#7C3AED;background:rgba(187,162,255,.28);padding:8px 16px;border-radius:999px;font-weight:700;">Your Type On Paper</div>
+  <h2 style="font-family:'Josefin Sans',sans-serif;font-weight:800;font-size:66px;line-height:1;letter-spacing:-2px;margin:18px 0 34px;">What Are Content Variables?</h2>
+
+  <div style="flex:1;display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:start;">
+    <div style="display:flex;flex-direction:column;gap:24px;">
+      <div style="background:#fff;border:2px solid rgba(36,28,24,.1);border-radius:16px;padding:34px 36px;box-shadow:0 12px 28px rgba(36,28,24,.08);">
+        <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#C0166B;font-weight:700;margin-bottom:18px;">Definition</div>
+        <p style="font-size:31px;line-height:1.42;margin:0 0 16px;">Content variables are <strong style="background:#FFE08A;padding:0 6px;border-radius:4px;">reusable text values</strong> stored in Figma that can be applied across your files and components.</p>
+        <p style="font-size:25px;line-height:1.45;margin:0;color:#6B5F57;">Instead of typing the same copy into every layer, you define it once — and reference it everywhere.</p>
+      </div>
+      <div style="background:#FF2E74;border-radius:16px;padding:28px 32px;box-shadow:0 12px 26px rgba(36,28,24,.14);transform:rotate(-0.6deg);">
+        <div style="font-size:28px;font-weight:700;color:#241C18;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> Loyal to one value, every screen</div>
+        <div style="font-size:24px;color:#3a2a22;margin-top:8px;">Change it in one place → it updates everywhere it's used.</div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:18px;">
+      <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#0B7E84;font-weight:700;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg> Real examples</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div style="background:#FFCE2E;border-radius:12px;padding:18px 20px;box-shadow:0 8px 18px rgba(36,28,24,.12);transform:rotate(-1deg);"><div style="font-size:24px;font-weight:700;">Button labels</div><div style="font-family:'Space Mono',monospace;font-size:24px;color:#5a4326;margin-top:6px;">"Add to Basket"</div></div>
+        <div style="background:#7FE0A6;border-radius:12px;padding:18px 20px;box-shadow:0 8px 18px rgba(36,28,24,.12);transform:rotate(1deg);"><div style="font-size:24px;font-weight:700;">Product names</div><div style="font-family:'Space Mono',monospace;font-size:24px;color:#1f4d35;margin-top:6px;">"Paracetamol 500mg"</div></div>
+        <div style="background:#FF93C0;border-radius:12px;padding:18px 20px;box-shadow:0 8px 18px rgba(36,28,24,.12);transform:rotate(0.8deg);"><div style="font-size:24px;font-weight:700;">Disclaimers</div><div style="font-family:'Space Mono',monospace;font-size:24px;color:#5e2440;margin-top:6px;">"Always read the label"</div></div>
+        <div style="background:#8AD8FF;border-radius:12px;padding:18px 20px;box-shadow:0 8px 18px rgba(36,28,24,.12);transform:rotate(-0.8deg);"><div style="font-size:24px;font-weight:700;">Form labels</div><div style="font-family:'Space Mono',monospace;font-size:24px;color:#2a3a66;margin-top:6px;">"Enter your date of birth"</div></div>
+        <div style="background:#FF7A3D;border-radius:12px;padding:18px 20px;box-shadow:0 8px 18px rgba(36,28,24,.12);transform:rotate(0.9deg);"><div style="font-size:24px;font-weight:700;">Error messages</div><div style="font-family:'Space Mono',monospace;font-size:24px;color:#5a3322;margin-top:6px;">"This field is required"</div></div>
+        <div style="background:#2FE0D0;border-radius:12px;padding:18px 20px;box-shadow:0 8px 18px rgba(36,28,24,.12);transform:rotate(-0.7deg);"><div style="font-size:24px;font-weight:700;">Nav labels</div><div style="font-family:'Space Mono',monospace;font-size:24px;color:#1f4d46;margin-top:6px;">"My Account"</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-label="Why Use Them?" data-screen-label="04" data-speaker-notes="Four reasons this matters: consistency, efficiency, scalability, and speed. The underlying theme is one shared source of truth across design, content, and dev." style="position:relative;width:100%;height:100%;padding:72px 92px;background-color:#FFF3EA;background-image:radial-gradient(rgba(36,28,24,0.06) 1.4px,transparent 1.4px);background-size:30px 30px;font-family:'Hanken Grotesk',sans-serif;color:#241C18;display:flex;flex-direction:column;overflow:hidden;">
+  <div style="display:inline-flex;align-self:flex-start;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:24px;text-transform:uppercase;letter-spacing:2.5px;color:#C0166B;background:rgba(255,46,116,.2);padding:8px 16px;border-radius:999px;font-weight:700;">Why It's a Catch</div>
+  <h2 style="font-family:'Josefin Sans',sans-serif;font-weight:800;font-size:66px;line-height:1;letter-spacing:-2px;margin:18px 0 34px;">Why Use Content Variables?</h2>
+
+  <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:24px;">
+    <div style="background:#FFCE2E;border-radius:18px;padding:34px 38px;box-shadow:0 12px 26px rgba(36,28,24,.12);display:flex;flex-direction:column;gap:12px;">
+      <div style="font-size:46px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg></div>
+      <div style="font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:34px;">Consistency</div>
+      <div style="font-size:25px;line-height:1.4;color:#4a3a1f;">Every component uses the exact same copy. No more "Add to cart" on one screen and "Add to basket" on another.</div>
+    </div>
+    <div style="background:#7FE0A6;border-radius:18px;padding:34px 38px;box-shadow:0 12px 26px rgba(36,28,24,.12);display:flex;flex-direction:column;gap:12px;">
+      <div style="font-size:46px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></div>
+      <div style="font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:34px;">Efficiency</div>
+      <div style="font-size:25px;line-height:1.4;color:#1f4d35;">Update copy once and it flows through every file and component instantly. No manual find-and-replace.</div>
+    </div>
+    <div style="background:#FF93C0;border-radius:18px;padding:34px 38px;box-shadow:0 12px 26px rgba(36,28,24,.12);display:flex;flex-direction:column;gap:12px;">
+      <div style="font-size:46px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg></div>
+      <div style="font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:34px;">Scalability</div>
+      <div style="font-size:25px;line-height:1.4;color:#5e2440;">Whether you have 10 strings or 10,000, the workflow is the same. Perfect as your design system grows.</div>
+    </div>
+    <div style="background:#8AD8FF;border-radius:18px;padding:34px 38px;box-shadow:0 12px 26px rgba(36,28,24,.12);display:flex;flex-direction:column;gap:12px;">
+      <div style="font-size:46px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></div>
+      <div style="font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:34px;">Speed</div>
+      <div style="font-size:25px;line-height:1.4;color:#2a3a66;">Content updates no longer need a designer to open and edit files. Great for working alongside content teams.</div>
+    </div>
+  </div>
+
+  <div style="margin-top:24px;background:#241C18;border-radius:14px;padding:20px 30px;font-size:26px;color:#FFF3EA;display:flex;align-items:center;gap:14px;"><span style="font-size:30px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span><strong>Single source of truth</strong> — designers, developers, and content teams all working from the same values.</span></div>
+</section>
+<section data-label="Live Demo" data-screen-label="05" data-speaker-notes="This is the fun part — type a new button label, or tap a preset, and watch all three pharmacy screens update at once. That is the single-source-of-truth idea in action. Encourage the room to shout out a label to try." style="position:relative;width:100%;height:100%;padding:72px 92px;background-color:#FFF3EA;background-image:radial-gradient(rgba(36,28,24,0.06) 1.4px,transparent 1.4px);background-size:30px 30px;font-family:'Hanken Grotesk',sans-serif;color:#241C18;display:flex;flex-direction:column;overflow:hidden;">
+  <div style="display:flex;align-items:center;gap:16px;">
+    <div style="display:inline-flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:24px;text-transform:uppercase;letter-spacing:2.5px;color:#0B7E84;background:rgba(18,194,201,.18);padding:8px 16px;border-radius:999px;font-weight:700;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> Live Demo</div>
+    <div style="font-family:'Space Mono',monospace;font-size:19px;color:#6B5F57;">Build your bombshell <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></div>
+  </div>
+  <h2 style="font-family:'Josefin Sans',sans-serif;font-weight:800;font-size:66px;line-height:1;letter-spacing:-2px;margin:16px 0 30px;">Make Your Perfect Bombshell</h2>
+
+  <div style="flex:1;display:grid;grid-template-columns:0.82fr 1.18fr;gap:40px;align-items:center;">
+    <div style="background:#fff;border:2px solid rgba(36,28,24,.12);border-radius:20px;padding:30px 32px;box-shadow:0 16px 36px rgba(255,46,116,.14);">
+      <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#FF2E74;font-weight:700;margin-bottom:18px;">⬡ The Variables</div>
+
+      <div style="margin-bottom:13px;">
+        <div style="font-family:'Space Mono',monospace;font-size:24px;color:#FF2E74;font-weight:700;margin-bottom:5px;">islander/name</div>
+        <input type="text" value="{{ islName }}" onInput="{{ onIslName }}" style="display:block;width:100%;font-family:'Hanken Grotesk',sans-serif;font-size:25px;font-weight:700;color:#241C18;padding:11px 16px;border:2px solid #FF2E74;border-radius:10px;outline:none;background:#FFF0F5;box-sizing:border-box;" />
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:13px;margin-bottom:13px;">
+        <div>
+          <div style="font-family:'Space Mono',monospace;font-size:24px;color:#0B7E84;font-weight:700;margin-bottom:5px;">islander/age</div>
+          <input type="text" value="{{ islAge }}" onInput="{{ onIslAge }}" style="display:block;width:100%;font-family:'Hanken Grotesk',sans-serif;font-size:25px;font-weight:700;color:#241C18;padding:11px 16px;border:2px solid #12C2C9;border-radius:10px;outline:none;background:#EEFCFC;box-sizing:border-box;" />
+        </div>
+        <div>
+          <div style="font-family:'Space Mono',monospace;font-size:24px;color:#B07A00;font-weight:700;margin-bottom:5px;">islander/from</div>
+          <input type="text" value="{{ islFrom }}" onInput="{{ onIslFrom }}" style="display:block;width:100%;font-family:'Hanken Grotesk',sans-serif;font-size:25px;font-weight:700;color:#241C18;padding:11px 16px;border:2px solid #FFCE2E;border-radius:10px;outline:none;background:#FFFBEF;box-sizing:border-box;" />
+        </div>
+      </div>
+      <div style="margin-bottom:18px;">
+        <div style="font-family:'Space Mono',monospace;font-size:24px;color:#7C3AED;font-weight:700;margin-bottom:5px;">islander/type-on-paper</div>
+        <input type="text" value="{{ islType }}" onInput="{{ onIslType }}" style="display:block;width:100%;font-family:'Hanken Grotesk',sans-serif;font-size:25px;font-weight:700;color:#241C18;padding:11px 16px;border:2px solid #C49BFF;border-radius:10px;outline:none;background:#F6F1FF;box-sizing:border-box;" />
+      </div>
+
+      <div style="font-size:24px;color:#6B5F57;margin-bottom:11px;">Or send in a bombshell:</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        <sc-for list="{{ islPresets }}" as="p" hint-placeholder-count="3">
+          <button onClick="{{ p.onClick }}" style="font-family:'Hanken Grotesk',sans-serif;font-size:24px;font-weight:700;padding:10px 18px;border-radius:999px;border:2px solid #241C18;cursor:pointer;background:#fff;color:#241C18;">{{ p.label }}</button>
+        </sc-for>
+      </div>
+      <div style="margin-top:22px;font-size:24px;color:#6B5F57;line-height:1.4;">Edit any field once → every screen updates at once. <strong style="color:#241C18;">One variable, totally loyal. <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></strong></div>
+    </div>
+
+    <div style="display:flex;gap:24px;justify-content:center;align-items:stretch;">
+      <div style="flex:1;background:#fff;border:2px solid rgba(36,28,24,.1);border-radius:22px;overflow:hidden;box-shadow:0 18px 38px rgba(255,46,116,.16);display:flex;flex-direction:column;transform:rotate(-2deg);">
+        <div style="background:#12C2C9;padding:14px 22px;color:#241C18;font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1px;text-transform:uppercase;font-weight:700;">Villa entrance</div>
+        <div style="padding:24px 22px;display:flex;flex-direction:column;gap:14px;flex:1;">
+          <div style="height:92px;border-radius:14px;background:linear-gradient(135deg,#12C2C9,#7FE0A6);display:flex;align-items:center;justify-content:center;font-size:46px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M13 8c0-2.76-2.46-5-5.5-5S2 5.24 2 8h2l1-1 1 1h4"/><path d="M13 7.14A5.82 5.82 0 0 1 16.5 6c3.04 0 5.5 2.24 5.5 5h-3l-1-1-1 1h-3"/><path d="M5.89 9.71c-2.15 2.15-2.3 5.47-.35 7.43l4.24-4.25.7-.7.71-.71 2.12-2.12c-1.95-1.96-5.27-1.8-7.42.35"/><path d="M11 15.5c.5 2.5-.17 4.5-1 6.5h4c2-5.5-.5-12-1-14"/></svg></div>
+          <div>
+            <div style="font-family:'Josefin Sans',sans-serif;font-weight:800;font-size:30px;line-height:1.05;color:#241C18;">{{ islName }}, {{ islAge }}</div>
+            <div style="font-family:'Space Mono',monospace;font-size:24px;color:#0B7E84;margin-top:6px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> {{ islFrom }}</div>
+          </div>
+          <div style="margin-top:auto;border-top:1px solid rgba(36,28,24,.1);padding-top:12px;">
+            <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:.5px;text-transform:uppercase;color:#FF2E74;font-weight:700;margin-bottom:4px;">Type on paper</div>
+            <div style="font-size:24px;color:#241C18;line-height:1.3;">{{ islType }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="flex:1;background:#fff;border:2px solid rgba(36,28,24,.1);border-radius:22px;overflow:hidden;box-shadow:0 22px 44px rgba(255,46,116,.22);display:flex;flex-direction:column;z-index:2;">
+        <div style="background:#FF2E74;padding:14px 22px;color:#fff;font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1px;text-transform:uppercase;font-weight:700;">The coupling</div>
+        <div style="padding:24px 22px;display:flex;flex-direction:column;gap:14px;flex:1;">
+          <div style="height:92px;border-radius:14px;background:linear-gradient(135deg,#FF2E74,#FFCE2E);display:flex;align-items:center;justify-content:center;font-size:46px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></div>
+          <div>
+            <div style="font-family:'Josefin Sans',sans-serif;font-weight:800;font-size:30px;line-height:1.05;color:#241C18;">{{ islName }}, {{ islAge }}</div>
+            <div style="font-family:'Space Mono',monospace;font-size:24px;color:#C0166B;margin-top:6px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> {{ islFrom }}</div>
+          </div>
+          <div style="margin-top:auto;border-top:1px solid rgba(36,28,24,.1);padding-top:12px;">
+            <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:.5px;text-transform:uppercase;color:#FF2E74;font-weight:700;margin-bottom:4px;">Type on paper</div>
+            <div style="font-size:24px;color:#241C18;line-height:1.3;">{{ islType }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="flex:1;background:#fff;border:2px solid rgba(36,28,24,.1);border-radius:22px;overflow:hidden;box-shadow:0 18px 38px rgba(255,46,116,.16);display:flex;flex-direction:column;transform:rotate(2deg);">
+        <div style="background:#FFCE2E;padding:14px 22px;color:#241C18;font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1px;text-transform:uppercase;font-weight:700;">App profile</div>
+        <div style="padding:24px 22px;display:flex;flex-direction:column;gap:14px;flex:1;">
+          <div style="height:92px;border-radius:14px;background:linear-gradient(135deg,#FFCE2E,#FF7A3D);display:flex;align-items:center;justify-content:center;font-size:46px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></div>
+          <div>
+            <div style="font-family:'Josefin Sans',sans-serif;font-weight:800;font-size:30px;line-height:1.05;color:#241C18;">{{ islName }}, {{ islAge }}</div>
+            <div style="font-family:'Space Mono',monospace;font-size:24px;color:#B07A00;margin-top:6px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> {{ islFrom }}</div>
+          </div>
+          <div style="margin-top:auto;border-top:1px solid rgba(36,28,24,.1);padding-top:12px;">
+            <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:.5px;text-transform:uppercase;color:#FF2E74;font-weight:700;margin-bottom:4px;">Type on paper</div>
+            <div style="font-size:24px;color:#241C18;line-height:1.3;">{{ islType }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section data-label="Pharmacy Use Case" data-screen-label="06" data-speaker-notes="Here's how we actually use this. We published a content variable library for the pharmacy experience. Walk through what's in it and why it was worth doing." style="position:relative;width:100%;height:100%;padding:72px 92px;background-color:#FFF3EA;background-image:radial-gradient(rgba(36,28,24,0.06) 1.4px,transparent 1.4px);background-size:30px 30px;font-family:'Hanken Grotesk',sans-serif;color:#241C18;display:flex;flex-direction:column;overflow:hidden;">
+  <div style="display:inline-flex;align-self:flex-start;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:24px;text-transform:uppercase;letter-spacing:2.5px;color:#0B7E84;background:rgba(18,194,201,.18);padding:8px 16px;border-radius:999px;font-weight:700;">The Villa We Built</div>
+  <h2 style="font-family:'Josefin Sans',sans-serif;font-weight:800;font-size:66px;line-height:1;letter-spacing:-2px;margin:18px 0 30px;">Our Pharmacy Use Case</h2>
+
+  <div style="flex:1;display:grid;grid-template-columns:1.22fr 1fr;gap:40px;">
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#0B7E84;font-weight:700;">What we built</div>
+      <p style="font-size:24px;color:#6B5F57;margin:0 0 4px;line-height:1.4;">A full content variable library for the pharmacy experience:</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="background:#7FE0A6;border-radius:10px;padding:14px 18px;font-size:24px;font-weight:600;box-shadow:0 6px 14px rgba(36,28,24,.1);">Brand medications</div>
+        <div style="background:#2FE0D0;border-radius:10px;padding:14px 18px;font-size:24px;font-weight:600;box-shadow:0 6px 14px rgba(36,28,24,.1);">Generic medications</div>
+        <div style="background:#7FE0A6;border-radius:10px;padding:14px 18px;font-size:24px;font-weight:600;box-shadow:0 6px 14px rgba(36,28,24,.1);">Specialty medications</div>
+        <div style="background:#2FE0D0;border-radius:10px;padding:14px 18px;font-size:24px;font-weight:600;box-shadow:0 6px 14px rgba(36,28,24,.1);">Pricing by day supply</div>
+        <div style="background:#8AD8FF;border-radius:10px;padding:14px 18px;font-size:24px;font-weight:600;box-shadow:0 6px 14px rgba(36,28,24,.1);">Patient information</div>
+        <div style="background:#BBA2FF;border-radius:10px;padding:14px 18px;font-size:24px;font-weight:600;box-shadow:0 6px 14px rgba(36,28,24,.1);">Provider information</div>
+        <div style="background:#8AD8FF;border-radius:10px;padding:14px 18px;font-size:24px;font-weight:600;box-shadow:0 6px 14px rgba(36,28,24,.1);">Pharmacy information</div>
+        <div style="background:#BBA2FF;border-radius:10px;padding:14px 18px;font-size:24px;font-weight:600;box-shadow:0 6px 14px rgba(36,28,24,.1);">Benefit information</div>
+        <div style="background:#FFCE2E;border-radius:10px;padding:14px 18px;font-size:24px;font-weight:600;box-shadow:0 6px 14px rgba(36,28,24,.1);">Benefit program details</div>
+        <div style="background:#FFD98A;border-radius:10px;padding:14px 18px;font-size:24px;font-weight:600;box-shadow:0 6px 14px rgba(36,28,24,.1);">Vendor card</div>
+        <div style="background:#FF93C0;border-radius:10px;padding:14px 18px;font-size:24px;font-weight:600;box-shadow:0 6px 14px rgba(36,28,24,.1);">Field labels</div>
+        <div style="background:#FF7A3D;border-radius:10px;padding:14px 18px;font-size:24px;font-weight:600;box-shadow:0 6px 14px rgba(36,28,24,.1);">… and more</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:18px;">
+      <div style="background:#241C18;border-radius:16px;padding:26px 30px;box-shadow:0 12px 26px rgba(36,28,24,.16);flex:1;">
+        <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#FFCE2E;font-weight:700;">Build the component once</div>
+        <p style="font-size:24px;color:#FFF3EA;margin:14px 0 0;line-height:1.45;">Create a component a single time, then turn different content <strong style="color:#7FE0A6;">on and off</strong> with variables — no rebuilding. Brand vs. generic, 30- vs. 90-day pricing, different benefit programs: <strong style="color:#FFCE2E;">same component, different variables.</strong></p>
+      </div>
+      <div style="background:#8AD8FF;border-radius:16px;padding:24px 30px;box-shadow:0 12px 26px rgba(36,28,24,.12);">
+        <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#1e3a8a;font-weight:700;">Built for two jobs</div>
+        <div style="display:flex;gap:12px;margin-top:14px;">
+          <div style="flex:1;background:#fff;border-radius:12px;padding:16px 18px;text-align:center;"><div style="font-family:'Josefin Sans',sans-serif;font-weight:800;font-size:26px;color:#241C18;">User testing</div><div style="font-size:24px;color:#6B5F57;margin-top:4px;line-height:1.25;">Swap real content fast</div></div>
+          <div style="flex:1;background:#fff;border-radius:12px;padding:16px 18px;text-align:center;"><div style="font-family:'Josefin Sans',sans-serif;font-weight:800;font-size:26px;color:#241C18;">Dev handoff</div><div style="font-size:24px;color:#6B5F57;margin-top:4px;line-height:1.25;">Clear, sourced values</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:22px;background:#241C18;border-radius:14px;padding:20px 30px;font-size:25px;color:#FFF3EA;"><strong style="color:#FFCE2E;">The result →</strong> one component per pattern, content toggled with variables — faster user testing and a cleaner, fully-sourced handoff to dev.</div>
+</section>
+
+<section data-label="Creating Manually" data-screen-label="07" data-speaker-notes="The manual route. Open the Variables panel, create a collection, add string variables, name them with a group/name convention, and publish. Great for small sets and getting started." style="position:relative;width:100%;height:100%;padding:72px 92px;background-color:#FFF3EA;background-image:radial-gradient(rgba(36,28,24,0.06) 1.4px,transparent 1.4px);background-size:30px 30px;font-family:'Hanken Grotesk',sans-serif;color:#241C18;display:flex;flex-direction:column;overflow:hidden;">
+  <div style="display:inline-flex;align-self:flex-start;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:24px;text-transform:uppercase;letter-spacing:2.5px;color:#C0166B;background:rgba(255,46,116,.2);padding:8px 16px;border-radius:999px;font-weight:700;">Shoot Your Shot</div>
+  <h2 style="font-family:'Josefin Sans',sans-serif;font-weight:800;font-size:66px;line-height:1;letter-spacing:-2px;margin:18px 0 30px;">Coupling Up Manually</h2>
+
+  <div style="flex:1;display:grid;grid-template-columns:1.15fr 0.85fr;gap:40px;">
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;align-items:center;gap:18px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:14px 20px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:42px;height:42px;border-radius:50%;background:#FFCE2E;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:21px;">1</span><span style="font-size:24px;">Open your Figma file</span></div>
+      <div style="display:flex;align-items:center;gap:18px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:14px 20px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:42px;height:42px;border-radius:50%;background:#FFCE2E;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:21px;">2</span><span style="font-size:24px;">Open the Variables panel (Assets → Variables)</span></div>
+      <div style="display:flex;align-items:center;gap:18px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:14px 20px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:42px;height:42px;border-radius:50%;background:#FF7A3D;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:21px;">3</span><span style="font-size:24px;">+ New Collection — name it (e.g. "Pharmacy / Labels")</span></div>
+      <div style="display:flex;align-items:center;gap:18px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:14px 20px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:42px;height:42px;border-radius:50%;background:#FF7A3D;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:21px;">4</span><span style="font-size:24px;">+ Add Variable → choose type: <strong>String</strong></span></div>
+      <div style="display:flex;align-items:center;gap:18px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:14px 20px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:42px;height:42px;border-radius:50%;background:#FF93C0;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:21px;">5</span><span style="font-size:24px;">Name it clearly (e.g. btn/confirm-label)</span></div>
+      <div style="display:flex;align-items:center;gap:18px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:14px 20px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:42px;height:42px;border-radius:50%;background:#FF93C0;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:21px;">6</span><span style="font-size:24px;">Enter the value (e.g. "Confirm Order")</span></div>
+      <div style="display:flex;align-items:center;gap:18px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:14px 20px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:42px;height:42px;border-radius:50%;background:#7FE0A6;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:21px;">7</span><span style="font-size:24px;">Repeat for each variable → then <strong>Publish</strong></span></div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:20px;">
+      <div style="background:#241C18;border-radius:16px;padding:26px 28px;box-shadow:0 12px 26px rgba(36,28,24,.16);">
+        <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#FFCE2E;font-weight:700;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg> Naming tip</div>
+        <p style="font-size:23px;color:#FFF3EA;margin:14px 0;line-height:1.4;">Use a <strong style="color:#FFCE2E;">group/name</strong> format like <strong>section/variable-name</strong></p>
+        <div style="font-family:'Space Mono',monospace;font-size:20px;color:#7FE0A6;background:rgba(255,255,255,.06);border-radius:8px;padding:14px 16px;line-height:1.7;">pharmacy/btn-confirm<br>pharmacy/error-required</div>
+      </div>
+      <div style="background:#8AD8FF;border-radius:16px;padding:26px 28px;box-shadow:0 12px 26px rgba(36,28,24,.12);">
+        <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#1e3a8a;font-weight:700;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#1F8A5B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M20 6 9 17l-5-5"/></svg> Best for</div>
+        <ul style="margin:14px 0 0;padding-left:24px;font-size:23px;line-height:1.7;color:#1f2a52;"><li>Small sets of variables</li><li>Quick one-offs</li><li>When you're just getting started</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+<section data-label="Spreadsheet Import" data-screen-label="08" data-speaker-notes="For bigger libraries, build a spreadsheet and import with a plugin. Drag the slider live to show the rule of thumb: under 20 go manual, over 20 use a spreadsheet." style="position:relative;width:100%;height:100%;padding:72px 92px;background-color:#FFF3EA;background-image:radial-gradient(rgba(36,28,24,0.06) 1.4px,transparent 1.4px);background-size:30px 30px;font-family:'Hanken Grotesk',sans-serif;color:#241C18;display:flex;flex-direction:column;overflow:hidden;">
+  <div style="display:inline-flex;align-self:flex-start;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:24px;text-transform:uppercase;letter-spacing:2.5px;color:#C0166B;background:rgba(255,46,116,.2);padding:8px 16px;border-radius:999px;font-weight:700;">Shoot Your Shot</div>
+  <h2 style="font-family:'Josefin Sans',sans-serif;font-weight:800;font-size:62px;line-height:1;letter-spacing:-2px;margin:18px 0 28px;">Sending In the Bombshells</h2>
+  <a href="content-variables-template.csv" download style="position:absolute;top:74px;right:92px;display:inline-flex;align-items:center;gap:10px;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:22px;color:#fff;background:#FF2E74;padding:14px 24px;border-radius:999px;text-decoration:none;box-shadow:0 10px 24px rgba(255,46,116,.32);"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>Download CSV template</a>
+
+  <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:40px;">
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div style="font-family:'Space Mono',monospace;font-size:20px;letter-spacing:1.5px;text-transform:uppercase;color:#0B7E84;font-weight:700;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg> Set up your sheet like this</div>
+      <div style="background:#fff;border:2px solid rgba(36,28,24,.12);border-radius:14px;overflow:hidden;box-shadow:0 10px 24px rgba(36,28,24,.1);font-family:'Space Mono',monospace;">
+        <div style="display:grid;grid-template-columns:1.05fr 1fr 1fr 1fr;background:#241C18;color:#FFF3EA;font-size:18px;font-weight:700;">
+          <div style="padding:12px 14px;border-right:1px solid rgba(255,255,255,.14);">Name</div>
+          <div style="padding:12px 14px;border-right:1px solid rgba(255,255,255,.14);">Mode 1</div>
+          <div style="padding:12px 14px;border-right:1px solid rgba(255,255,255,.14);">Mode 2</div>
+          <div style="padding:12px 14px;">Mode 3</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1.05fr 1fr 1fr 1fr;font-size:18px;color:#241C18;border-bottom:1px solid rgba(36,28,24,.08);">
+          <div style="padding:12px 14px;font-weight:700;background:#FFF3D6;border-right:1px solid rgba(36,28,24,.08);">Heading</div>
+          <div style="padding:12px 14px;border-right:1px solid rgba(36,28,24,.08);color:#6B5F57;">Repeat order</div>
+          <div style="padding:12px 14px;border-right:1px solid rgba(36,28,24,.08);color:#6B5F57;">Your basket</div>
+          <div style="padding:12px 14px;color:#6B5F57;">Checkout</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1.05fr 1fr 1fr 1fr;font-size:18px;color:#241C18;border-bottom:1px solid rgba(36,28,24,.08);">
+          <div style="padding:12px 14px;font-weight:700;background:#FFF3D6;border-right:1px solid rgba(36,28,24,.08);">Body</div>
+          <div style="padding:12px 14px;border-right:1px solid rgba(36,28,24,.08);color:#6B5F57;">Due in 3 days</div>
+          <div style="padding:12px 14px;border-right:1px solid rgba(36,28,24,.08);color:#6B5F57;">2 items</div>
+          <div style="padding:12px 14px;color:#6B5F57;">£12.40 total</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1.05fr 1fr 1fr 1fr;font-size:18px;color:#241C18;">
+          <div style="padding:12px 14px;font-weight:700;background:#FFF3D6;border-right:1px solid rgba(36,28,24,.08);">CTA</div>
+          <div style="padding:12px 14px;border-right:1px solid rgba(36,28,24,.08);color:#6B5F57;">Reorder</div>
+          <div style="padding:12px 14px;border-right:1px solid rgba(36,28,24,.08);color:#6B5F57;">View basket</div>
+          <div style="padding:12px 14px;color:#6B5F57;">Pay now</div>
+        </div>
+      </div>
+      <div style="font-size:19px;color:#6B5F57;line-height:1.4;">Each <strong>row</strong> becomes a variable, each <strong>column</strong> becomes a mode, and the <strong>file name</strong> becomes the collection. Use <span style="font-family:'Space Mono',monospace;">/</span> in a name to make groups.</div>
+      <div style="display:flex;align-items:center;gap:16px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:13px 18px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:40px;height:40px;border-radius:50%;background:#FFCE2E;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:20px;">1</span><span style="font-size:23px;"><strong>Export</strong> the sheet as a CSV (name it after your collection)</span></div>
+      <div style="display:flex;align-items:center;gap:16px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:13px 18px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:40px;height:40px;border-radius:50%;background:#2FE0D0;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:20px;">2</span><span style="font-size:23px;">Variables panel → <strong>Import</strong> → run <strong>CSV to Variables</strong> → select your file</span></div>
+      <div style="display:flex;align-items:center;gap:16px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:13px 18px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:40px;height:40px;border-radius:50%;background:#FF93C0;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:20px;">3</span><span style="font-size:23px;">Preview the table, import, then <strong>publish</strong></span></div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:18px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div style="background:#FFF3D6;border:2px solid #FFCE2E;border-radius:14px;padding:18px 20px;">
+          <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1px;text-transform:uppercase;color:#92400e;font-weight:700;margin-bottom:10px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2"/><path d="M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg> Manual</div>
+          <div style="font-size:20px;line-height:1.55;color:#3a2e16;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#1F8A5B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M20 6 9 17l-5-5"/></svg> Quick to set up<br><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#1F8A5B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M20 6 9 17l-5-5"/></svg> Good for small sets<br><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#1F8A5B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M20 6 9 17l-5-5"/></svg> No plugin needed<br><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#be123c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg> Slow at volume<br><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#be123c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg> Typo-prone at scale</div>
+        </div>
+        <div style="background:#D6F5EF;border:2px solid #12C2C9;border-radius:14px;padding:18px 20px;">
+          <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1px;text-transform:uppercase;color:#0f766e;font-weight:700;margin-bottom:10px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/></svg> Spreadsheet</div>
+          <div style="font-size:20px;line-height:1.55;color:#16403a;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#1F8A5B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M20 6 9 17l-5-5"/></svg> Great for big libraries<br><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#1F8A5B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M20 6 9 17l-5-5"/></svg> Easy to share<br><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#1F8A5B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M20 6 9 17l-5-5"/></svg> Faster bulk updates<br><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#be123c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg> Requires a plugin<br><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#be123c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg> Needs tidy formatting</div>
+        </div>
+      </div>
+
+      <div style="background:#241C18;border-radius:16px;padding:24px 28px;box-shadow:0 12px 26px rgba(36,28,24,.16);">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;">
+          <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1px;text-transform:uppercase;color:#FFCE2E;font-weight:700;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg> Which should I use?</div>
+          <div style="font-family:'Josefin Sans',sans-serif;font-weight:800;font-size:30px;color:#fff;">{{ recCountLabel }}</div>
+        </div>
+        <input type="range" min="1" max="100" value="{{ varCount }}" onInput="{{ onVarCount }}" class="cv-slider" style="width:100%;margin:18px 0 6px;" />
+        <div style="display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:15px;color:#9b9089;"><span>1</span><span>20 ← rule of thumb</span><span>100+</span></div>
+        <div style="margin-top:16px;display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.06);border-radius:12px;padding:16px 18px;border-left:6px solid {{ recColor }};">
+          <sc-if value="{{ recSheet }}" hint-placeholder-val="{{ true }}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#12C2C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="38" height="38" style="flex:none;display:block"><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/></svg></sc-if><sc-if value="{{ recManual }}" hint-placeholder-val="{{ false }}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#FF2E74" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="38" height="38" style="flex:none;display:block"><rect width="12" height="20" x="6" y="2" rx="6"/><path d="M12 6v4"/></svg></sc-if>
+          <span><span style="display:block;font-family:'Josefin Sans',sans-serif;font-weight:800;font-size:26px;color:#fff;">{{ recTitle }}</span><span style="display:block;font-size:19px;color:#cfc7c0;margin-top:2px;">{{ recBody }}</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section data-label="Applying Variables" data-screen-label="09" data-speaker-notes="Applying a variable to a text layer: select the layer, click the variable icon next to the text field, pick from the picker. Best done at the component level. If the library doesn't show, enable it in Assets → Libraries." style="position:relative;width:100%;height:100%;padding:72px 92px;background-color:#FFF3EA;background-image:radial-gradient(rgba(36,28,24,0.06) 1.4px,transparent 1.4px);background-size:30px 30px;font-family:'Hanken Grotesk',sans-serif;color:#241C18;display:flex;flex-direction:column;overflow:hidden;">
+  <div style="display:inline-flex;align-self:flex-start;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:24px;text-transform:uppercase;letter-spacing:2.5px;color:#7C3AED;background:rgba(187,162,255,.28);padding:8px 16px;border-radius:999px;font-weight:700;">Coupling Up</div>
+  <h2 style="font-family:'Josefin Sans',sans-serif;font-weight:800;font-size:66px;line-height:1;letter-spacing:-2px;margin:18px 0 30px;">Coupling Up Your Layers</h2>
+
+  <div style="flex:1;display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;">
+    <div style="display:flex;flex-direction:column;gap:13px;">
+      <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#7C3AED;font-weight:700;">Step by step</div>
+      <div style="display:flex;align-items:center;gap:16px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:14px 20px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:42px;height:42px;border-radius:50%;background:#BBA2FF;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:21px;">1</span><span style="font-size:24px;">Select a text layer in your file</span></div>
+      <div style="display:flex;align-items:center;gap:16px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:14px 20px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:42px;height:42px;border-radius:50%;background:#BBA2FF;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:21px;">2</span><span style="font-size:24px;">Open the <strong>Appearance</strong> section in the right-hand panel</span></div>
+      <div style="display:flex;align-items:center;gap:16px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:14px 20px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:42px;height:42px;border-radius:50%;background:#8AD8FF;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:21px;">3</span><span style="font-size:24px;">Click <strong>Appearance</strong> → the variable picker appears</span></div>
+      <div style="display:flex;align-items:center;gap:16px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:14px 20px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:42px;height:42px;border-radius:50%;background:#8AD8FF;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:21px;">4</span><span style="font-size:24px;">Browse or search for your variable</span></div>
+      <div style="display:flex;align-items:center;gap:16px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:14px 20px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:42px;height:42px;border-radius:50%;background:#2FE0D0;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:21px;">5</span><span style="font-size:24px;">Click to apply → the layer now references it</span></div>
+      <div style="display:flex;align-items:center;gap:16px;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:12px;padding:14px 20px;box-shadow:0 6px 14px rgba(36,28,24,.06);"><span style="flex:none;width:42px;height:42px;border-radius:50%;background:#7FE0A6;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:21px;">6</span><span style="font-size:24px;">It shows the value, not a hardcoded string</span></div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:20px;">
+      <div style="background:#7FE0A6;border-radius:16px;padding:26px 28px;box-shadow:0 12px 26px rgba(36,28,24,.12);">
+        <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#0f5132;font-weight:700;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M19.44 7.85c-.05.32.06.65.29.88l1.57 1.57c.47.47.7 1.09.7 1.7s-.23 1.24-.7 1.71l-1.62 1.61a.98.98 0 0 1-.83.28c-.47-.07-.8-.48-.97-.93a2.5 2.5 0 1 0-3.21 3.22c.44.17.85.5.92.97a.98.98 0 0 1-.27.84l-1.61 1.6a2.4 2.4 0 0 1-3.41 0L8.73 21.7a1.03 1.03 0 0 0-.88-.29c-.49.07-.84.5-1.02.97a2.5 2.5 0 1 1-3.24-3.24c.46-.18.9-.53.97-1.02a1.03 1.03 0 0 0-.29-.88l-1.57-1.57A2.4 2.4 0 0 1 2 12c0-.62.24-1.23.71-1.7L4.23 8.77c.24-.24.58-.35.92-.3.51.08.88.53 1.07 1.01a2.5 2.5 0 1 0 3.26-3.26c-.48-.2-.93-.56-1.01-1.07-.05-.34.06-.68.3-.92l1.53-1.52a2.4 2.4 0 0 1 3.4 0l1.57 1.57c.23.23.56.34.88.29.49-.07.84-.5 1.02-.97a2.5 2.5 0 1 1 3.24 3.24c-.47.18-.9.53-.97 1.02Z"/></svg> Within a component</div>
+        <ul style="margin:14px 0 0;padding-left:24px;font-size:23px;line-height:1.55;color:#16402a;"><li>Apply at the component level for best results</li><li>Instances can still be overridden if needed</li><li>Great for buttons, card text, tags, form fields</li></ul>
+      </div>
+      <div style="background:#241C18;border-radius:16px;padding:26px 28px;box-shadow:0 12px 26px rgba(36,28,24,.16);">
+        <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#FFCE2E;font-weight:700;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> Watch out</div>
+        <p style="font-size:22px;color:#FFF3EA;margin:14px 0;line-height:1.4;">If the library doesn't appear in the picker:</p>
+        <div style="font-family:'Space Mono',monospace;font-size:24px;color:#2FE0D0;background:rgba(255,255,255,.06);border-radius:8px;padding:14px 16px;line-height:1.5;">Assets → Libraries → enable it for this file</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-label="QA Checklist" data-screen-label="10" data-speaker-notes="Tick these off live — the counter tracks your progress. Run the before-publishing list every time, spot-check after publishing, and keep the common-issues fixes handy." style="position:relative;width:100%;height:100%;padding:72px 92px;background-color:#FFF3EA;background-image:radial-gradient(rgba(36,28,24,0.06) 1.4px,transparent 1.4px);background-size:30px 30px;font-family:'Hanken Grotesk',sans-serif;color:#241C18;display:flex;flex-direction:column;overflow:hidden;">
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+    <div style="display:inline-flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:24px;text-transform:uppercase;letter-spacing:2.5px;color:#0B7E84;background:rgba(18,194,201,.18);padding:8px 16px;border-radius:999px;font-weight:700;">The Recoupling</div>
+    <div style="margin-left:auto;font-family:'Space Mono',monospace;font-size:24px;font-weight:700;color:#fff;background:#FF2E74;padding:8px 20px;border-radius:999px;">✓ {{ qaProgress }}</div>
+  </div>
+  <h2 style="font-family:'Josefin Sans',sans-serif;font-weight:800;font-size:60px;line-height:1;letter-spacing:-2px;margin:16px 0 26px;">The Recoupling Checklist</h2>
+
+  <div style="flex:1;display:grid;grid-template-columns:1fr 1fr 1.05fr;gap:26px;">
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#0f5132;font-weight:700;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#1F8A5B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M20 6 9 17l-5-5"/></svg> Before publishing</div>
+      <sc-for list="{{ qaBefore }}" as="item" hint-placeholder-count="6">
+        <button onClick="{{ item.onClick }}" style="display:flex;align-items:center;gap:14px;text-align:left;width:100%;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:11px;padding:13px 16px;cursor:pointer;box-shadow:0 5px 12px rgba(36,28,24,.05);font-family:'Hanken Grotesk',sans-serif;">
+          <sc-if value="{{ item.checked }}" hint-placeholder-val="{{ false }}"><span style="flex:none;width:30px;height:30px;border-radius:8px;background:#7FE0A6;border:2px solid #12C2C9;display:flex;align-items:center;justify-content:center;font-size:18px;color:#0f5132;font-weight:800;">✓</span></sc-if>
+          <sc-if value="{{ item.unchecked }}" hint-placeholder-val="{{ true }}"><span style="flex:none;width:30px;height:30px;border-radius:8px;background:#F1ECE2;border:2px solid rgba(36,28,24,.2);"></span></sc-if>
+          <span style="font-size:21px;line-height:1.3;color:#241C18;">{{ item.text }}</span>
+        </button>
+      </sc-for>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#92400e;font-weight:700;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg> After publishing</div>
+      <sc-for list="{{ qaAfter }}" as="item" hint-placeholder-count="4">
+        <button onClick="{{ item.onClick }}" style="display:flex;align-items:center;gap:14px;text-align:left;width:100%;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:11px;padding:13px 16px;cursor:pointer;box-shadow:0 5px 12px rgba(36,28,24,.05);font-family:'Hanken Grotesk',sans-serif;">
+          <sc-if value="{{ item.checked }}" hint-placeholder-val="{{ false }}"><span style="flex:none;width:30px;height:30px;border-radius:8px;background:#FFD98A;border:2px solid #FFCE2E;display:flex;align-items:center;justify-content:center;font-size:18px;color:#92400e;font-weight:800;">✓</span></sc-if>
+          <sc-if value="{{ item.unchecked }}" hint-placeholder-val="{{ true }}"><span style="flex:none;width:30px;height:30px;border-radius:8px;background:#F1ECE2;border:2px solid rgba(36,28,24,.2);"></span></sc-if>
+          <span style="font-size:21px;line-height:1.3;color:#241C18;">{{ item.text }}</span>
+        </button>
+      </sc-for>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#be123c;font-weight:700;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#be123c" stroke="none" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><circle cx="12" cy="12" r="8"/></svg> Common issues</div>
+      <div style="background:#FFE4E1;border-radius:11px;padding:13px 16px;"><div style="font-size:20px;font-weight:700;color:#9f1239;">Showing the raw name, not the value</div><div style="font-size:18px;color:#7a3a3a;margin-top:3px;">→ Not published yet. Publish the library.</div></div>
+      <div style="background:#FFE4E1;border-radius:11px;padding:13px 16px;"><div style="font-size:20px;font-weight:700;color:#9f1239;">Not appearing in the picker</div><div style="font-size:18px;color:#7a3a3a;margin-top:3px;">→ Enable it: Assets → Libraries.</div></div>
+      <div style="background:#FFE4E1;border-radius:11px;padding:13px 16px;"><div style="font-size:20px;font-weight:700;color:#9f1239;">Wrong value after an update</div><div style="font-size:18px;color:#7a3a3a;margin-top:3px;">→ Re-publish. Changes don't push automatically.</div></div>
+      <div style="background:#FFE4E1;border-radius:11px;padding:13px 16px;"><div style="font-size:20px;font-weight:700;color:#9f1239;">Import errors from spreadsheet</div><div style="font-size:18px;color:#7a3a3a;margin-top:3px;">→ Check special characters &amp; merged cells.</div></div>
+    </div>
+  </div>
+</section>
+<section data-label="Q&amp;A" data-screen-label="11" data-speaker-notes="Open floor — no question is too basic. Use the starter prompts on the left to get discussion going. The blank notes on the right are editable and save as you type, so capture questions live." style="position:relative;width:100%;height:100%;padding:72px 92px;background-color:#FFF3EA;background-image:radial-gradient(rgba(36,28,24,0.06) 1.4px,transparent 1.4px);background-size:30px 30px;font-family:'Hanken Grotesk',sans-serif;color:#241C18;display:flex;flex-direction:column;overflow:hidden;">
+  <div style="display:inline-flex;align-self:flex-start;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:24px;text-transform:uppercase;letter-spacing:2.5px;color:#7C3AED;background:rgba(187,162,255,.28);padding:8px 16px;border-radius:999px;font-weight:700;">I've Got a Text!</div>
+  <h2 style="font-family:'Josefin Sans',sans-serif;font-weight:800;font-size:66px;line-height:1;letter-spacing:-2px;margin:16px 0 4px;">I've Got a Text! <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg></h2>
+  <p style="font-size:26px;color:#6B5F57;margin:0 0 26px;">No question is too basic!</p>
+
+  <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:44px;">
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#0B7E84;font-weight:700;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg> Conversation starters</div>
+      <div style="background:#FFCE2E;border-radius:12px;padding:18px 22px;font-size:24px;font-weight:600;box-shadow:0 8px 18px rgba(36,28,24,.1);transform:rotate(-0.6deg);">What types of copy do you repeat most?</div>
+      <div style="background:#FF93C0;border-radius:12px;padding:18px 22px;font-size:24px;font-weight:600;box-shadow:0 8px 18px rgba(36,28,24,.1);transform:rotate(0.6deg);">Had issues with inconsistent copy across screens?</div>
+      <div style="background:#8AD8FF;border-radius:12px;padding:18px 22px;font-size:24px;font-weight:600;box-shadow:0 8px 18px rgba(36,28,24,.1);transform:rotate(-0.5deg);">Manual or spreadsheet for your current project?</div>
+      <div style="background:#7FE0A6;border-radius:12px;padding:18px 22px;font-size:24px;font-weight:600;box-shadow:0 8px 18px rgba(36,28,24,.1);transform:rotate(0.7deg);">Concerns about maintaining a library long-term?</div>
+      <div style="background:#FF7A3D;border-radius:12px;padding:18px 22px;font-size:24px;font-weight:600;box-shadow:0 8px 18px rgba(36,28,24,.1);transform:rotate(-0.6deg);">How could this help your team's workflow?</div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1.5px;text-transform:uppercase;color:#C0166B;font-weight:700;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4Z"/></svg> Your questions <span style="text-transform:none;letter-spacing:0;color:#6B5F57;font-size:15px;">— click a note &amp; type</span></div>
+      <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div data-qnote="1" data-ph="Type here…" contenteditable="true" style="background:#FFF7E0;border:2px dashed rgba(36,28,24,.25);border-radius:12px;padding:16px 18px;font-size:21px;color:#241C18;line-height:1.35;box-shadow:0 6px 14px rgba(36,28,24,.05);"></div>
+        <div data-qnote="2" data-ph="Type here…" contenteditable="true" style="background:#FFF7E0;border:2px dashed rgba(36,28,24,.25);border-radius:12px;padding:16px 18px;font-size:21px;color:#241C18;line-height:1.35;box-shadow:0 6px 14px rgba(36,28,24,.05);"></div>
+        <div data-qnote="3" data-ph="Type here…" contenteditable="true" style="background:#FFF7E0;border:2px dashed rgba(36,28,24,.25);border-radius:12px;padding:16px 18px;font-size:21px;color:#241C18;line-height:1.35;box-shadow:0 6px 14px rgba(36,28,24,.05);"></div>
+        <div data-qnote="4" data-ph="Type here…" contenteditable="true" style="background:#FFF7E0;border:2px dashed rgba(36,28,24,.25);border-radius:12px;padding:16px 18px;font-size:21px;color:#241C18;line-height:1.35;box-shadow:0 6px 14px rgba(36,28,24,.05);"></div>
+        <div data-qnote="5" data-ph="Type here…" contenteditable="true" style="background:#FFF7E0;border:2px dashed rgba(36,28,24,.25);border-radius:12px;padding:16px 18px;font-size:21px;color:#241C18;line-height:1.35;box-shadow:0 6px 14px rgba(36,28,24,.05);"></div>
+        <div data-qnote="6" data-ph="Type here…" contenteditable="true" style="background:#FFF7E0;border:2px dashed rgba(36,28,24,.25);border-radius:12px;padding:16px 18px;font-size:21px;color:#241C18;line-height:1.35;box-shadow:0 6px 14px rgba(36,28,24,.05);"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-label="Resources" data-screen-label="12" data-speaker-notes="A few places to keep learning. Thanks for joining — reach out anytime after today." style="position:relative;width:100%;height:100%;padding:72px 92px;background-color:#FFF3EA;background-image:radial-gradient(rgba(36,28,24,0.06) 1.4px,transparent 1.4px);background-size:30px 30px;font-family:'Hanken Grotesk',sans-serif;color:#241C18;display:flex;flex-direction:column;overflow:hidden;">
+  <div style="display:inline-flex;align-self:flex-start;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:24px;text-transform:uppercase;letter-spacing:2.5px;color:#C0166B;background:rgba(255,46,116,.2);padding:8px 16px;border-radius:999px;font-weight:700;">After the Villa</div>
+  <h2 style="font-family:'Josefin Sans',sans-serif;font-weight:800;font-size:66px;line-height:1;letter-spacing:-2px;margin:18px 0 30px;">Helpful Resources <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></h2>
+
+  <div style="flex:1;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:24px;">
+    <a href="https://help.figma.com/hc/en-us/articles/15339657135383-Guide-to-variables-in-Figma" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:16px;padding:26px 28px;box-shadow:0 10px 22px rgba(36,28,24,.07);display:flex;flex-direction:column;gap:8px;transition:transform .15s ease,box-shadow .15s ease;" style-hover="transform:translateY(-4px);box-shadow:0 18px 34px rgba(36,28,24,.14)"><div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1px;text-transform:uppercase;color:#1d4ed8;font-weight:700;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v5h5"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg> Docs</div><div style="font-size:25px;font-weight:700;">Guide to variables in Figma</div><div style="font-size:20px;color:#6B5F57;line-height:1.4;flex:1;">The complete official guide — from core concepts to modes.</div><div style="font-family:'Space Mono',monospace;font-size:24px;color:#1d4ed8;background:#EEF2FF;border-radius:8px;padding:8px 12px;align-self:flex-start;">help.figma.com</div></a>
+    <a href="https://help.figma.com/hc/en-us/articles/15343107263511-Apply-variables-to-designs" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:16px;padding:26px 28px;box-shadow:0 10px 22px rgba(36,28,24,.07);display:flex;flex-direction:column;gap:8px;transition:transform .15s ease,box-shadow .15s ease;" style-hover="transform:translateY(-4px);box-shadow:0 18px 34px rgba(36,28,24,.14)"><div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1px;text-transform:uppercase;color:#1d4ed8;font-weight:700;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v5h5"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg> Docs</div><div style="font-size:25px;font-weight:700;">Apply variables to designs</div><div style="font-size:20px;color:#6B5F57;line-height:1.4;flex:1;">How to bind variables to layers and components.</div><div style="font-family:'Space Mono',monospace;font-size:24px;color:#1d4ed8;background:#EEF2FF;border-radius:8px;padding:8px 12px;align-self:flex-start;">help.figma.com</div></a>
+    <a href="https://www.youtube.com/watch?v=1ONxxlJnvdM" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:16px;padding:26px 28px;box-shadow:0 10px 22px rgba(36,28,24,.07);display:flex;flex-direction:column;gap:8px;transition:transform .15s ease,box-shadow .15s ease;" style-hover="transform:translateY(-4px);box-shadow:0 18px 34px rgba(36,28,24,.14)"><div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1px;text-transform:uppercase;color:#be123c;font-weight:700;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg> Video</div><div style="font-size:25px;font-weight:700;">Intro to variables</div><div style="font-size:20px;color:#6B5F57;line-height:1.4;flex:1;">Figma&rsquo;s official walkthrough — concepts, tokens &amp; modes.</div><div style="font-family:'Space Mono',monospace;font-size:24px;color:#be123c;background:#FFF1F2;border-radius:8px;padding:8px 12px;align-self:flex-start;">youtube.com · Figma</div></a>
+    <a href="https://www.youtube.com/watch?v=fn4rP20U2UM" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:16px;padding:26px 28px;box-shadow:0 10px 22px rgba(36,28,24,.07);display:flex;flex-direction:column;gap:8px;transition:transform .15s ease,box-shadow .15s ease;" style-hover="transform:translateY(-4px);box-shadow:0 18px 34px rgba(36,28,24,.14)"><div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1px;text-transform:uppercase;color:#be123c;font-weight:700;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg> Video</div><div style="font-size:25px;font-weight:700;">Use variables like a pro</div><div style="font-size:20px;color:#6B5F57;line-height:1.4;flex:1;">Hands-on tutorial with a free practice file.</div><div style="font-family:'Space Mono',monospace;font-size:24px;color:#be123c;background:#FFF1F2;border-radius:8px;padding:8px 12px;align-self:flex-start;">youtube.com</div></a>
+    <a href="https://www.figma.com/community/plugin/1484019162583029159" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:16px;padding:26px 28px;box-shadow:0 10px 22px rgba(36,28,24,.07);display:flex;flex-direction:column;gap:8px;transition:transform .15s ease,box-shadow .15s ease;" style-hover="transform:translateY(-4px);box-shadow:0 18px 34px rgba(36,28,24,.14)"><div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1px;text-transform:uppercase;color:#7C3AED;font-weight:700;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"/></svg> Plugin</div><div style="font-size:25px;font-weight:700;">CSV to Variables <span style="font-size:18px;color:#FF2E74;">★ our pick</span></div><div style="font-size:20px;color:#6B5F57;line-height:1.4;flex:1;">By Elgato — row &rarr; variable, column &rarr; mode, file &rarr; collection.</div><div style="font-family:'Space Mono',monospace;font-size:24px;color:#7C3AED;background:#F5F0FF;border-radius:8px;padding:8px 12px;align-self:flex-start;">Figma Community</div></a>
+    <a href="https://forum.figma.com" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:16px;padding:26px 28px;box-shadow:0 10px 22px rgba(36,28,24,.07);display:flex;flex-direction:column;gap:8px;transition:transform .15s ease,box-shadow .15s ease;" style-hover="transform:translateY(-4px);box-shadow:0 18px 34px rgba(36,28,24,.14)"><div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1px;text-transform:uppercase;color:#92400e;font-weight:700;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg> Forum</div><div style="font-size:25px;font-weight:700;">Figma Community Forum</div><div style="font-size:20px;color:#6B5F57;line-height:1.4;flex:1;">Ask questions, share what you&rsquo;ve built.</div><div style="font-family:'Space Mono',monospace;font-size:24px;color:#92400e;background:#FFF7E0;border-radius:8px;padding:8px 12px;align-self:flex-start;">forum.figma.com</div></a>
+  </div>
+
+  <div style="margin-top:24px;background:#FF2E74;border-radius:14px;padding:20px 30px;font-size:26px;color:#241C18;display:flex;align-items:center;justify-content:space-between;gap:20px;"><span><strong>Thanks for joining! <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.14em;display:inline-block;flex:none"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg> See you in the villa</strong> &nbsp;Questions after today? Reach out anytime.</span><span style="display:flex;align-items:center;gap:16px;flex:none;"><button class="deck-pdf-btn" onClick="{{ savePdf }}" style="display:inline-flex;align-items:center;gap:8px;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:20px;color:#FF2E74;background:#fff;border:none;padding:12px 20px;border-radius:999px;cursor:pointer;box-shadow:0 6px 16px rgba(36,28,24,.2);"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>Save as PDF</button><span style="font-family:'Space Mono',monospace;font-size:20px;font-weight:700;">— Erin Mahon</span></span></div>
+</section>
+</x-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;100%&quot;}}">
+class Component extends DCLogic {
+  state = { islName: 'Serena', islAge: '25', islFrom: 'Miami', islType: 'Sweet, loyal & not here to play games', qa: {}, varCount: 12 };
+
+  componentDidMount() {
+    try {
+      const notes = this._root ? this._root.querySelectorAll('[data-qnote]') : document.querySelectorAll('[data-qnote]');
+      (notes || []).forEach((el) => {
+        const key = 'cv-qa-note-' + el.getAttribute('data-qnote');
+        const saved = localStorage.getItem(key);
+        if (saved != null) el.textContent = saved;
+        el.addEventListener('input', () => {
+          try { localStorage.setItem(key, el.textContent); } catch (e) {}
+        });
+      });
+    } catch (e) {}
+  }
+
+  renderVals() {
+    const s = this.state;
+    const presetIsl = [
+      { label: 'Serena', name: 'Serena', age: '25', from: 'Miami', type: 'Sweet, loyal & not here to play games' },
+      { label: 'Jordan', name: 'Jordan', age: '27', from: 'Brooklyn', type: 'Confident, funny & ready to shoot his shot' },
+      { label: 'Bri', name: 'Bri', age: '24', from: 'Atlanta', type: 'Bubbly, romantic & knows her worth' },
+    ];
+    const islPresets = presetIsl.map((m) => ({
+      label: m.label,
+      active: s.islName === m.name,
+      onClick: () => this.setState({ islName: m.name, islAge: m.age, islFrom: m.from, islType: m.type }),
+    }));
+
+    const beforeText = [
+      ['b1', 'Variable names follow your naming convention'],
+      ['b2', 'No duplicate variable names in the collection'],
+      ['b3', 'All values are spell-checked'],
+      ['b4', 'Variables are grouped logically (not all in one list)'],
+      ['b5', 'Tested in at least one component before publishing'],
+      ['b6', 'Collection name is clear and descriptive'],
+    ];
+    const afterText = [
+      ['a1', 'Library is available and enabled in team files'],
+      ['a2', 'Spot-check applied variables in key components'],
+      ['a3', 'No broken references showing'],
+      ['a4', 'Share the library update with your team'],
+    ];
+    const mk = (arr) => arr.map(([id, text]) => ({
+      id, text,
+      checked: !!s.qa[id],
+      unchecked: !s.qa[id],
+      onClick: () => this.setState((st) => ({ qa: { ...st.qa, [id]: !st.qa[id] } })),
+    }));
+    const qaBefore = mk(beforeText);
+    const qaAfter = mk(afterText);
+    const qaTotal = beforeText.length + afterText.length;
+    const qaDone = [...beforeText, ...afterText].filter(([id]) => s.qa[id]).length;
+
+    const isSheet = s.varCount >= 20;
+    return {
+      savePdf: () => window.print(),
+      islName: s.islName || ' ',
+      islAge: s.islAge || ' ',
+      islFrom: s.islFrom || ' ',
+      islType: s.islType || ' ',
+      onIslName: (e) => this.setState({ islName: e.target.value }),
+      onIslAge: (e) => this.setState({ islAge: e.target.value }),
+      onIslFrom: (e) => this.setState({ islFrom: e.target.value }),
+      onIslType: (e) => this.setState({ islType: e.target.value }),
+      islPresets,
+      qaBefore, qaAfter, qaDone, qaTotal,
+      qaProgress: qaDone + ' / ' + qaTotal + ' done',
+      varCount: s.varCount,
+      onVarCount: (e) => this.setState({ varCount: parseInt(e.target.value, 10) }),
+      recSheet: isSheet,
+      recManual: !isSheet,
+      recTitle: isSheet ? 'Use a spreadsheet' : 'Go manual',
+      recBody: isSheet
+        ? "That's a lot of strings — set up a sheet and import in bulk with a plugin."
+        : 'A small set like this is quick to create by hand, no plugin needed.',
+      recColor: isSheet ? '#12C2C9' : '#FF2E74',
+      recCountLabel: s.varCount + (s.varCount === 100 ? '+' : '') + ' variables',
+    };
+  }
+}
+</script>
+</body>
+</html>

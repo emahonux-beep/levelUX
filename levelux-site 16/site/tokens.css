@@ -1,0 +1,180 @@
+/* ============================================================
+   DESIGN TOKENS
+   A token is just a named CSS variable. Instead of writing
+   color: #EF8354; all over your CSS, you write color: var(--color-primary);
+   in one place — the value — so you can change the whole site
+   by editing this one file.
+
+   This file has two layers:
+   1. PRIMITIVES  -> the raw color/font values (rarely used directly)
+   2. SEMANTIC    -> named by PURPOSE (--color-text, --color-bg, etc.)
+                     These are the ones you actually use in your CSS.
+
+   Every color pairing below has been checked against WCAG 2.1
+   contrast requirements (AA = 4.5:1 for normal text, 3:1 for
+   large text/UI components). Ratios are noted in comments.
+   ============================================================ */
+
+:root {
+
+  /* ---------- 1. PRIMITIVE COLORS (your 5 originals) ---------- */
+  --raw-shadow-grey:  #272727;
+  --raw-coral-glow:   #EF8354;
+  --raw-bright-snow:  #FCFAF9;
+  --raw-steel-blue:   #6D9DC5;
+  --raw-plum:         #F092DD;
+
+  /* Darker "text-safe" versions of the accents. Use these when an
+     accent color needs to sit ON a light background AS text
+     (links, icons on white). The originals are too light for that. */
+  --raw-coral-glow-700:  #A76244;  /* 4.52:1 on bright-snow */
+  --raw-steel-blue-700:  #577792;  /* 4.52:1 on bright-snow */
+  --raw-plum-700:        #946189;  /* 4.68:1 on bright-snow */
+
+  /* Soft tints of the accents, for badge/chip backgrounds where
+     the accent-700 color sits on top as text. */
+  --raw-coral-glow-100:  #FAE8E0;
+  --raw-steel-blue-100:  #E7ECF1;
+  --raw-plum-100:        #FAEAF5;
+
+  /* Neutral grey scale, derived from Shadow Grey, for borders,
+     muted text, dividers, disabled states. */
+  --raw-neutral-100: #EBE9E8;
+  --raw-neutral-200: #D6D4D3;
+  --raw-neutral-300: #B8B6B6;
+  --raw-neutral-400: #929090; /* borders only — too light for text */
+  --raw-neutral-500: #6B6B6A; /* 5.15:1 on bright-snow — safe for muted text */
+  --raw-neutral-600: #4D4D4D;
+  --raw-neutral-700: #383838;
+  --raw-neutral-800: #272727; /* = shadow-grey */
+
+
+  /* ---------- 2. SEMANTIC COLOR TOKENS (use these in your CSS) ---------- */
+
+  /* Surfaces */
+  --color-bg:            var(--raw-bright-snow);
+  --color-bg-subtle:     var(--raw-neutral-100);
+  --color-bg-inverse:    var(--raw-shadow-grey);
+  --color-surface:       #FFFFFF;
+  --color-border:        var(--raw-neutral-300);
+
+  /* Text — 14.36:1, exceeds AAA */
+  --color-text:          var(--raw-shadow-grey);
+  --color-text-muted:    var(--raw-neutral-500);   /* 5.15:1, AA-safe */
+  --color-text-inverse:  var(--raw-bright-snow);   /* for text on dark surfaces */
+  --color-text-on-brand: var(--raw-shadow-grey);   /* for text on accent-500 buttons/fills */
+
+  /* Primary = Coral Glow. Energetic, use for main CTAs. */
+  --color-primary:            var(--raw-coral-glow);      /* backgrounds, icons, large elements */
+  --color-primary-text:       var(--raw-coral-glow-700);  /* inline links/text on light bg — 4.52:1 */
+  --color-primary-tint:       var(--raw-coral-glow-100);  /* badge/chip backgrounds */
+  --color-primary-on-dark:    var(--raw-coral-glow);      /* 5.72:1 on shadow-grey — safe on dark */
+
+  /* Secondary = Steel Blue. Calmer, use for secondary actions/links. */
+  --color-secondary:          var(--raw-steel-blue);
+  --color-secondary-text:     var(--raw-steel-blue-700);  /* 4.52:1 */
+  --color-secondary-tint:     var(--raw-steel-blue-100);
+  --color-secondary-on-dark:  var(--raw-steel-blue);      /* 5.18:1 on shadow-grey */
+
+  /* Accent = Plum. Reserve for highlights, tags, illustrative moments —
+     it's the boldest color, so it works best used sparingly. */
+  --color-accent:             var(--raw-plum);
+  --color-accent-text:        var(--raw-plum-700);        /* 4.68:1 */
+  --color-accent-tint:        var(--raw-plum-100);
+  --color-accent-on-dark:     var(--raw-plum);             /* 7.01:1 on shadow-grey — best of the three on dark */
+
+  /* Feedback (reusing the palette so alerts feel on-brand, not bolted-on) */
+  --color-success-text: #3F7D4F;  /* standard accessible green, palette has no green */
+  --color-warning-text: var(--raw-coral-glow-700);
+  --color-danger-text:  #B3261E;  /* standard accessible red, palette has no red */
+  --color-info-text:    var(--raw-steel-blue-700);
+
+
+  /* ---------- 3. TYPOGRAPHY TOKENS ---------- */
+
+  /* Heading font: bold, geometric, a little unexpected — carries
+     personality without competing with the accent colors.
+     Body font: warm and highly readable, deliberately NOT Inter. */
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body:    'Karla', sans-serif;
+  --font-mono:    'IBM Plex Mono', monospace; /* optional, for code/data */
+
+  --fw-regular: 400;
+  --fw-medium:  500;
+  --fw-bold:    700;
+  --fw-heading: 700; /* headings always render bold by default */
+
+  /* Fluid type scale — sizes flex between mobile and desktop
+     automatically, no media queries needed. */
+  --text-xs:   clamp(0.75rem, 0.72rem + 0.15vw, 0.8rem);
+  --text-sm:   clamp(0.875rem, 0.84rem + 0.2vw, 0.95rem);
+  --text-base: clamp(1rem, 0.96rem + 0.25vw, 1.0625rem);
+  --text-lg:   clamp(1.125rem, 1.06rem + 0.35vw, 1.25rem);
+  --text-xl:   clamp(1.375rem, 1.25rem + 0.6vw, 1.625rem);
+  --text-2xl:  clamp(1.75rem, 1.5rem + 1.1vw, 2.25rem);
+  --text-3xl:  clamp(2.25rem, 1.85rem + 1.8vw, 3rem);
+  --text-4xl:  clamp(2.75rem, 2.1rem + 2.8vw, 4rem);
+
+  --leading-tight:  1.15;
+  --leading-normal: 1.5;
+  --leading-loose:  1.7;
+
+
+  /* ---------- 4. SPACING & RADIUS (small bonus set) ---------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 999px;
+}
+
+/* ---------- Dark mode override ----------
+   Flip the surface/text relationship. The accent colors barely need
+   to change because coral, steel-blue, and plum were all built to
+   pass AA on shadow-grey already. */
+[data-theme="dark"] {
+  --color-bg:            var(--raw-shadow-grey);
+  --color-bg-subtle:     var(--raw-neutral-700);
+  --color-bg-inverse:    var(--raw-bright-snow);
+  --color-surface:       #313131;
+  --color-border:        var(--raw-neutral-600);
+
+  --color-text:          var(--raw-bright-snow);
+  --color-text-muted:    var(--raw-neutral-300);
+  --color-text-inverse:  var(--raw-shadow-grey);
+
+  --color-primary-text:      var(--color-primary-on-dark);
+  --color-secondary-text:    var(--color-secondary-on-dark);
+  --color-accent-text:       var(--color-accent-on-dark);
+}
+
+/* ---------- Base element mapping ----------
+   This is the only place font-family/color get assigned to real
+   elements — everything else in your site should just use the
+   tokens above. */
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-heading);
+  line-height: var(--leading-tight);
+  color: var(--color-text);
+}
+
+a {
+  color: var(--color-primary-text);
+}
