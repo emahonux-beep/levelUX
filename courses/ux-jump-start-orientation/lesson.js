@@ -1,6 +1,6 @@
 (function () {
   const STORAGE_KEY = 'levelux-orientation-progress';
-  const TOTAL = 3;
+  const TOTAL = 5;
   const currentLesson = Number(document.currentScript.dataset.lessonIndex);
 
   function loadProgress() {
