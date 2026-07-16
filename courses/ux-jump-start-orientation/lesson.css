@@ -69,6 +69,7 @@ body{margin:0;font-family:var(--font-body);color:var(--color-text);background:#F
 
 /* Body text */
 .lesson-body p{font-size:var(--text-base);line-height:1.78;color:#2C2C2C;margin:0 0 var(--space-5);}
+.lesson-body h2{font-family:var(--font-heading);font-weight:var(--fw-bold);font-size:var(--text-xl);color:#1A1A1A;margin:var(--space-10) 0 var(--space-4);}
 .lesson-body ul{margin:0 0 var(--space-5);padding-left:var(--space-5);}
 .lesson-body ul li{font-size:var(--text-base);line-height:1.7;color:#2C2C2C;margin-bottom:var(--space-2);}
 .lesson-body ul li strong{font-weight:var(--fw-bold);}
