@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FigJam Deep Dive — Figma, Actually — LevelUX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Karla:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../tokens.css">
+<link rel="stylesheet" href="lesson.css">
+</head>
+<body>
+
+<nav class="top-bar">
+  <div class="top-bar-inner">
+    <a href="../../index.html" class="site-logo"><img src="../../images/LevelUX-horizontal-dark.svg" alt="LevelUX"></a>
+    <div class="nav-links">
+      <a href="../../index.html" class="nav-link">Home</a>
+      <a href="../../learning-friday.html" class="nav-link">Learning Friday</a>
+      <a href="../../courses.html" class="nav-link active">Courses</a>
+      <a href="../../brain-dumps.html" class="nav-link">Brain Dumps</a>
+      <a href="../../about.html" class="nav-link">About</a>
+    </div>
+  </div>
+</nav>
+<div class="site-stripe"></div>
+
+<div class="lms-shell">
+
+  <aside class="sidebar">
+
+    <div class="sidebar-header">
+      <p class="sidebar-course-eyebrow">LevelUX Course</p>
+      <h2 class="sidebar-course-title">Figma, Actually</h2>
+      <p class="sidebar-course-sub">10 lessons · 4 modules</p>
+    </div>
+
+    <div class="sidebar-progress">
+      <div class="sidebar-progress-label">
+        <span>Your progress</span>
+        <strong id="progress-count">0 / 10</strong>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+    </div>
+
+    <nav class="sidebar-lessons">
+      <p class="sidebar-module-label">Module 1 · Foundations</p>
+      <a href="index.html" class="sidebar-lesson" data-lesson="0">
+        <span class="lesson-num">01</span>
+        <span class="lesson-check" id="check-0"></span>
+        <span class="lesson-name">The Figma Ecosystem</span>
+      </a>
+      <a href="figjam-deep-dive.html" class="sidebar-lesson active" data-lesson="1">
+        <span class="lesson-num">02</span>
+        <span class="lesson-check" id="check-1"></span>
+        <span class="lesson-name">FigJam Deep Dive</span>
+      </a>
+
+      <p class="sidebar-module-label">Module 2 · Craft Fundamentals</p>
+      <a href="file-and-page-hygiene.html" class="sidebar-lesson" data-lesson="2">
+        <span class="lesson-num">03</span>
+        <span class="lesson-check" id="check-2"></span>
+        <span class="lesson-name">File &amp; Page Hygiene</span>
+      </a>
+      <a href="core-toolbar-and-navigation.html" class="sidebar-lesson" data-lesson="3">
+        <span class="lesson-num">04</span>
+        <span class="lesson-check" id="check-3"></span>
+        <span class="lesson-name">Core Toolbar &amp; Navigation</span>
+      </a>
+      <a href="working-efficiently-in-a-page.html" class="sidebar-lesson" data-lesson="4">
+        <span class="lesson-num">05</span>
+        <span class="lesson-check" id="check-4"></span>
+        <span class="lesson-name">Working Efficiently in a Page</span>
+      </a>
+
+      <p class="sidebar-module-label">Module 3 · Systems Thinking</p>
+      <a href="variables-and-tokens.html" class="sidebar-lesson" data-lesson="5">
+        <span class="lesson-num">06</span>
+        <span class="lesson-check" id="check-5"></span>
+        <span class="lesson-name">Variables &amp; Tokens</span>
+      </a>
+      <a href="components-and-systems.html" class="sidebar-lesson" data-lesson="6">
+        <span class="lesson-num">07</span>
+        <span class="lesson-check" id="check-6"></span>
+        <span class="lesson-name">Components &amp; Systems</span>
+      </a>
+      <a href="advanced-views-and-tools.html" class="sidebar-lesson" data-lesson="7">
+        <span class="lesson-num">08</span>
+        <span class="lesson-check" id="check-7"></span>
+        <span class="lesson-name">Advanced Views &amp; Tools</span>
+      </a>
+
+      <p class="sidebar-module-label">Module 4 · File Management</p>
+      <a href="branching.html" class="sidebar-lesson" data-lesson="8">
+        <span class="lesson-num">09</span>
+        <span class="lesson-check" id="check-8"></span>
+        <span class="lesson-name">Branching</span>
+      </a>
+      <a href="figma-and-ai.html" class="sidebar-lesson" data-lesson="9">
+        <span class="lesson-num">10</span>
+        <span class="lesson-check" id="check-9"></span>
+        <span class="lesson-name">Figma + AI</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <p class="sidebar-footer-note">Work through lessons in order, or jump to whatever you need. Progress saves automatically on this device.</p>
+      <button class="reset-btn" onclick="resetProgress()">Reset my progress</button>
+    </div>
+
+  </aside>
+
+  <main class="course-content">
+
+    <span class="module-label">Module 1 · Foundations · Lesson 2 of 10</span>
+    <h1 class="lesson-title">FigJam Deep Dive</h1>
+    <div class="lesson-meta">
+      <div class="read-time">
+        <span class="material-symbols-outlined" style="font-size:15px;color:var(--raw-coral-glow);">schedule</span>
+        6 min read
+      </div>
+      <label class="mark-complete" id="complete-1-label">
+        <input type="checkbox" id="complete-1" onchange="markComplete(1)">
+        Mark as complete
+      </label>
+    </div>
+    <div class="lesson-body">
+      <div class="onscreen-note">🎬 On-screen: title card, "FigJam Deep Dive"</div>
+
+      <p>If Design is where you build the thing, FigJam is where you figure out what the thing should be. It's your whiteboard, your workshop room, and your scratch pad for research synthesis — all in one file type. Let's get into what's actually on that toolbar and how to use it well.</p>
+
+      <h2>The bottom toolbar, tool by tool</h2>
+
+      <div class="onscreen-note">🎬 On-screen: screen recording, hovering each tool as it's named</div>
+
+      <table>
+        <thead><tr><th>Tool</th><th>How much you'll use it</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Select</strong></td><td>Constantly. This is your default.</td></tr>
+          <tr><td><strong>Hand</strong></td><td>Occasionally, for navigating a big board.</td></tr>
+          <tr><td><strong>Marker</strong></td><td>Rarely. It's genuinely hard to write with a trackpad — typing is almost always faster and more legible.</td></tr>
+          <tr><td><strong>Sticky notes</strong></td><td>Constantly. One of your best friends in this tool.</td></tr>
+          <tr><td><strong>Shapes &amp; connectors</strong></td><td>Frequently — this is how you build diagrams like user flows or process maps.</td></tr>
+          <tr><td><strong>Text</strong></td><td>Frequently.</td></tr>
+          <tr><td><strong>Sections</strong></td><td>Frequently, and underrated. Sections are how you keep a board from turning into chaos.</td></tr>
+          <tr><td><strong>Tables</strong></td><td>Occasionally, including importing straight from Excel — genuinely handy when you've got structured data to bring in.</td></tr>
+          <tr><td><strong>Stamps</strong></td><td>For voting, reacting, or flagging something you like during a session.</td></tr>
+          <tr><td><strong>Comments</strong></td><td>Constantly, especially in async or review contexts.</td></tr>
+        </tbody>
+      </table>
+
+      <blockquote><p>Sections aren't decoration. They're the difference between a board someone can navigate in ten seconds and one they have to scroll around guessing at.</p></blockquote>
+
+      <h2>Templates, widgets, and plugins</h2>
+
+      <p>Figma ships with real templates and widgets built for FigJam specifically — icebreakers, polls, basic diagram starters, workshop activities. Before you build something from scratch, check whether it already exists as a template. There's also a wider plugin ecosystem worth exploring once you're comfortable with the basics.</p>
+
+      <h2>Running a live session</h2>
+
+      <div class="onscreen-note">🎬 On-screen: demo of starting an open session — cursor chat, music, a live vote</div>
+
+      <p>FigJam supports real-time collaboration in a way that feels closer to Miro or Mural than to a typical design file. A few things worth knowing:</p>
+      <ul>
+        <li>You can open a session and let people move around the board live, which is where the sticky notes and stamps earn their keep.</li>
+        <li>You can run a <strong>live vote</strong> to get to consensus fast, instead of collecting opinions one Slack thread at a time.</li>
+        <li>You can play music during an open session — small thing, but it changes the energy of a workshop more than you'd expect.</li>
+      </ul>
+
+      <h2>Where FigJam earns its keep</h2>
+
+      <p>FigJam is genuinely good for:</p>
+      <ul>
+        <li>Whiteboarding and low-fidelity exploration</li>
+        <li>Facilitating workshops</li>
+        <li>Collaborating with partners in real time</li>
+        <li>Mapping out ideas — user flows, process flows, journey maps</li>
+        <li>Research synthesis and lightweight data analysis</li>
+        <li>Taking notes during a working session</li>
+      </ul>
+
+      <p>One underused move: you can copy elements straight from a Design file onto a FigJam board. That's a fast way to bring a real screen into a workshop discussion instead of describing it from memory.</p>
+
+      <h2>What's next</h2>
+
+      <p>Lesson 3 moves into Design proper — starting with how to set up a file so it doesn't turn into a mess six months from now.</p>
+
+      <div class="onscreen-note">🎬 Video note: this is a good lesson for a live screen-share demo — actually run a two-minute mock workshop (sticky notes, a vote, a stamp reaction) rather than just narrating over static screenshots.</div>
+    </div>
+
+    <div class="lesson-nav">
+      <a class="nav-btn prev" href="index.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+        The Figma Ecosystem
+      </a>
+      <span class="lesson-position">Lesson 2 of 10</span>
+      <a class="nav-btn next" href="file-and-page-hygiene.html">
+        File &amp; Page Hygiene
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+
+  </main>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div><img src="../../images/LevelUX-stacked-dark.svg" alt="LevelUX" class="footer-logo" style="height:60px;opacity:.6;"></div>
+    <nav class="footer-nav">
+      <a href="../../index.html">Home</a>
+      <a href="../../learning-friday.html">Learning Friday</a>
+      <a href="../../courses.html">Courses</a>
+      <a href="../../brain-dumps.html">Brain Dumps</a>
+      <a href="../../about.html">About</a>
+    </nav>
+    <div class="footer-contact">
+      <a href="mailto:emahonux@gmail.com">emahonux@gmail.com</a>
+      <a href="tel:+12034820166">203.482.0166</a>
+    </div>
+  </div>
+  <div class="footer-legal">&copy; 2025 Erin Mahon. All rights reserved. LevelUX and all original content on this site are the intellectual property of Erin Mahon and may not be reproduced without explicit written permission.</div>
+</footer>
+
+<script src="lesson.js" data-lesson-index="1"></script>
+
+</body>
+</html>
