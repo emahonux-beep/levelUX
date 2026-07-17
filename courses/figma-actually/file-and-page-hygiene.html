@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>File &amp; Page Hygiene — Figma, Actually — LevelUX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Karla:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../tokens.css">
+<link rel="stylesheet" href="lesson.css">
+</head>
+<body>
+
+<nav class="top-bar">
+  <div class="top-bar-inner">
+    <a href="../../index.html" class="site-logo"><img src="../../images/LevelUX-horizontal-dark.svg" alt="LevelUX"></a>
+    <div class="nav-links">
+      <a href="../../index.html" class="nav-link">Home</a>
+      <a href="../../learning-friday.html" class="nav-link">Learning Friday</a>
+      <a href="../../courses.html" class="nav-link active">Courses</a>
+      <a href="../../brain-dumps.html" class="nav-link">Brain Dumps</a>
+      <a href="../../about.html" class="nav-link">About</a>
+    </div>
+  </div>
+</nav>
+<div class="site-stripe"></div>
+
+<div class="lms-shell">
+
+  <aside class="sidebar">
+
+    <div class="sidebar-header">
+      <p class="sidebar-course-eyebrow">LevelUX Course</p>
+      <h2 class="sidebar-course-title">Figma, Actually</h2>
+      <p class="sidebar-course-sub">10 lessons · 4 modules</p>
+    </div>
+
+    <div class="sidebar-progress">
+      <div class="sidebar-progress-label">
+        <span>Your progress</span>
+        <strong id="progress-count">0 / 10</strong>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+    </div>
+
+    <nav class="sidebar-lessons">
+      <p class="sidebar-module-label">Module 1 · Foundations</p>
+      <a href="index.html" class="sidebar-lesson" data-lesson="0">
+        <span class="lesson-num">01</span>
+        <span class="lesson-check" id="check-0"></span>
+        <span class="lesson-name">The Figma Ecosystem</span>
+      </a>
+      <a href="figjam-deep-dive.html" class="sidebar-lesson" data-lesson="1">
+        <span class="lesson-num">02</span>
+        <span class="lesson-check" id="check-1"></span>
+        <span class="lesson-name">FigJam Deep Dive</span>
+      </a>
+
+      <p class="sidebar-module-label">Module 2 · Craft Fundamentals</p>
+      <a href="file-and-page-hygiene.html" class="sidebar-lesson active" data-lesson="2">
+        <span class="lesson-num">03</span>
+        <span class="lesson-check" id="check-2"></span>
+        <span class="lesson-name">File &amp; Page Hygiene</span>
+      </a>
+      <a href="core-toolbar-and-navigation.html" class="sidebar-lesson" data-lesson="3">
+        <span class="lesson-num">04</span>
+        <span class="lesson-check" id="check-3"></span>
+        <span class="lesson-name">Core Toolbar &amp; Navigation</span>
+      </a>
+      <a href="working-efficiently-in-a-page.html" class="sidebar-lesson" data-lesson="4">
+        <span class="lesson-num">05</span>
+        <span class="lesson-check" id="check-4"></span>
+        <span class="lesson-name">Working Efficiently in a Page</span>
+      </a>
+
+      <p class="sidebar-module-label">Module 3 · Systems Thinking</p>
+      <a href="variables-and-tokens.html" class="sidebar-lesson" data-lesson="5">
+        <span class="lesson-num">06</span>
+        <span class="lesson-check" id="check-5"></span>
+        <span class="lesson-name">Variables &amp; Tokens</span>
+      </a>
+      <a href="components-and-systems.html" class="sidebar-lesson" data-lesson="6">
+        <span class="lesson-num">07</span>
+        <span class="lesson-check" id="check-6"></span>
+        <span class="lesson-name">Components &amp; Systems</span>
+      </a>
+      <a href="advanced-views-and-tools.html" class="sidebar-lesson" data-lesson="7">
+        <span class="lesson-num">08</span>
+        <span class="lesson-check" id="check-7"></span>
+        <span class="lesson-name">Advanced Views &amp; Tools</span>
+      </a>
+
+      <p class="sidebar-module-label">Module 4 · File Management</p>
+      <a href="branching.html" class="sidebar-lesson" data-lesson="8">
+        <span class="lesson-num">09</span>
+        <span class="lesson-check" id="check-8"></span>
+        <span class="lesson-name">Branching</span>
+      </a>
+      <a href="figma-and-ai.html" class="sidebar-lesson" data-lesson="9">
+        <span class="lesson-num">10</span>
+        <span class="lesson-check" id="check-9"></span>
+        <span class="lesson-name">Figma + AI</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <p class="sidebar-footer-note">Work through lessons in order, or jump to whatever you need. Progress saves automatically on this device.</p>
+      <button class="reset-btn" onclick="resetProgress()">Reset my progress</button>
+    </div>
+
+  </aside>
+
+  <main class="course-content">
+
+    <span class="module-label">Module 2 · Craft Fundamentals · Lesson 3 of 10</span>
+    <h1 class="lesson-title">File &amp; Page Hygiene</h1>
+    <div class="lesson-meta">
+      <div class="read-time">
+        <span class="material-symbols-outlined" style="font-size:15px;color:var(--raw-coral-glow);">schedule</span>
+        6 min read
+      </div>
+      <label class="mark-complete" id="complete-2-label">
+        <input type="checkbox" id="complete-2" onchange="markComplete(2)">
+        Mark as complete
+      </label>
+    </div>
+    <div class="lesson-body">
+      <div class="onscreen-note">🎬 On-screen: title card, "File &amp; Page Hygiene"</div>
+
+      <p>This lesson isn't glamorous, but it's the one that saves you the most time down the road. A messy file doesn't just look bad — it slows down everyone who has to work in it after you, including future-you in six months.</p>
+      <p>Here's a page structure that holds up on real projects.</p>
+
+      <h2>A page structure that scales</h2>
+
+      <div class="onscreen-note">🎬 On-screen: side panel of a Figma file, scrolling through the page list as each one is named</div>
+
+      <ol>
+        <li><strong>Cover page.</strong> A presentation-style frame with the product or feature name, who's responsible, and its status. Set this as the file thumbnail so you can identify the file at a glance instead of squinting at tiny file names in the dashboard.</li>
+        <li><strong>Divider.</strong> A page with a few dashes in the name to create a visual separator line in the page list. Small trick, real payoff.</li>
+        <li><strong>Noodles / Explorations.</strong> Your scratch pad. This page can — and should — get messy. Throw ideas at the wall here.</li>
+        <li><strong>Responsive design.</strong> Kept separate from native, since different teams often own each, and there are real platform-specific best practices that don't cross over cleanly.</li>
+        <li><strong>Native design.</strong> Same logic, opposite platform.</li>
+        <li><strong>Divider.</strong></li>
+        <li><strong>Supporting pages.</strong> Local components, demos, or research artifacts — whichever apply to the project.</li>
+        <li><strong>Archive / Do Not Use.</strong> The last page in every file. Nothing gets deleted here; it just moves out of the way.</li>
+      </ol>
+
+      <blockquote><p>Explorations don't have to disappear to keep a file clean. They just need a place to live that isn't the main path.</p></blockquote>
+
+      <h2>Why the archive page instead of just deleting things</h2>
+
+      <p>You never know when you'll want to revisit an idea that got shelved. Six to twelve months out, "the direction we didn't take" is often exactly what someone asks about. Pair the archive page with <strong>branches</strong> — branch and merge management keeps a real version history of explorations without cluttering your main pages. Nothing to dig through, nothing lost either.</p>
+
+      <h2>Messy where it should be messy, clean where it counts</h2>
+
+      <p>Your Noodles page can be chaos. Layers everywhere, half-finished ideas, things that don't line up. That's the point — it's where you're allowed to think out loud.</p>
+      <p>The responsive and native pages are a different story. That's where organization actually matters:</p>
+      <ul>
+        <li><strong>Use sections</strong> to group related frames instead of letting everything float loose.</li>
+        <li><strong>Name your frames and layers.</strong> "Frame 47" tells the next person nothing. "Checkout — Confirmation" tells them everything.</li>
+        <li><strong>One frame per full page</strong>, generally. Instead of duplicating an entire page to show variant states, build <strong>sections beneath the main frame</strong> for individual components that change.</li>
+      </ul>
+
+      <h2>The step 1 / 2 / 3 problem</h2>
+
+      <div class="onscreen-note">🎬 On-screen: example — a three-step onboarding flow, shown as one frame with three component variants beneath it instead of three duplicated pages</div>
+
+      <p>Say you've got a flow with steps one, two, and three, and the content changes at each step. Instead of recreating the whole page three times, make a copy of just the <strong>component</strong> that changes — the content for each step lives in that one component, not in three duplicated pages.</p>
+      <p>This keeps file size down and keeps you from copy-pasting the same page over and over just to show a small content change. Newer prototyping tools are starting to reduce how often you need to do this by hand, but for now, when you are hands-on in the file, this habit pays for itself quickly.</p>
+
+      <h2>What's next</h2>
+
+      <p>Lesson 4 covers the core toolbar and navigation — the tools you'll reach for constantly, and the panels on the left that get you to any layer fast.</p>
+
+      <div class="onscreen-note">🎬 Video note: this lesson benefits from a real before/after — show a genuinely messy file next to the same file after applying this structure.</div>
+    </div>
+
+    <div class="lesson-nav">
+      <a class="nav-btn prev" href="figjam-deep-dive.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+        FigJam Deep Dive
+      </a>
+      <span class="lesson-position">Lesson 3 of 10</span>
+      <a class="nav-btn next" href="core-toolbar-and-navigation.html">
+        Core Toolbar &amp; Navigation
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+
+  </main>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div><img src="../../images/LevelUX-stacked-dark.svg" alt="LevelUX" class="footer-logo" style="height:60px;opacity:.6;"></div>
+    <nav class="footer-nav">
+      <a href="../../index.html">Home</a>
+      <a href="../../learning-friday.html">Learning Friday</a>
+      <a href="../../courses.html">Courses</a>
+      <a href="../../brain-dumps.html">Brain Dumps</a>
+      <a href="../../about.html">About</a>
+    </nav>
+    <div class="footer-contact">
+      <a href="mailto:emahonux@gmail.com">emahonux@gmail.com</a>
+      <a href="tel:+12034820166">203.482.0166</a>
+    </div>
+  </div>
+  <div class="footer-legal">&copy; 2025 Erin Mahon. All rights reserved. LevelUX and all original content on this site are the intellectual property of Erin Mahon and may not be reproduced without explicit written permission.</div>
+</footer>
+
+<script src="lesson.js" data-lesson-index="2"></script>
+
+</body>
+</html>

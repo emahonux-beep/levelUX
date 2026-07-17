@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Figma + AI — Figma, Actually — LevelUX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Karla:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../tokens.css">
+<link rel="stylesheet" href="lesson.css">
+</head>
+<body>
+
+<nav class="top-bar">
+  <div class="top-bar-inner">
+    <a href="../../index.html" class="site-logo"><img src="../../images/LevelUX-horizontal-dark.svg" alt="LevelUX"></a>
+    <div class="nav-links">
+      <a href="../../index.html" class="nav-link">Home</a>
+      <a href="../../learning-friday.html" class="nav-link">Learning Friday</a>
+      <a href="../../courses.html" class="nav-link active">Courses</a>
+      <a href="../../brain-dumps.html" class="nav-link">Brain Dumps</a>
+      <a href="../../about.html" class="nav-link">About</a>
+    </div>
+  </div>
+</nav>
+<div class="site-stripe"></div>
+
+<div class="lms-shell">
+
+  <aside class="sidebar">
+
+    <div class="sidebar-header">
+      <p class="sidebar-course-eyebrow">LevelUX Course</p>
+      <h2 class="sidebar-course-title">Figma, Actually</h2>
+      <p class="sidebar-course-sub">10 lessons · 4 modules</p>
+    </div>
+
+    <div class="sidebar-progress">
+      <div class="sidebar-progress-label">
+        <span>Your progress</span>
+        <strong id="progress-count">0 / 10</strong>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+    </div>
+
+    <nav class="sidebar-lessons">
+      <p class="sidebar-module-label">Module 1 · Foundations</p>
+      <a href="index.html" class="sidebar-lesson" data-lesson="0">
+        <span class="lesson-num">01</span>
+        <span class="lesson-check" id="check-0"></span>
+        <span class="lesson-name">The Figma Ecosystem</span>
+      </a>
+      <a href="figjam-deep-dive.html" class="sidebar-lesson" data-lesson="1">
+        <span class="lesson-num">02</span>
+        <span class="lesson-check" id="check-1"></span>
+        <span class="lesson-name">FigJam Deep Dive</span>
+      </a>
+
+      <p class="sidebar-module-label">Module 2 · Craft Fundamentals</p>
+      <a href="file-and-page-hygiene.html" class="sidebar-lesson" data-lesson="2">
+        <span class="lesson-num">03</span>
+        <span class="lesson-check" id="check-2"></span>
+        <span class="lesson-name">File &amp; Page Hygiene</span>
+      </a>
+      <a href="core-toolbar-and-navigation.html" class="sidebar-lesson" data-lesson="3">
+        <span class="lesson-num">04</span>
+        <span class="lesson-check" id="check-3"></span>
+        <span class="lesson-name">Core Toolbar &amp; Navigation</span>
+      </a>
+      <a href="working-efficiently-in-a-page.html" class="sidebar-lesson" data-lesson="4">
+        <span class="lesson-num">05</span>
+        <span class="lesson-check" id="check-4"></span>
+        <span class="lesson-name">Working Efficiently in a Page</span>
+      </a>
+
+      <p class="sidebar-module-label">Module 3 · Systems Thinking</p>
+      <a href="variables-and-tokens.html" class="sidebar-lesson" data-lesson="5">
+        <span class="lesson-num">06</span>
+        <span class="lesson-check" id="check-5"></span>
+        <span class="lesson-name">Variables &amp; Tokens</span>
+      </a>
+      <a href="components-and-systems.html" class="sidebar-lesson" data-lesson="6">
+        <span class="lesson-num">07</span>
+        <span class="lesson-check" id="check-6"></span>
+        <span class="lesson-name">Components &amp; Systems</span>
+      </a>
+      <a href="advanced-views-and-tools.html" class="sidebar-lesson" data-lesson="7">
+        <span class="lesson-num">08</span>
+        <span class="lesson-check" id="check-7"></span>
+        <span class="lesson-name">Advanced Views &amp; Tools</span>
+      </a>
+
+      <p class="sidebar-module-label">Module 4 · File Management</p>
+      <a href="branching.html" class="sidebar-lesson" data-lesson="8">
+        <span class="lesson-num">09</span>
+        <span class="lesson-check" id="check-8"></span>
+        <span class="lesson-name">Branching</span>
+      </a>
+      <a href="figma-and-ai.html" class="sidebar-lesson active" data-lesson="9">
+        <span class="lesson-num">10</span>
+        <span class="lesson-check" id="check-9"></span>
+        <span class="lesson-name">Figma + AI</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <p class="sidebar-footer-note">Work through lessons in order, or jump to whatever you need. Progress saves automatically on this device.</p>
+      <button class="reset-btn" onclick="resetProgress()">Reset my progress</button>
+    </div>
+
+  </aside>
+
+  <main class="course-content">
+
+    <span class="module-label">Module 4 · File Management · Lesson 10 of 10</span>
+    <h1 class="lesson-title">Figma + AI</h1>
+    <div class="lesson-meta">
+      <div class="read-time">
+        <span class="material-symbols-outlined" style="font-size:15px;color:var(--raw-coral-glow);">schedule</span>
+        6 min read
+      </div>
+      <label class="mark-complete" id="complete-9-label">
+        <input type="checkbox" id="complete-9" onchange="markComplete(9)">
+        Mark as complete
+      </label>
+    </div>
+    <div class="lesson-body">
+      <div class="onscreen-note">🎬 On-screen: title card, "Figma + AI"</div>
+
+      <p>We touched on canvas agents back in Lesson 4. This closing lesson goes deeper into how AI actually fits into a Figma workflow today — where it helps, where it's a starting point rather than a finished answer, and how work moves between Figma and outside AI tools.</p>
+
+      <h2>Prompting from the canvas</h2>
+
+      <p>You no longer have to leave Figma to get AI-assisted help. Canvas agents let you prompt for changes, generate a starting point, or ask for a variation directly where you're already working, instead of switching over to a separate tool like Figma Make or an external AI product and losing your place.</p>
+
+      <div class="onscreen-note">🎬 On-screen: prompt a canvas agent for a small UI change, show the result appear in place</div>
+
+      <h2>Figma Make</h2>
+
+      <p>For bigger asks — generating a working prototype from a description rather than editing something that already exists — <strong>Figma Make</strong> is the dedicated tool. It's a genuinely useful way to get from a blank page to a rough, clickable starting point fast.</p>
+
+      <h2>Round-tripping between Figma and outside AI tools</h2>
+
+      <p>Work doesn't have to stay in one direction. You can:</p>
+      <ul>
+        <li>Export or reference a frame from Figma as context for an external AI tool.</li>
+        <li>Bring what that tool produces back into the canvas to refine by hand — adjusting spacing, applying your real component library, wiring up variables so it actually matches your system instead of living as a one-off.</li>
+      </ul>
+
+      <blockquote><p>AI is a fast way to get to a starting point. It is not a substitute for the judgment that turns a starting point into something that actually fits your system.</p></blockquote>
+
+      <p>This is worth sitting with, especially if you're newer to the craft: understanding <em>why</em> a layout works — spacing, hierarchy, component structure — is what lets you evaluate an AI-generated result instead of just accepting it. Without that foundation, you're curating outputs you don't fully understand, and that's a fragile place to design from.</p>
+
+      <h2>Where this fits with everything else in the course</h2>
+
+      <p>Nothing in this lesson replaces the fundamentals from Lessons 3 through 8. If anything, those fundamentals matter more now — auto layout, components, variables, file hygiene — because they're what let you take something AI-generated and actually fold it into a system that holds up, instead of leaving it as a disconnected frame that drifts the moment anything around it changes.</p>
+
+      <h2>Wrapping up</h2>
+
+      <p>That's the full course — from knowing which Figma product to open, through file hygiene, the toolbar, variables, components, branching, and now AI. The tools will keep changing. The habits in Lessons 3 through 9 are the part that's going to keep paying off no matter what gets added next.</p>
+
+      <div class="onscreen-note">🎬 Video note: this is a good lesson to end on a live example — take one AI-generated starting point and actually refine it on screen using auto layout and real variables, so the "judgment matters" point is shown, not just said.</div>
+    </div>
+
+    <div class="lesson-nav">
+      <a class="nav-btn prev" href="branching.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+        Branching
+      </a>
+      <span class="lesson-position">Lesson 10 of 10</span>
+      <a class="nav-btn next" href="../../courses.html">
+        Finish course
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+
+  </main>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div><img src="../../images/LevelUX-stacked-dark.svg" alt="LevelUX" class="footer-logo" style="height:60px;opacity:.6;"></div>
+    <nav class="footer-nav">
+      <a href="../../index.html">Home</a>
+      <a href="../../learning-friday.html">Learning Friday</a>
+      <a href="../../courses.html">Courses</a>
+      <a href="../../brain-dumps.html">Brain Dumps</a>
+      <a href="../../about.html">About</a>
+    </nav>
+    <div class="footer-contact">
+      <a href="mailto:emahonux@gmail.com">emahonux@gmail.com</a>
+      <a href="tel:+12034820166">203.482.0166</a>
+    </div>
+  </div>
+  <div class="footer-legal">&copy; 2025 Erin Mahon. All rights reserved. LevelUX and all original content on this site are the intellectual property of Erin Mahon and may not be reproduced without explicit written permission.</div>
+</footer>
+
+<script src="lesson.js" data-lesson-index="9"></script>
+
+</body>
+</html>
