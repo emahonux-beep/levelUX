@@ -85,8 +85,7 @@ body{margin:0;font-family:var(--font-body);color:var(--color-text);background:#F
 .lesson-body td{font-size:var(--text-sm);color:#2C2C2C;line-height:1.6;padding:var(--space-3) var(--space-4);border-bottom:1px solid rgba(0,0,0,.08);vertical-align:top;}
 .lesson-body tr:last-child td{border-bottom:none;}
 .tool-row{display:flex;align-items:center;gap:var(--space-3);}
-.tool-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.tool-icon .material-symbols-outlined{font-size:18px;color:#fff;}
+.tool-icon{width:32px;height:32px;border-radius:8px;display:block;flex-shrink:0;}
 
 /* Blockquotes — pull-quote style, stays inline in the reading column */
 .lesson-body blockquote{border-left:4px solid var(--raw-coral-glow);padding:var(--space-3) var(--space-5);margin:0 0 var(--space-6);font-style:italic;color:#2C2C2C;font-size:var(--text-base);}
